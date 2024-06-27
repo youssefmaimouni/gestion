@@ -4,6 +4,7 @@ use App\Http\Controllers\categorie;
 use App\Http\Controllers\categorieController;
 use App\Http\Controllers\magazin;
 use App\Http\Controllers\magazinController;
+use App\Http\Controllers\marchandiseController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,11 @@ Route::post('/categories', [categorieController::class, 'store'])->name('categor
 Route::put('/categories/{categorie}', [categorieController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{categorie}', [categorieController::class, 'delete'])->name('categories.delete');
 Route::get('/categories/{categories}/edit', [categorieController::class, 'edit'])->name('categories.edit'); 
+    Route::get('/marchandise', [marchandiseController::class, 'index'])->name('marchandise');
+    Route::get('/marchandise/modif/{marchandises}', [marchandiseController::class, 'modif'])->name('marchandise.modif');
+    Route::post('/marchandise/update/{marchandises}', [marchandiseController::class, 'update'])->name('marchandise.update');
+    Route::get('/marchandise/ajout', [marchandiseController::class, 'ajout'])->name('marchandise.ajout');
+    Route::post('/marchandise/store', [marchandiseController::class, 'store'])->name('marchandise.store');
 });
 
 require __DIR__.'/auth.php';

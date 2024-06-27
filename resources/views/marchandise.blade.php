@@ -5,10 +5,10 @@
         <title>marchandise</title>
         @vite('resources/css/app.css')
     </head>
-   <body class="relative h-full w-full">
+   <body class="">
+       @include('layouts.navigation')
    <main class="grid w-full justify-items-center">
-    <x-nav-bar/>
-        <p class="text-2xl w-4/5 m-3 pl-6 underline underline-offset-4">#marchandises</p>
+        <p class="text-2xl w-4/5 m-3 pl-6 underline underline-offset-4">marchandises</p>
         
                     <div class="overflow-x-auto relative shadow-md sm:rounded-lg w-4/5 mb-10">
                     <table class="w-full text-sm text-left text-gray-500">
