@@ -20,6 +20,7 @@ class magazinController extends Controller
         return view('magazins.create');
     }
 
+
     public function store(Request $request) {
         $valid = $request->validate([
             'nom' => ['required', 'min:3'],

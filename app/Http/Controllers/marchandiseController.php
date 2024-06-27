@@ -13,9 +13,13 @@ class marchandiseController extends Controller
 {
     public function index(){
         $marchandise = marchandises::all();
-        return view('marchandise', ['marchandises'=>$marchandise]);
+        return view('marchandises.index', ['marchandises'=>$marchandise]);
     }
 
+   
+    public function create() {
+        return View('marchandises.create',['categorie'=>categories::all()]);
+    }
     public function store(Request $request){
         $valid = $request->validate([
             'nom'=>'required|min:3|string',
@@ -24,7 +28,7 @@ class marchandiseController extends Controller
             'quantite'=>'integer|nullable',
             'unite'=>'string|nullable',
             // 'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-            'categorier'=>'required|exists:categories,id'
+            'categorier'=>'exists:categories,id|nullable'
         ]);
         $marchandise = new marchandises();
         $marchandise->nom=$valid['nom'];
@@ -35,20 +39,13 @@ class marchandiseController extends Controller
         if ($request->file('image') != null) {
             $marchandise->image =  $request->file('image')->store('logos', 'public');
         }
-        if ($request->categorier == -1) {
-            $category = new categories();
-            $category->categorier = strtolower($request->new_cat);
-            $category->save();
-            $marchandise->id_cat = $category->id;
-        }else{
-            $marchandise->id_cat =  $request->categorier;
-        }
-        $marchandise->id_cat=$valid['categorier'];
+       
+        $marchandise->id_cat=$valid['categorier']?? null;
         $marchandise->save();
         return redirect('/home')->with('success', 'marchandise crée  avec succee');
     }
-    public function ajout(marchandises $marchandise) {
-        return View('marchandise-store',['marchandise'=>$marchandise,'categorier'=>categories::all()]);
+    public function edit(marchandises $marchandise) {
+        return View('marchandises.edit',['marchandise'=>$marchandise,'categorie'=>categories::all()]);
     }
 
     public function update(Request $request,marchandises $marchandise )

@@ -45,11 +45,15 @@ Route::post('/categories', [categorieController::class, 'store'])->name('categor
 Route::put('/categories/{categorie}', [categorieController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{categorie}', [categorieController::class, 'delete'])->name('categories.delete');
 Route::get('/categories/{categories}/edit', [categorieController::class, 'edit'])->name('categories.edit'); 
-    Route::get('/marchandise', [marchandiseController::class, 'index'])->name('marchandise');
-    Route::get('/marchandise/modif/{marchandises}', [marchandiseController::class, 'modif'])->name('marchandise.modif');
-    Route::post('/marchandise/update/{marchandises}', [marchandiseController::class, 'update'])->name('marchandise.update');
-    Route::get('/marchandise/ajout', [marchandiseController::class, 'ajout'])->name('marchandise.ajout');
-    Route::post('/marchandise/store', [marchandiseController::class, 'store'])->name('marchandise.store');
+
+Route::get('/marchandises', [marchandiseController::class, 'index'])->name('marchandises.index');
+Route::get('/marchandises/create', [marchandiseController::class, 'create'])->name('marchandises.create');
+Route::post('/marchandises', [marchandiseController::class, 'store'])->name('marchandises.store');
+Route::put('/marchandises/{marchandise}', [marchandiseController::class, 'update'])->name('marchandises.update');
+Route::delete('/marchandises/{marchandise}', [marchandiseController::class, 'delete'])->name('marchandises.delete');
+Route::get('/marchandises/{marchandises}/edit', [marchandiseController::class, 'edit'])->name('marchandises.edit');
+
+
 });
 
 require __DIR__.'/auth.php';
