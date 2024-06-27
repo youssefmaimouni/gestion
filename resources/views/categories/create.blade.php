@@ -7,7 +7,9 @@
     @vite('resources/css/app.css')
 </head>
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
+   
     <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+        @include('layouts.navigation')
         <h1 class="text-2xl font-bold text-gray-700 mb-6">Ajouter une Categorie</h1>
         @if ($errors->any())
             <div class="mb-4 p-4 bg-red-100 text-red-700 border border-red-200 rounded">

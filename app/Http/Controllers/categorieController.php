@@ -31,9 +31,10 @@ class CategorieController extends Controller
         return redirect()->route('categories.index')->with('success', 'Catégorie ajoutée avec succès.');
     }
 
-    public function edit(Categories $categorie) {
-        return view('categories.edit', compact('categorie'));
-    }
+    public function edit(categories $categories)
+{
+    return view('categories.edit', ['categorie' => $categories]);
+}
 
     public function update(Request $request, Categories $categorie) {
         $validatedData = $request->validate([

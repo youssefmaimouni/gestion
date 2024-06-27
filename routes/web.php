@@ -1,13 +1,9 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\categorie;
 use App\Http\Controllers\categorieController;
 use App\Http\Controllers\magazin;
 use App\Http\Controllers\magazinController;
-=======
-use App\Http\Controllers\marchandise;
->>>>>>> 4d81cc2526d081b833fc282ecd7a832a3a00765e
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-<<<<<<< HEAD
  
 Route::get('/magazins', [magazinController::class, 'index'])->name('magazins.index');
 Route::get('/magazins/create', [magazinController::class, 'create'])->name('magazins.create');
@@ -49,9 +44,6 @@ Route::post('/categories', [categorieController::class, 'store'])->name('categor
 Route::put('/categories/{categorie}', [categorieController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{categorie}', [categorieController::class, 'delete'])->name('categories.delete');
 Route::get('/categories/{categories}/edit', [categorieController::class, 'edit'])->name('categories.edit'); 
-=======
-    Route::get('/marchandise', [marchandise::class, 'index'])->name('marchandise');
->>>>>>> 4d81cc2526d081b833fc282ecd7a832a3a00765e
 });
 
 require __DIR__.'/auth.php';
