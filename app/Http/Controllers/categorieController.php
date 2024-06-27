@@ -28,7 +28,7 @@ class categorie extends Controller
         $categorie->save();
 
 
-        return view('ajouter_cat');
+        return redirect()->back()->with('success', 'cetegorie ajouté');
         
        
         
@@ -43,14 +43,14 @@ class categorie extends Controller
             $categorie->id_mag=$valid['id_mag'];
             $categorie->save();
 
-        return view('modifier_cat');        
+            return redirect()->back()->with('success', 'categorie ajouté');      
     }
 
     public function delete(categories  $categorie) {
        
                $categorie->delete();
 
-           return view('delete');
+               return redirect()->back()->with('success', 'categorie ajouté');
            
     }  
         
