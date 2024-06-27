@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('entres', function (Blueprint $table) {
             $table->id();
+            // $table->unsignedBigInteger('id_doc');
+            // $table->date('date_doc');
+            // $table->foreign('id_doc')->references('id')->on('documents')->onDelete('cascade');
+            // $table->integer('quant');
+            // $table->date('date_doc');
+            // $table->foreign('id_doc')->references('id')->on('documents')->onDelete('cascade');
             $table->timestamps();
         });
     }

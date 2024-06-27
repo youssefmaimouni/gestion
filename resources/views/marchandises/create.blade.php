@@ -111,7 +111,7 @@
                     </h2>
                 </header>
 
-                <form action="/marchandise/store" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('marchandises.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-6">
                         <center>
@@ -164,15 +164,15 @@
                         @enderror
                     </div>
                     <div class="mb-6">
-                        <label for="categorier" class="inline-block text-lg mb-2">Catégorie </label>
-                        <select name="categorier" class="border border-gray-200 rounded p-2 w-full" id="categorier">
-                            @foreach ($categorier as $item)
+                        <label for="categorie" class="inline-block text-lg mb-2">Catégorie </label>
+                        <select name="categorie" class="border border-gray-200 rounded p-2 w-full" id="categorie">
+                            @foreach ($categorie as $item)
                             <option value="{{$item->id}}">{{$item->nom}} </option>
                             @endforeach
-                            <option value="-1">Autre </option>
+                            <option>Autre </option>
                         </select>
                         <input type="hidden" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="new_cat" placeholder="Nouvelle Catégorie"  />
-                        @error('categorier')
+                        @error('categorie')
                         <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>

@@ -7,7 +7,7 @@ use App\Models\tags;
 use Exception;
 use Illuminate\Http\Request;
 
-class tag extends Controller
+class tagController extends Controller
 {
     public function index(){
         $tag = tags::all();

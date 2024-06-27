@@ -1,6 +1,10 @@
 <?php
 
-use App\Http\Controllers\marchandise;
+use App\Http\Controllers\categorie;
+use App\Http\Controllers\categorieController;
+use App\Http\Controllers\magazin;
+use App\Http\Controllers\magazinController;
+use App\Http\Controllers\marchandiseController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,11 +31,29 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/marchandise', [marchandise::class, 'index'])->name('marchandise');
-    Route::get('/marchandise/modif/{marchandises}', [marchandise::class, 'modif'])->name('marchandise.modif');
-    Route::post('/marchandise/update/{marchandises}', [marchandise::class, 'update'])->name('marchandise.update');
-    Route::get('/marchandise/ajout', [marchandise::class, 'ajout'])->name('marchandise.ajout');
-    Route::post('/marchandise/store', [marchandise::class, 'store'])->name('marchandise.store');
+ 
+Route::get('/magazins', [magazinController::class, 'index'])->name('magazins.index');
+Route::get('/magazins/create', [magazinController::class, 'create'])->name('magazins.create');
+Route::post('/magazins', [magazinController::class, 'store'])->name('magazins.store');
+Route::put('/magazins/{magazin}', [magazinController::class, 'update'])->name('magazins.update');
+Route::delete('/magazins/{magazin}', [magazinController::class, 'delete'])->name('magazins.delete');
+Route::get('/magazins/{magazins}/edit', [magazinController::class, 'edit'])->name('magazins.edit'); 
+
+Route::get('/categories', [categorieController::class, 'index'])->name('categories.index');
+Route::get('/categories/create', [categorieController::class, 'create'])->name('categories.create');
+Route::post('/categories', [categorieController::class, 'store'])->name('categories.store');
+Route::put('/categories/{categorie}', [categorieController::class, 'update'])->name('categories.update');
+Route::delete('/categories/{categorie}', [categorieController::class, 'delete'])->name('categories.delete');
+Route::get('/categories/{categories}/edit', [categorieController::class, 'edit'])->name('categories.edit'); 
+
+Route::get('/marchandises', [marchandiseController::class, 'index'])->name('marchandises.index');
+Route::get('/marchandises/create', [marchandiseController::class, 'create'])->name('marchandises.create');
+Route::post('/marchandises', [marchandiseController::class, 'store'])->name('marchandises.store');
+Route::put('/marchandises/{marchandise}', [marchandiseController::class, 'update'])->name('marchandises.update');
+Route::delete('/marchandises/{marchandise}', [marchandiseController::class, 'delete'])->name('marchandises.delete');
+Route::get('/marchandises/{marchandises}/edit', [marchandiseController::class, 'edit'])->name('marchandises.edit');
+
+
 });
 
 require __DIR__.'/auth.php';
