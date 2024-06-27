@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('depenses', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->float('montant');
+            $table->string('nom');
+            $table->unsignedBigInteger('id_cat');
+            $table->foreign('id_cat')->references('id')->on('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('id_magasin');
+            $table->foreign('id_magasin')->references('id')->on('magazins')->onDelete('cascade');
             $table->timestamps();
         });
     }

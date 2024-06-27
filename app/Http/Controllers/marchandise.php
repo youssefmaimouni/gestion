@@ -11,22 +11,19 @@ class marchandise extends Controller
 {
     public function index(){
         $marchandise = marchandises::all();
-        return $marchandise;
+        return view('marchandise', ['marchandises'=>$marchandise]);
     }
 
     public function store(Request $request){
-
         $valid = $request->validate([
          'nom'=>'required|min:3|string',
-        'barre_code'=>'integer',
-        'description'=>'string|min:50',
-        'quantite'=>'integer',
-        'unite'=>'string',
-        'image'=>'string',
+        'barre_code'=>'integer|nullable',
+        'description'=>'string|min:50|nullable',
+        'quantite'=>'integer|nullable',
+        'unite'=>'string|nullable',
+        'image'=>'string|nullable',
          'id_cat'=>'required|exists:categories,id'
         ]);
-
-       
         $marchandise = new marchandises();
         $marchandise->nom=$valid['nom'];
         $marchandise->barre_code=$valid['barre_code'];
@@ -36,11 +33,9 @@ class marchandise extends Controller
         $marchandise->image=$valid['image'];
         $marchandise->id_cat=$valid['id_cat'];
         $marchandise->save();
-
-
-        return view('modifier_marchandise');
-        
+        return redirect()-back()->with('success', 'marchandise crée  avec succee');
     }
+
     public function update(Request $request,marchandises $marchandise )
     {
         $valid = $request->validate([
@@ -52,8 +47,6 @@ class marchandise extends Controller
         'image'=>'string',
          'id_cat'=>'required|exists:categories,id'
         ]);
-
-       
             $marchandise->nom=$valid['nom'];
             $marchandise->barre_code=$valid['barre_code'];
             $marchandise->description=$valid['description'];
@@ -62,17 +55,11 @@ class marchandise extends Controller
             $marchandise->image=$valid['image'];
             $marchandise->id_cat=$valid['id_cat'];
             $marchandise->save();
-        return view('marchandises');
-        
+        return redirect()-back()->with('success', 'marchandise modifier  avec success');
     }
 
     public function delete(marchandises  $marchandise) {
-        
                $marchandise->delete();
-
-           return view('/');
-           
-           
-        
+        return redirect()-back()->with('success', 'marchandise supprimer  avec success');
    }
 }
