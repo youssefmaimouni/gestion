@@ -18,6 +18,6 @@ class marchandises extends Model
     ];
     public function categories()
     {
-        return $this->belongsTo(categories::class, 'id');
+        return $this->belongsTo(categories::class, 'id_cat');
     }
 }

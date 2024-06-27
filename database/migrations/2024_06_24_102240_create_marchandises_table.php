@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->integer('quantite');
             $table->string('unite');
-            $table->string('image');
+            $table->string('image')->default('logos/logo.jpg');
             $table->unsignedBigInteger('id_cat');
             $table->foreign('id_cat')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\categories;
 use App\Models\marchandises;
 use Exception;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class marchandise extends Controller
@@ -16,13 +18,13 @@ class marchandise extends Controller
 
     public function store(Request $request){
         $valid = $request->validate([
-         'nom'=>'required|min:3|string',
-        'barre_code'=>'integer|nullable',
-        'description'=>'string|min:50|nullable',
-        'quantite'=>'integer|nullable',
-        'unite'=>'string|nullable',
-        'image'=>'string|nullable',
-         'id_cat'=>'required|exists:categories,id'
+            'nom'=>'required|min:3|string',
+            'barre_code'=>'integer|nullable',
+            'description'=>'string|nullable',
+            'quantite'=>'integer|nullable',
+            'unite'=>'string|nullable',
+            // 'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
+            'categorier'=>'required|exists:categories,id'
         ]);
         $marchandise = new marchandises();
         $marchandise->nom=$valid['nom'];
@@ -30,10 +32,23 @@ class marchandise extends Controller
         $marchandise->description=$valid['description'];
         $marchandise->quantite=$valid['quantite'];
         $marchandise->unite=$valid['unite'];
-        $marchandise->image=$valid['image'];
-        $marchandise->id_cat=$valid['id_cat'];
+        if ($request->file('image') != null) {
+            $marchandise->image =  $request->file('image')->store('logos', 'public');
+        }
+        if ($request->categorier == -1) {
+            $category = new categories();
+            $category->categorier = strtolower($request->new_cat);
+            $category->save();
+            $marchandise->id_cat = $category->id;
+        }else{
+            $marchandise->id_cat =  $request->categorier;
+        }
+        $marchandise->id_cat=$valid['categorier'];
         $marchandise->save();
-        return redirect()-back()->with('success', 'marchandise crée  avec succee');
+        return redirect('/home')->with('success', 'marchandise crée  avec succee');
+    }
+    public function ajout(marchandises $marchandise) {
+        return View('marchandise-store',['marchandise'=>$marchandise,'categorier'=>categories::all()]);
     }
 
     public function update(Request $request,marchandises $marchandise )
@@ -44,7 +59,7 @@ class marchandise extends Controller
         'description'=>'string|min:50',
         'quantite'=>'integer',
         'unite'=>'string',
-        'image'=>'string',
+        'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
          'id_cat'=>'required|exists:categories,id'
         ]);
             $marchandise->nom=$valid['nom'];
