@@ -7,7 +7,7 @@ use App\Models\marchandises;
 use Exception;
 use Illuminate\Http\Request;
 
-class marchandise extends Controller
+class marchandiseController extends Controller
 {
     public function index(){
         $marchandise = marchandises::all();

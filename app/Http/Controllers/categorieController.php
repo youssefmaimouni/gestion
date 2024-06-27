@@ -3,56 +3,54 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\categories;
 use Exception;
 use Illuminate\Http\Request;
 
-class categorie extends Controller
+class CategorieController extends Controller 
 {
     public function index(){
-        $categorie = categories::all();
-        return $categorie;
+        $categories = categories::all();
+        return view('categories.index', compact('categories'));
+    }
+
+    public function create() {
+        return view('categories.create');
     }
 
     public function store(Request $request){
-
-        $valid = $request->validate([
-         'nom'=>'required|min:3|string',
-         'id_mag'=>'required|exists:categories,id'
+        $validatedData = $request->validate([
+            'nom' => 'required|min:3|string',
         ]);
-
        
-        $categorie = new categories();
-        $categorie->nom=$valid['nom'];
-        $categorie->id_mag=$valid['id_mag'];
+        $categorie = new Categories();
+        $categorie->nom = $validatedData['nom'];
         $categorie->save();
 
-
-        return redirect()->back()->with('success', 'cetegorie ajouté');
-        
-       
-        
+        return redirect()->route('categories.index')->with('success', 'Catégorie ajoutée avec succès.');
     }
-    public function update(Request $request,categories $categorie )
-    {
-        $valid = $request->validate([
-        'nom'=>'required|min:3|string',
-        'id_mag'=>'required|exists:categories,id'
+
+    public function edit(Categories $categorie) {
+        return view('categories.edit', compact('categorie'));
+    }
+
+    public function update(Request $request, Categories $categorie) {
+        $validatedData = $request->validate([
+            'nom' => 'required|min:3|string',
         ]);
-            $categorie->nom=$valid['nom'];
-            $categorie->id_mag=$valid['id_mag'];
-            $categorie->save();
+        $categorie->nom = $validatedData['nom'];
+        $categorie->save();
 
-            return redirect()->back()->with('success', 'categorie ajouté');      
+        return redirect()->route('categories.index')->with('success', 'Catégorie mise à jour avec succès.');
     }
 
-    public function delete(categories  $categorie) {
-       
-               $categorie->delete();
-
-               return redirect()->back()->with('success', 'categorie ajouté');
-           
-    }  
-        
-   
+    public function delete(Categories $categorie) {
+        try {
+            $categorie->delete();
+            return redirect()->route('categories.index')->with('success', 'Catégorie supprimée avec succès.');
+        } catch (Exception $e) {
+            return redirect()->route('categories.index')->with('error', 'Erreur lors de la suppression de la catégorie.');
+        }
+    }
 }

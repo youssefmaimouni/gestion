@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 
 
-class magazin extends Controller
+class magazinController extends Controller
 {
     public function index() {
         $magazins = magazins::where('cacher', false)->get();
@@ -23,7 +23,7 @@ class magazin extends Controller
     public function store(Request $request) {
         $valid = $request->validate([
             'nom' => ['required', 'min:3'],
-            'cacher' => ['nullable', 'boolean']
+            'cacher' => ['nullable']
         ]);
 
         $magazin = new magazins();
@@ -42,11 +42,11 @@ class magazin extends Controller
     public function update(Request $request, magazins $magazin) {
         $valid = $request->validate([
             'nom' => ['required', 'min:3'],
-            'cacher' => ['boolean','nullable']
+            'cacher' => ['nullable']
         ]);
 
         $magazin->nom = $valid['nom'];
-        $magazin->cacher = $valid['cacher']?? null;
+        $magazin->cacher = filter_var($valid['cacher'] ?? false, FILTER_VALIDATE_BOOLEAN);
         $magazin->save();
 
         return redirect()->route('magazins.index')->with('success', 'Magazin modifié');

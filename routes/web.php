@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\categorie;
+use App\Http\Controllers\categorieController;
 use App\Http\Controllers\magazin;
+use App\Http\Controllers\magazinController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,13 +31,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
  
-Route::get('/magazins', [magazin::class, 'index'])->name('magazins.index');
-Route::get('/magazins/create', [magazin::class, 'create'])->name('magazins.create');
-Route::post('/magazins', [magazin::class, 'store'])->name('magazins.store');
-Route::put('/magazins/{magazin}', [magazin::class, 'update'])->name('magazins.update');
-Route::delete('/magazins/{magazin}', [magazin::class, 'delete'])->name('magazins.delete');
-Route::get('/magazins/{magazins}/edit', [magazin::class, 'edit'])->name('magazins.edit'); 
+Route::get('/magazins', [magazinController::class, 'index'])->name('magazins.index');
+Route::get('/magazins/create', [magazinController::class, 'create'])->name('magazins.create');
+Route::post('/magazins', [magazinController::class, 'store'])->name('magazins.store');
+Route::put('/magazins/{magazin}', [magazinController::class, 'update'])->name('magazins.update');
+Route::delete('/magazins/{magazin}', [magazinController::class, 'delete'])->name('magazins.delete');
+Route::get('/magazins/{magazins}/edit', [magazinController::class, 'edit'])->name('magazins.edit'); 
 
+Route::get('/categories', [categorieController::class, 'index'])->name('categories.index');
+Route::get('/categories/create', [categorieController::class, 'create'])->name('categories.create');
+Route::post('/categories', [categorieController::class, 'store'])->name('categories.store');
+Route::put('/categories/{categorie}', [categorieController::class, 'update'])->name('categories.update');
+Route::delete('/categories/{categorie}', [categorieController::class, 'delete'])->name('categories.delete');
+Route::get('/categories/{categories}/edit', [categorieController::class, 'edit'])->name('categories.edit'); 
 });
 
 require __DIR__.'/auth.php';
