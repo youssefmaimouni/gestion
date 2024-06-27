@@ -47,8 +47,8 @@ class marchandise extends Controller
         $marchandise->save();
         return redirect('/home')->with('success', 'marchandise crée  avec succee');
     }
-    public function ajout(marchandises $marchandise) {
-        return View('marchandise-store',['marchandise'=>$marchandise,'categorier'=>categories::all()]);
+    public function ajout() {
+        return View('marchandise-store',['categorier'=>categories::all()]);
     }
 
     public function update(Request $request,marchandises $marchandise )

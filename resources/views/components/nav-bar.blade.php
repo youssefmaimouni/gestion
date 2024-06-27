@@ -1,7 +1,55 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="{{asset('img/logo.png')}}" rel="icon">
+
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    @vite('resources/css/app.css')
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        laravel: "#1967D2",
+                    },
+                },
+            },
+        };
+    </script>
+    <title>Ajouter Site</title>
+</head>
+<body style="height: 100%; background-color: #f5f5f5">
 <nav x-data="{ open: false }" class="bg-slate-500 border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
+            <button id="toggleButton" class="ml-2 mr-4" style="display:block">       
+                <?xml version="1.0" encoding="iso-8859-1"?>
+                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                <svg fill="#FFF" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                    viewBox="0 0 460.775 460.775" xml:space="preserve">
+                <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55
+                    c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55
+                    c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505
+                    c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55
+                    l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719
+                    c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"/>
+                </svg>
+            </button>
+            <button id="showButton" style="display:none" class="ml-2 mr-4">
+                <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                <svg width="20px" height="20px" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+                <path fill="#FFF" fill-rule="evenodd" d="M19 4a1 1 0 01-1 1H2a1 1 0 010-2h16a1 1 0 011 1zm0 6a1 1 0 01-1 1H2a1 1 0 110-2h16a1 1 0 011 1zm-1 7a1 1 0 100-2H2a1 1 0 100 2h16z"/>
+                </svg>
+            </button>
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
@@ -96,44 +144,9 @@
             </div>
         </div>
     </div>
-    <div id="sidebar" class=' flex-col items-start justify-start w-64 fixed left-0 h-calc overflow-auto flex pb-6 bg-gray-100 overflow-x-hidden'>
-        @auth
-        @if (auth()->user()->role=='S')
-        
-            <a href="/register" class="flex text-laravel font-medium text items-center pl-4 mt-6">
-                <svg fill="#1967D2" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                    viewBox="0 0 328 328" xml:space="preserve">
-                <g id="XMLID_455_">
-                    <path id="XMLID_458_" d="M15,286.75h125.596c19.246,24.348,49.031,40,82.404,40c57.897,0,105-47.103,105-105s-47.103-105-105-105
-                        c-34.488,0-65.145,16.716-84.298,42.47c-7.763-1.628-15.694-2.47-23.702-2.47c-63.411,0-115,51.589-115,115
-                        C0,280.034,6.716,286.75,15,286.75z M223,146.75c41.355,0,75,33.645,75,75s-33.645,75-75,75s-75-33.645-75-75
-                        S181.645,146.75,223,146.75z"/>
-                    <path id="XMLID_461_" d="M115,1.25c-34.602,0-62.751,28.15-62.751,62.751S80.398,126.75,115,126.75
-                        c34.601,0,62.75-28.148,62.75-62.749S149.601,1.25,115,1.25z"/>
-                    <path id="XMLID_462_" d="M193,236.75h15v15c0,8.284,6.716,15,15,15s15-6.716,15-15v-15h15c8.284,0,15-6.716,15-15s-6.716-15-15-15
-                        h-15v-15c0-8.284-6.716-15-15-15s-15,6.716-15,15v15h-15c-8.284,0-15,6.716-15,15S184.716,236.75,193,236.75z"/>
-                </g>
-                </svg>
-                <p class="ml-4">
-                    Ajouter un admin
-                </p>
-            </a>
-            <a href="/update/admin" class="flex text-laravel font-medium text items-center pl-4 mt-6">
-                <svg width="20px" height="20px" viewBox="0 -1.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                        <g id="Dribbble-Light-Preview" transform="translate(-100.000000, -2122.000000)" fill="#1967D2">
-                            <g id="icons" transform="translate(56.000000, 160.000000)">
-                                <path d="M63.9996063,1963 C63.9996063,1963.552 63.5516063,1964 62.9996063,1964 L56.9996063,1964 C56.4476063,1964 55.9996063,1963.552 55.9996063,1963 C55.9996063,1962.448 56.4476063,1962 56.9996063,1962 L62.9996063,1962 C63.5516063,1962 63.9996063,1962.448 63.9996063,1963 M51.9726063,1970.902 C51.9586063,1970.902 51.9446063,1970.9 51.9306063,1970.9 C51.9156063,1970.9 51.9026063,1970.902 51.8876063,1970.902 C50.8046063,1970.879 49.9306063,1969.995 49.9306063,1968.906 C49.9306063,1967.803 50.8276063,1966.906 51.9306063,1966.906 C53.0326063,1966.906 53.9306063,1967.803 53.9306063,1968.906 C53.9306063,1969.995 53.0556063,1970.879 51.9726063,1970.902 M54.9556063,1971.495 C55.7856063,1970.527 56.1856063,1969.18 55.7546063,1967.724 C55.3576063,1966.38 54.2276063,1965.32 52.8616063,1965.011 C50.2476063,1964.422 47.9306063,1966.393 47.9306063,1968.906 C47.9306063,1969.899 48.3056063,1970.796 48.9036063,1971.495 C46.3206063,1972.55 44.4126063,1974.997 44.0096063,1977.867 C43.9256063,1978.466 44.4036063,1979 45.0086063,1979 C45.5026063,1979 45.9206063,1978.637 45.9906063,1978.147 C46.4026063,1975.24 48.8866063,1972.923 51.8876063,1972.902 C51.9026063,1972.902 51.9156063,1972.906 51.9306063,1972.906 C51.9446063,1972.906 51.9576063,1972.902 51.9726063,1972.902 C54.9736063,1972.923 57.4576063,1975.24 57.8696063,1978.148 C57.9396063,1978.637 58.3576063,1979 58.8526063,1979 C59.4566063,1979 59.9346063,1978.466 59.8506063,1977.867 C59.4476063,1974.997 57.5396063,1972.551 54.9556063,1971.495" id="profile_minus-[#1353]">
-                                </path>
-                            </g>
-                        </g>
-                    </g>
-                </svg>
-                <p class="ml-4">
-                    Gérer les admin
-                </p>
-            </a>
-        @endif
+</nav>
+    <div id="sidebar" class='h-full flex-col items-start justify-start w-64 fixed left-0 h-calc overflow-auto flex pb-6 bg-gray-100 overflow-x-hidden'>
+
             <a href="/create" class="flex text-laravel font-medium text items-center  pl-4 mt-6">
                 <abbr title="ajouter site">
                     <svg fill="#1967D2" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -194,10 +207,7 @@
                 <p id="error" class="text-red-500 text-xs ml-4 mt-1">{{$message}}</p>
             @enderror 
             <div class="h-px  w-11/12 mt-4 bg-laravel">‎ </div>
-            @endauth
             <a class="flex text-laravel font-medium text items-center  pl-4 mt-6">
-                
-                <?xml version="1.0" encoding="utf-8"?>
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="Iconly/Curved/Category">
                     <g id="Category">
@@ -256,4 +266,28 @@
                     </form>
             @endforeach --}}
         </div>
-</nav>
+    <main id="item" class="ml-64 h-full">
+        <!-- Search -->
+
+        <div
+            id="ma"
+        >
+        {{ $slot }}
+        </div>
+    </main>
+<script>
+    function warnning(id) {
+       document.getElementById('deleteGroupModal').classList.remove('hidden');
+       document.getElementById('deleteGroupModal').setAttribute("data-value", id);
+       const deleteGroupIdInput = document.getElementById('deleteGroupId');
+       // Set the hidden input field's value to the retrieved group ID
+       deleteGroupIdInput.value = id;
+   }
+</script>
+<script>
+   function hide() {
+   document.getElementById('deleteGroupModal').classList.add('hidden');
+   }
+</script>
+</body>
+</html>

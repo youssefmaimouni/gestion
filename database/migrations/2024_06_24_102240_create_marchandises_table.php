@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('marchandises', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->integer('barre_code');
+            $table->bigInteger('barre_code')->nullable();
             $table->string('description')->nullable();
-            $table->integer('quantite');
-            $table->string('unite');
-            $table->string('image')->default('logos/logo.jpg');
-            $table->unsignedBigInteger('id_cat');
-            $table->foreign('id_cat')->references('id')->on('categories')->onDelete('cascade');
+            $table->integer('quantite')->nullable();
+            $table->string('unite')->nullable();
+            $table->string('image')->nullable();
+            $table->unsignedBigInteger('id_cat')->nullable();
+            $table->foreign('id_cat')->references('id')->on('categories');
             $table->timestamps();
         });
     }
