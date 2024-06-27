@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/marchandise', [marchandise::class, 'index'])->name('marchandise');
+    Route::get('/marchandise/modif', [marchandise::class, 'index'])->name('marchandise.modif');
+    Route::post('/marchandise/update', [marchandise::class, 'update'])->name('marchandise.update');
 });
 
 require __DIR__.'/auth.php';
