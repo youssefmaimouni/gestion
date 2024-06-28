@@ -48,6 +48,8 @@ Route::put('/categories/{categorie}', [categorieController::class, 'update'])->n
 Route::delete('/categories/{categorie}', [categorieController::class, 'delete'])->name('categories.delete');
 Route::get('/categories/{categories}/edit', [categorieController::class, 'edit'])->name('categories.edit'); 
 Route::get('/categories/{categories}/documents', [categorieController::class, 'entre_sortie'])->name('categories.entre_sortie'); 
+Route::get('/categories/{categories}/documents/entres', [categorieController::class, 'entre'])->name('categories.entre'); 
+Route::get('/categories/{categories}/documents/sorties', [categorieController::class, 'sortie'])->name('categories.sortie'); 
 
 
 Route::get('/marchandises', [marchandiseController::class, 'index'])->name('marchandises.index');

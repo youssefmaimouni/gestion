@@ -51,7 +51,7 @@ class CategorieController extends Controller
 
     public function entre_sortie(categories $categories ){
 
-        $entres = entres::select('entres.*')
+        $entres = entres::select('entres.*', DB::raw('"entre" as type'))
         ->join('acheters', 'entres.id', '=', 'acheters.id_entre')
         ->join('marchandises', 'acheters.id_mar', '=', 'marchandises.id')
         ->join('categories', 'marchandises.id_cat', '=', 'categories.id')
@@ -59,7 +59,7 @@ class CategorieController extends Controller
         ->orderBy('entres.date_doc', 'desc')                  
         ->get();
 
-        $sorties = sorties::select('sorties.*')
+        $sorties = sorties::select('sorties.*', DB::raw('"sortie" as type'))
         ->join('vendres', 'vendres.id_sortie', '=', 'sorties.id')
         ->join('marchandises', 'vendres.id_mar', '=', 'marchandises.id')
         ->join('categories', 'marchandises.id_cat', '=', 'categories.id')
@@ -71,10 +71,60 @@ class CategorieController extends Controller
         $tous = $entres->merge($sorties);
         $tous = $tous->sortByDesc('date_doc');
 
-        return view('categories.entre_sortie', ['tous' => $tous,'entres'=>$entres , 'sorties'=>$sorties]);
+        return view('categories.entre_sortie', ['categories'=>$categories,'tous' => $tous,'entres'=>$entres , 'sorties'=>$sorties]);
         
 
     }
+    public function entre(categories $categories ){
+        $entres = entres::select('entres.*', DB::raw('"entre" as type'))
+        ->join('acheters', 'entres.id', '=', 'acheters.id_entre')
+        ->join('marchandises', 'acheters.id_mar', '=', 'marchandises.id')
+        ->join('categories', 'marchandises.id_cat', '=', 'categories.id')
+        ->where('categories.id', $categories)
+        ->orderBy('entres.date_doc', 'desc')                  
+        ->get();
+
+        $sorties = sorties::select('sorties.*', DB::raw('"sortie" as type'))
+        ->join('vendres', 'vendres.id_sortie', '=', 'sorties.id')
+        ->join('marchandises', 'vendres.id_mar', '=', 'marchandises.id')
+        ->join('categories', 'marchandises.id_cat', '=', 'categories.id')
+        ->where('categories.id', $categories)
+        ->orderBy('sorties.date_doc', 'desc')                  
+
+        ->get();
+
+        $tous = $entres->merge($sorties);
+        $tous = $tous->sortByDesc('date_doc');
+
+        return view('categories.entre', ['categories'=>$categories,'tous' => $tous,'entres'=>$entres , 'sorties'=>$sorties]);
+
+        
+    }
+    public function sortie(categories $categories ){
+
+        $entres = entres::select('entres.*', DB::raw('"entre" as type'))
+        ->join('acheters', 'entres.id', '=', 'acheters.id_entre')
+        ->join('marchandises', 'acheters.id_mar', '=', 'marchandises.id')
+        ->join('categories', 'marchandises.id_cat', '=', 'categories.id')
+        ->where('categories.id', $categories)
+        ->orderBy('entres.date_doc', 'desc')                  
+        ->get();
+
+        $sorties = sorties::select('sorties.*', DB::raw('"sortie" as type'))
+        ->join('vendres', 'vendres.id_sortie', '=', 'sorties.id')
+        ->join('marchandises', 'vendres.id_mar', '=', 'marchandises.id')
+        ->join('categories', 'marchandises.id_cat', '=', 'categories.id')
+        ->where('categories.id', $categories)
+        ->orderBy('sorties.date_doc', 'desc')                  
+
+        ->get();
+
+        $tous = $entres->merge($sorties);
+        $tous = $tous->sortByDesc('date_doc');
+
+        return view('categories.sortie', ['categories'=>$categories,'tous' => $tous,'entres'=>$entres , 'sorties'=>$sorties]);
+    }
+    
 
     public function delete(Categories $categorie) {
         try {
