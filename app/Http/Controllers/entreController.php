@@ -10,7 +10,7 @@ class entreController extends Controller
 {
     public function index() {
         $entres = entres::all();
-        return view('entres.index', compact('entres'));
+        return view('entres.index', ['entres'=>$entres]);
     }
 
     public function create() {
