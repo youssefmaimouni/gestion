@@ -6,6 +6,7 @@ use App\Http\Controllers\magazin;
 use App\Http\Controllers\magazinController;
 use App\Http\Controllers\marchandiseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\tagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,13 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
- 
-Route::get('/magazins', [magazinController::class, 'index'])->name('magazins.index');
-Route::get('/magazins/create', [magazinController::class, 'create'])->name('magazins.create');
-Route::post('/magazins', [magazinController::class, 'store'])->name('magazins.store');
-Route::put('/magazins/{magazin}', [magazinController::class, 'update'])->name('magazins.update');
-Route::delete('/magazins/{magazin}', [magazinController::class, 'delete'])->name('magazins.delete');
-Route::get('/magazins/{magazins}/edit', [magazinController::class, 'edit'])->name('magazins.edit'); 
+
 
 Route::get('/categories', [categorieController::class, 'index'])->name('categories.index');
 Route::get('/categories/create', [categorieController::class, 'create'])->name('categories.create');
@@ -53,6 +48,12 @@ Route::put('/marchandises/{marchandise}', [marchandiseController::class, 'update
 Route::delete('/marchandises/{marchandise}', [marchandiseController::class, 'delete'])->name('marchandises.delete');
 Route::get('/marchandises/{marchandises}/edit', [marchandiseController::class, 'edit'])->name('marchandises.edit');
 
+Route::get('/tags', [tagController::class, 'index'])->name('tags.index');
+Route::get('/tags/create', [tagController::class, 'create'])->name('tags.create');
+Route::post('/tags', [tagController::class, 'store'])->name('tags.store');
+Route::put('/tags/{tag}', [tagController::class, 'update'])->name('tags.update');
+Route::delete('/tags/{tag}', [tagController::class, 'delete'])->name('tags.delete');
+Route::get('/tags/{tags}/edit', [tagController::class, 'edit'])->name('tags.edit');
 
 });
 

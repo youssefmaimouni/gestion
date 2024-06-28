@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class clients extends Model
 {
+    protected $fillable =[
+            'nom',
+            'adresse',
+            'telephone',
+            'email',
+            'num_fiscal',
+            'compt-bancaire',
+            'remarque',
+            'remise',
+    ];
     
     use HasFactory;
 }
