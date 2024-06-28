@@ -1,24 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Magazins</title>
-    @vite('resources/css/app.css')
-    <style>
-        .center-modal {
-            position: fixed;
-            width: 90%;
-            max-width: 600px;
-            flex:1,
-            height: auto;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
-</head>
-<body class="bg-gray-100">
+<x-nav-bar>
+    <div class=" flex">
+        <p class="text-2xl w-2/3 m-3 pl-6 underline underline-offset-4">marchandises</p>
+        <p class="text-xl w-1/3  m-3 pl-6"><a href="/marchandises/create" class="text-blue-600 hover:text-blue-900">Ajouter Marchendise</a> </p>
+    </div>
     <div class="center-modal bg-white p-4 rounded-lg shadow-lg">
         <h1 class="text-lg font-bold text-gray-700 mb-4">Liste des Magazins</h1>
         @if(session('success'))
@@ -49,5 +33,4 @@
         </table>
         <a href="{{ route('magazins.create') }}" class="px-4 py-2  bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ml-96">ajouter</a>
     </div>
-</body>
-</html>
+</x-nav-bar>

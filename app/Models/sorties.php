@@ -13,10 +13,7 @@ class sorties extends Model
         'remise',
         'descreption'
     ];
-    public function document()
-    {
-        return $this->belongsTo(documents::class, 'id_doc');
-    }
+    
     public function client()
     {
         return $this->belongsTo(clients::class, 'id_clt');

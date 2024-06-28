@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class entreController extends Controller
 {
-    //
     public function index() {
         $entres = entres::all();
         return view('entres.index', compact('entres'));
@@ -20,14 +19,16 @@ class entreController extends Controller
     public function store(Request $request) {
         
         $validatedData = $request->validate([
-            'nom' => 'required|min:3|string',
-            'id_mar' => 'required|exists:marchandises,id'
+            'date_doc'=>'date|required',
+            'attachement'=>'string',
+            'descreption'=>'texte'
         ]);
     
        
         $entre = new entres(); 
         $entre->nom = $validatedData['nom'];
-        $entre->id_mar = $validatedData['id_mar']; 
+        $entre->attachement = $validatedData['attachement']; 
+        $entre->description = $validatedData['description']; 
         $entre->save();
     
        
@@ -42,12 +43,17 @@ class entreController extends Controller
     
     public function update(Request $request,entres $entre )
     {
-        $valid = $request->validate([
-        'nom'=>'min:3|string',
-        'id_mar'=>'required|exists:marazins,id'
+        $validatedData = $request->validate([
+            'date_doc'=>'date|required',
+            'attachement'=>'string',
+            'descreption'=>'texte'
         ]);
-            $entre->nom=$valid['nom'];
-            $entre->id_entre=$valid['id_mar'];
+    
+       
+        $entre = new entres(); 
+        $entre->nom = $validatedData['nom'];
+        $entre->attachement = $validatedData['attachement']; 
+        $entre->description = $validatedData['description']; 
         $entre->save();
         return view('modifier_entre');
        

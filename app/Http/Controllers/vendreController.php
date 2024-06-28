@@ -5,58 +5,62 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\marchandises;
 use App\Models\tags;
+use App\Models\vendres;
 use Illuminate\Http\Request;
 
 class vendreController extends Controller
 {
     public function index() {
-        $tags = tags::all();
-        return view('tags.index', compact('tags'));
+        $vendres = vendres::all();
+        return view('vendres.index', compact('vendres'));
     }
 
     public function create() {
-        return view('tags.create',['marchandise'=>marchandises::all()]);
+        return view('vendres.create');
     }
     public function store(Request $request) {
         
         $validatedData = $request->validate([
-            'nom' => 'required|min:3|string',
-            'id_mar' => 'required|exists:marchandises,id'
+            'id_mar' => 'required|exists:marchandises,id',
+            'id_sortie' => 'required|exists:sorties,id'
         ]);
     
        
-        $tag = new tags(); 
-        $tag->nom = $validatedData['nom'];
-        $tag->id_mar = $validatedData['id_mar']; 
-        $tag->save();
+        $vendre = new vendres(); 
+        $vendre->nom = $validatedData['id_sortie'];
+        $vendre->id_mar = $validatedData['id_mar']; 
+        $vendre->save();
     
        
-        return redirect()->route('tags.index')->with('success', 'Tag ajouté avec succès.'); 
+        return redirect()->route('vendres.index')->with('success', 'vendre ajouté avec succès.'); 
     }
     
 
-    public function edit(tags $tags)
+    public function edit(vendres $vendres)
     {
-        return view('tags.edit', ['tag' => $tags,'marchandise'=>marchandises::all()]);
+        return view('vendres.edit', ['vendre' => $vendres]);
     }
     
-    public function update(Request $request,tags $tag )
+    public function update(Request $request,vendres $vendre )
     {
-        $valid = $request->validate([
-        'nom'=>'min:3|string',
-        'id_mar'=>'required|exists:marazins,id'
+        $validatedData = $request->validate([
+            'id_mar' => 'required|exists:marchandises,id',
+            'id_sortie' => 'required|exists:sorties,id'
         ]);
-            $tag->nom=$valid['nom'];
-            $tag->id_tag=$valid['id_mar'];
-        $tag->save();
-        return view('modifier_tag');
+    
+       
+        $vendre = new vendres(); 
+        $vendre->nom = $validatedData['id_sortie'];
+        $vendre->id_mar = $validatedData['id_mar']; 
+        $vendre->save();
+        return view('modifier_vendre');
        
         
     }
 
-    public function delete(tags  $tag) {
+    public function delete(vendres  $vendre) {
        
-               $tag->delete();
+               $vendre->delete();
 
            return view('/');
    }

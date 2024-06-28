@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->date('date_doc');
 
-            $table->unsignedBigInteger('id_doc');
-            $table->foreign('id_doc')->references('id')->on('documents')->onDelete('cascade');
+           
 
-            $table->date('id_client');
+            $table->unsignedBigInteger('id_client');
             $table->foreign('id_client')->references('id')->on('clients')->onDelete('cascade');
 
             $table->integer('remise');

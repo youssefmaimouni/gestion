@@ -16,9 +16,6 @@ return new class extends Migration
 
             $table->date('date_doc');
 
-            $table->unsignedBigInteger('id_doc');
-            $table->foreign('id_doc')->references('id')->on('documents')->onDelete('cascade');
-
             $table->unsignedBigInteger('id_four');
             $table->foreign('id_four')->references('id')->on('fournisseurs')->onDelete('cascade');
 
@@ -26,6 +23,7 @@ return new class extends Migration
 
             $table->text('descreption');
             $table->timestamps();
+
         });
     }
 
