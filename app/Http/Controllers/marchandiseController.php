@@ -44,8 +44,8 @@ class marchandiseController extends Controller
         $marchandise->save();
         return redirect('/home')->with('success', 'marchandise crée  avec succee');
     }
-    public function edit(marchandises $marchandise) {
-        return View('marchandises.edit',['marchandise'=>$marchandise,'categorie'=>categories::all()]);
+    public function edit(marchandises $marchandises) {
+        return View('marchandises.edit',['marchandise'=>$marchandises,'categorie'=>categories::all()]);
     }
 
     public function update(Request $request,marchandises $marchandise )
