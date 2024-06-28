@@ -52,17 +52,20 @@ class CategorieController extends Controller
     public function entre_sortie(categories $categories ){
 
         $entres = entres::select('entres.*')
-        ->join('marchandises', 'entres.id_mar', '=', 'marchandises.id_mar')
-        ->join('categoriess', 'entres.id_cat', '=', 'categoriess.id_cat')
-        ->where('categoriess.id_cat', $categories)
+        ->join('acheters', 'entres.id', '=', 'acheters.id_entre')
+        ->join('marchandises', 'acheters.id_mar', '=', 'marchandises.id')
+        ->join('categories', 'marchandises.id_cat', '=', 'categories.id')
+        ->where('categories.id', $categories)
         ->orderBy('entres.date_doc', 'desc')                  
         ->get();
 
         $sorties = sorties::select('sorties.*')
-        ->join('marchandises', 'sorties.id_mar', '=', 'marchandises.id_mar')
-        ->join('categoriess', 'sorties.id_cat', '=', 'categoriess.id_cat')
-        ->where('categoriess.id_cat', $categories)
+        ->join('vendres', 'vendres.id_sortie', '=', 'sorties.id')
+        ->join('marchandises', 'vendres.id_mar', '=', 'marchandises.id')
+        ->join('categories', 'marchandises.id_cat', '=', 'categories.id')
+        ->where('categories.id', $categories)
         ->orderBy('sorties.date_doc', 'desc')                  
+
         ->get();
 
         $tous = $entres->merge($sorties);
