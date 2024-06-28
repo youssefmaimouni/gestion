@@ -134,7 +134,7 @@
                 </p>
             </a>
         @endif
-            <a href="/create" class="flex text-laravel font-medium text items-center  pl-4 mt-6">
+            <a href="/marchandises/create" class="flex text-laravel font-medium text items-center  pl-4 mt-6">
                 <abbr title="ajouter site">
                     <svg fill="#1967D2" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                         viewBox="0 0 27.963 27.963" xml:space="preserve">
@@ -150,7 +150,7 @@
                     </svg>
                 </abbr>
                 <p class="ml-4">
-                    Ajouter un site
+                   ajouter un marchandise
                 </p>
             </a>
             <button onclick="show()" href="/create" class="flex text-laravel font-medium text items-center  pl-4 mt-6">
@@ -171,8 +171,9 @@
                 <p class="ml-4">
                     Ajouter une catégorie
                 </p>
-            </button>
-            <form action="/categorier/store" method="POST" id="add" class="flex items-center justify-around w-full hidden">
+             </button>
+            
+             <form action="/categorier/store" method="POST" id="add" class="flex items-center justify-around w-full hidden">
                 @csrf
                 <input type="text" name="categorier" class="flex text-laravel font-medium text items-center border-laravel border focus:border-0 ml-4 my-3 w-44 ">
                 <button type="submit" class="bg-laravel p-1 h-fit w-fit rounded-md">
@@ -189,13 +190,13 @@
                     </g>
                     </svg>
                 </button>
-            </form>
-            @error('categorier')
+             </form>
+             @error('categorier')
                 <p id="error" class="text-red-500 text-xs ml-4 mt-1">{{$message}}</p>
-            @enderror 
-            <div class="h-px  w-11/12 mt-4 bg-laravel">‎ </div>
-            @endauth
-            <a class="flex text-laravel font-medium text items-center  pl-4 mt-6">
+             @enderror 
+             <div class="h-px  w-11/12 mt-4 bg-laravel">‎ </div>
+              @endauth
+             <a class="flex text-laravel font-medium text items-center  pl-4 mt-6">
                 
                 <?xml version="1.0" encoding="utf-8"?>
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -251,6 +252,71 @@
                     </div>
                     </form>
                     <form action="/categorier/delete/{{$item->id}}" method="POST" id="hadik-{{$item->id}}" onsubmit="warnning({{$item->id}})">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+            @endforeach --}}
+             @error('marchandises')
+                <p id="error" class="text-red-500 text-xs ml-4 mt-1">{{$message}}</p>
+            @enderror 
+            <div class="h-px  w-11/12 mt-4 bg-laravel">‎ </div>
+            @endauth
+            <a class="flex text-laravel font-medium text items-center  pl-4 mt-6">
+                
+                <?xml version="1.0" encoding="utf-8"?>
+                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Iconly/Curved/Category">
+                    <g id="marchan">
+                    <path id="Stroke 1" fill-rule="evenodd" clip-rule="evenodd" d="M21.0003 6.6738C21.0003 8.7024 19.3551 10.3476 17.3265 10.3476C15.2979 10.3476 13.6536 8.7024 13.6536 6.6738C13.6536 4.6452 15.2979 3 17.3265 3C19.3551 3 21.0003 4.6452 21.0003 6.6738Z" stroke="#1967D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path id="Stroke 3" fill-rule="evenodd" clip-rule="evenodd" d="M10.3467 6.6738C10.3467 8.7024 8.7024 10.3476 6.6729 10.3476C4.6452 10.3476 3 8.7024 3 6.6738C3 4.6452 4.6452 3 6.6729 3C8.7024 3 10.3467 4.6452 10.3467 6.6738Z" stroke="#1967D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path id="Stroke 5" fill-rule="evenodd" clip-rule="evenodd" d="M21.0003 17.2619C21.0003 19.2905 19.3551 20.9348 17.3265 20.9348C15.2979 20.9348 13.6536 19.2905 13.6536 17.2619C13.6536 15.2333 15.2979 13.5881 17.3265 13.5881C19.3551 13.5881 21.0003 15.2333 21.0003 17.2619Z" stroke="#1967D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path id="Stroke 7" fill-rule="evenodd" clip-rule="evenodd" d="M10.3467 17.2619C10.3467 19.2905 8.7024 20.9348 6.6729 20.9348C4.6452 20.9348 3 19.2905 3 17.2619C3 15.2333 4.6452 13.5881 6.6729 13.5881C8.7024 13.5881 10.3467 15.2333 10.3467 17.2619Z" stroke="#1967D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    </g>
+                </svg>
+                <p class="ml-4">
+                    marchandises
+                </p>
+            </a>
+            {{-- @foreach ($marchandises as $item)
+            <form action="/marchandises/update/{{$item->id}}" method="POST" class="w-full">
+                <div class="flex items-center justify-between  hover:bg-blue-100 w-full h-full p-2 pl-12">
+                        @csrf
+                        @method('PUT')
+                        @auth
+                        <div id="s-{{$item->id}}" class="hidden cursor-pointer" onclick="warnning({{$item->id}})">
+                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 11V17" stroke="#1967D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 11V17" stroke="#1967D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4 7H20" stroke="#1967D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#1967D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#1967D2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                        </div>
+                        @endauth
+                        <a href="/{{$item->id}}">
+                            <p id="p-{{$item->id}}" class="ml-4 text-laravel capitalize">
+                                {{$item->marchandises}}
+                            </p>
+                        </a>
+                        @auth
+                            <input type="text" name="marchandises2" id="input-{{$item->id}}" value="{{$item->marchandises}}" class="ml-4 w-full capitalize hidden" />
+                            <button type="button" id="b-{{$item->id}}" onclick="toggleEdit({{$item->id}})" class="">
+                                <?xml version="1.0" ?>
+                                <svg class="feather feather-edit" fill="none" height="24" stroke="#1967D2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                </svg></button>
+                            <button type="submit" id="save-{{$item->id}}" class=" hidden">
+                                <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.75 6L7.5 5.25H16.5L17.25 6V19.3162L12 16.2051L6.75 19.3162V6ZM8.25 6.75V16.6838L12 14.4615L15.75 16.6838V6.75H8.25Z" fill="#1967D2"/>
+                                </svg>
+                            </button>
+                        @endauth
+                    </div>
+                    </form>
+                    <form action="/marchandises/delete/{{$item->id}}" method="POST" id="hadik-{{$item->id}}" onsubmit="warnning({{$item->id}})">
                         @csrf
                         @method('DELETE')
                     </form>

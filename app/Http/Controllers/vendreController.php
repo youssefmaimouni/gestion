@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\marchandises;
 use App\Models\tags;
-use Exception;
 use Illuminate\Http\Request;
 
-class tagController extends Controller
+class vendreController extends Controller
 {
     public function index() {
         $tags = tags::all();

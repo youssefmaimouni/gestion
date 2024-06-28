@@ -11,8 +11,5 @@ class categories extends Model
     protected $fillable =[
         'nom'
     ];
-    public function magazin()
-    {
-        return $this->belongsTo(magazins::class, 'id');
-    }
+  
 }
