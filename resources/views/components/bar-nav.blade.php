@@ -24,12 +24,41 @@
             },
         };
     </script>
+    <style>
+         .calc{
+            height: 91%;
+        }
+    </style>
+     <style>
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+            border-radius: 10px;
+    
+        }
+    
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background-color: #97c5d9;
+            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+        }
+    
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background:   #64748b  ;
+            border-radius: 10px;
+        }
+    
+        ::-webkit-scrollbar-corner {
+            display: none;
+        }
+    </style>
     <title>Ajouter Site</title>
 </head>
 
-<body style="height: 100%; background-color: #f5f5f5">
+<body style="height: 100%; background-color: #f5f5f5" class="overflow-hidden">
     @include('layouts.navigation')
-    <main >
+    <main class="overflow-auto calc">
         {{ $slot }}
     </main>
 </body>

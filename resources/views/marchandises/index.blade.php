@@ -1,9 +1,9 @@
 <x-nav-bar>
-    <div class="fixed z-30 font-mon bg-red-50 grid hidden rounded-md shadow-md" id="deleteGroupModal"
+    <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md " id="deleteGroupModal"
         style="width: 400px; justify-items: center; align-content: space-evenly ;height: 200px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
         aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
         <div class="grid justify-items-center">
-            <svg fill="#eed202" height="60px" width="60px" version="1.1" id="Capa_1"
+            <svg fill="#000" height="60px" width="60px" version="1.1" id="Capa_1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 27.963 27.963" xml:space="preserve">
                 <g>
@@ -22,7 +22,7 @@
             <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Confirmation de la suppression</h5>
         </div>
         <div class="text-sm text-gray-900">
-            Êtes-vous sûr de vouloir supprimer cette catégorie ?
+            Êtes-vous sûr de vouloir supprimer cette marchendise?
         </div>
         <div class="flex w-2/3 justify-around">
             <button type="button" class="btn btn-secondary" onclick="hide()"
