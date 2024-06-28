@@ -39,10 +39,9 @@ class marchandiseController extends Controller
         if ($request->file('image') != null) {
             $marchandise->image =  $request->file('image')->store('logos', 'public');
         }
-       
         $marchandise->id_cat=$valid['categorier']?? null;
         $marchandise->save();
-        return redirect('/home')->with('success', 'marchandise crée  avec succee');
+        return redirect('/marchandises')->with('success','marchandise ajouter avec success');
     }
     public function edit(marchandises $marchandises) {
         return View('marchandises.edit',['marchandise'=>$marchandises,'categorie'=>categories::all()]);
@@ -67,11 +66,12 @@ class marchandiseController extends Controller
             $marchandise->image=$valid['image'];
             $marchandise->id_cat=$valid['id_cat'];
             $marchandise->save();
-        return redirect()-back()->with('success', 'marchandise modifier  avec success');
+        return redirect('/marchandises')->with('success', 'marchandise modifier  avec success');
     }
 
-    public function delete(marchandises  $marchandise) {
+    public function delete(Request $request) {
+                $marchandise = marchandises::find($request->id);
                $marchandise->delete();
-        return redirect()-back()->with('success', 'marchandise supprimer  avec success');
+        return redirect('/marchandises')->with('success','marchandise supprimer  avec success');
    }
 }
