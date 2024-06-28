@@ -52,7 +52,7 @@ Route::get('/marchandises', [marchandiseController::class, 'index'])->name('marc
 Route::get('/marchandises/create', [marchandiseController::class, 'create'])->name('marchandises.create');
 Route::post('/marchandises', [marchandiseController::class, 'store'])->name('marchandises.store');
 Route::put('/marchandises/{marchandise}', [marchandiseController::class, 'update'])->name('marchandises.update');
-Route::delete('/marchandises/{marchandise}', [marchandiseController::class, 'delete'])->name('marchandises.delete');
+Route::delete('/marchandises/delete', [marchandiseController::class, 'delete'])->name('marchandises.delete');
 Route::get('/marchandises/{marchandises}/edit', [marchandiseController::class, 'edit'])->name('marchandises.edit');
 
 Route::get('/tags', [tagController::class, 'index'])->name('tags.index');
