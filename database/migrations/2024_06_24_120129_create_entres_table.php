@@ -16,8 +16,8 @@ return new class extends Migration
 
             $table->date('date_doc');
 
-            $table->unsignedBigInteger('id_four');
-            $table->foreign('id_four')->references('id')->on('fournisseurs')->onDelete('cascade');
+            $table->unsignedBigInteger('id_four')->nullable();
+            $table->foreign('id_four')->references('id')->on('fournisseurs')->onDelete('null');
 
             $table->string('attachement');
 
