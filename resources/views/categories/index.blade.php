@@ -9,9 +9,10 @@
 
             @foreach($categories as $categorie)
             <div class=" overflow-hidden shadow-sm sm:rounded-lg flex" >
-               <a href="{{ route('categories.edit', $categorie) }}" class="h-52 w-1/2 bg-slate-400 m-3 flex items-center flex-col   text-center justify-center">
+               <a href="{{ route('categories.entre_sortie', $categorie) }}" class="h-52 w-1/2 bg-slate-400 m-3 flex items-center flex-col   text-center justify-center">
                 {{ $categorie->nom }} 
                </a>
+               
             </div>
             @endforeach
         </div>

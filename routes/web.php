@@ -47,6 +47,8 @@ Route::post('/categories', [categorieController::class, 'store'])->name('categor
 Route::put('/categories/{categorie}', [categorieController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{categorie}', [categorieController::class, 'delete'])->name('categories.delete');
 Route::get('/categories/{categories}/edit', [categorieController::class, 'edit'])->name('categories.edit'); 
+Route::get('/categories/{categories}/documents', [categorieController::class, 'entre_sortie'])->name('categories.entre_sortie'); 
+
 
 Route::get('/marchandises', [marchandiseController::class, 'index'])->name('marchandises.index');
 Route::get('/marchandises/create', [marchandiseController::class, 'create'])->name('marchandises.create');
@@ -104,11 +106,7 @@ Route::put('/vendres/{vendre}', [vendreController::class, 'update'])->name('vend
 Route::delete('/vendres/{vendre}', [vendreController::class, 'delete'])->name('vendres.delete');
 Route::get('/vendres/{vendres}/edit', [vendreController::class, 'edit'])->name('vendres.edit');
 
-Route::get('/documents', [documentController::class, 'index'])->name('documents.index');
-Route::get('/documents/create', [documentController::class, 'create'])->name('documents.create');
-Route::post('/documents', [documentController::class, 'store'])->name('documents.store');
 
-Route::delete('/documents/{document}', [documentController::class, 'delete'])->name('documents.delete');
 
 });
 

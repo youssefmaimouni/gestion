@@ -12,10 +12,7 @@ class entres extends Model
         'attachement',
         'descreption'
     ];
-     public function document()
-    {
-        return $this->belongsTo(documents::class, 'id_doc');
-    }
+    
     public function fournisseur()
     {
         return $this->belongsTo(fournisseurs::class, 'id_four');
