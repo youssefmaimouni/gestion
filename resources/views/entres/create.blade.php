@@ -70,11 +70,10 @@
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="title" class="inline-block text-lg mb-2">Code barre</label>
-                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="barre_code"
-                            placeholder="title"  />
-                            @error('barre_code')
-                            <p class="text-red-500 test-xs mt-1">{{$message}}</p>
+                            <label for="date_doc" class="inline-block text-lg mb-2">Date du Document</label>
+                            <input type="date" class="border border-gray-200 rounded p-2 w-full" name="date_doc" id="date_doc" />
+                            @error('date_doc')
+                                <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
@@ -85,32 +84,16 @@
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="title" class="inline-block text-lg mb-2">quantite</label>
-                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="quantite"
-                            placeholder="title"  />
-                            @error('quantite')
-                            <p class="text-red-500 test-xs mt-1">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-6">
-                            <label for="title" class="inline-block text-lg mb-2">unité</label>
-                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="unite"
-                                placeholder="title"  />
-                            @error('unite')
-                            <p class="text-red-500 test-xs mt-1">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-6">
-                            <label for="categorie" class="inline-block text-lg mb-2">Catégorie </label>
-                            <select name="categorie" class="border border-gray-200 rounded p-2 w-full" id="categorie">
-                                @foreach ($categorie as $item)
-                                <option value="{{$item->id}}">{{$item->nom}} </option>
+                            <label for="id_four" class="inline-block text-lg mb-2">fournisseur </label>
+                            <select name="id_four" class="border border-gray-200 rounded p-2 w-full"
+                                id="fournisseur">
+                                @foreach ($fournisseurs as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nom }} </option>
                                 @endforeach
                                 <option>Autre </option>
                             </select>
-                            <input type="hidden" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="new_cat" placeholder="Nouvelle Catégorie"  />
-                            @error('categorie')
-                            <p class="text-red-500 test-xs mt-1">{{$message}}</p>
+                            @error('id_four')
+                                <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
@@ -158,4 +141,11 @@
             }
         });
     </script>
-    </x-bar-nav>
+    <script>
+        // Get today's date in the format YYYY-MM-DD
+        const today = new Date().toISOString().split('T')[0];
+      
+        // Set the value of the date input field to today's date
+        document.getElementById('date_doc').value = today;
+      </script>      
+</x-bar-nav>
