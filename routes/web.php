@@ -86,6 +86,7 @@ Route::post('/entres', [entreController::class, 'store'])->name('entres.store');
 Route::put('/entres/{entre}', [entreController::class, 'update'])->name('entres.update');
 Route::delete('/entres/{entre}', [entreController::class, 'delete'])->name('entres.delete');
 Route::get('/entres/{entres}/edit', [entreController::class, 'edit'])->name('entres.edit');
+Route::get('/entres/{entres}/mar', [entreController::class, 'acheter'])->name('entres.mar');
 
 Route::get('/fournisseurs', [fournisseurController::class, 'index'])->name('fournisseurs.index');
 Route::get('/fournisseurs/create', [fournisseurController::class, 'create'])->name('fournisseurs.create');
