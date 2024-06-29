@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sorties', function (Blueprint $table) {
             $table->id();
             $table->date('date_doc');
-
+            
            
 
             $table->unsignedBigInteger('id_client');

@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class acheters extends Model
 {
-    
+    protected $fillable =[
+        'quantite'
+    ];
     
     use HasFactory;
     public function entre()

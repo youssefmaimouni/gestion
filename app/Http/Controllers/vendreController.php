@@ -22,7 +22,8 @@ class vendreController extends Controller
         
         $validatedData = $request->validate([
             'id_mar' => 'required|exists:marchandises,id',
-            'id_sortie' => 'required|exists:sorties,id'
+            'id_sortie' => 'required|exists:sorties,id',
+            'quantite'=>'min:0'
         ]);
     
        
