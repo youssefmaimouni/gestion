@@ -10,7 +10,8 @@ class entres extends Model
     protected $fillable =[
         'date_doc',
         'attachement',
-        'descreption'
+        'descreption',
+        
     ];
     
     public function fournisseur()

@@ -20,7 +20,8 @@ class acheterController extends Controller
         
         $validatedData = $request->validate([
             'id_mar' => 'required|exists:marchandises,id',
-            'id_entre' => 'required|exists:entres,id'
+            'id_entre' => 'required|exists:entres,id',
+             'quantite'=>'min:0'
         ]);
     
        

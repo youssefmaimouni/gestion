@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('vendres', function (Blueprint $table) {
             $table->id();
+            $table->integer('quantite');
 
             $table->unsignedBigInteger('id_sortie');
             $table->foreign('id_sortie')->references('id')->on('sorties')->onDelete('cascade');

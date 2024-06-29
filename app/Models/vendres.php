@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class vendres extends Model
 {
+    protected $fillable =[
+        'quantite'
+    ];
     public function sortie()
     {
         return $this->belongsTo(sorties::class, 'id_sortie');
