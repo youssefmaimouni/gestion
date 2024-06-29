@@ -78,17 +78,9 @@
                         </div>
                         <div class="mb-6">
                             <label for="descreption" class="inline-block text-lg mb-2">Descreption</label>
-                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="descreption"
+                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="descreption"
                                 placeholder="descreption" />
                             @error('descreption')
-                                <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-6">
-                            <label for="title" class="inline-block text-lg mb-2">quantite</label>
-                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="quantite"
-                                placeholder="title" />
-                            @error('quantite')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -96,7 +88,7 @@
                             <label for="fournisseur" class="inline-block text-lg mb-2">Catégorie </label>
                             <select name="fournisseur" class="border border-gray-200 rounded p-2 w-full"
                                 id="fournisseur">
-                                @foreach ($fournisseur as $item)
+                                @foreach ($fournisseurs as $item)
                                     <option value="{{ $item->id }}">{{ $item->nom }} </option>
                                 @endforeach
                                 <option>Autre </option>
