@@ -1,14 +1,10 @@
 <?php
 
 use App\Http\Controllers\acheterController;
-use App\Http\Controllers\categorie;
 use App\Http\Controllers\categorieController;
 use App\Http\Controllers\clientController;
-use App\Http\Controllers\documentController;
 use App\Http\Controllers\entreController;
 use App\Http\Controllers\fournisseurController;
-use App\Http\Controllers\magazin;
-use App\Http\Controllers\magazinController;
 use App\Http\Controllers\marchandiseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\sortieController;
