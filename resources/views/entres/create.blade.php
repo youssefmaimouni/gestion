@@ -71,7 +71,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="date_doc" class="inline-block text-lg mb-2">Date du Document</label>
-                            <input type="date" class="border border-gray-200 rounded p-2 w-full" name="date_doc" />
+                            <input type="date" class="border border-gray-200 rounded p-2 w-full" name="date_doc" id="date_doc" />
                             @error('date_doc')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
@@ -85,15 +85,15 @@
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="fournisseur" class="inline-block text-lg mb-2">Catégorie </label>
-                            <select name="fournisseur" class="border border-gray-200 rounded p-2 w-full"
+                            <label for="id_four" class="inline-block text-lg mb-2">fournisseur </label>
+                            <select name="id_four" class="border border-gray-200 rounded p-2 w-full"
                                 id="fournisseur">
                                 @foreach ($fournisseurs as $item)
                                     <option value="{{ $item->id }}">{{ $item->nom }} </option>
                                 @endforeach
                                 <option>Autre </option>
                             </select>
-                            @error('fournisseur')
+                            @error('id_four')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -139,4 +139,11 @@
             }
         });
     </script>
+    <script>
+        // Get today's date in the format YYYY-MM-DD
+        const today = new Date().toISOString().split('T')[0];
+      
+        // Set the value of the date input field to today's date
+        document.getElementById('date_doc').value = today;
+      </script>      
 </x-bar-nav>
