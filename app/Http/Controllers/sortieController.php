@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\categories;
+use App\Models\clients;
 use App\Models\marchandises;
 use App\Models\sorties;
 use Illuminate\Http\Request;
@@ -16,23 +17,23 @@ class sortieController extends Controller
     }
 
     public function create() {
-        return view('sorties.create',['clients'=>clients::all()]);
+        return view('sorties.create',['clients'=>clients::all(),'categories'=>categories::all()]);
     }
     public function store(Request $request) {
         
         $validatedData = $request->validate([
            'date_doc' => 'date|required',
             'description' => 'string|nullable',
-            'id_clt' => 'integer|nullable',
+            'id_client' => 'integer|nullable',
             'id_cat' => 'integer',
-            'remise'=>'number'
+            'remise'=>'integer'
         ]);
     
         $sortie = new sorties(); 
         $sortie->date_doc = $validatedData['date_doc'];
         $sortie->description = $validatedData['description']; 
         $sortie->remise = $validatedData['remise']; 
-        $sortie->id_clt = $validatedData['id_clt'];
+        $sortie->id_client = $validatedData['id_client'];
         $sortie->id_cat = $validatedData['id_cat'];
 
         $sortie->save();
@@ -55,14 +56,14 @@ class sortieController extends Controller
         $validatedData = $request->validate([
             'date_doc' => 'date|required',
              'description' => 'string|nullable',
-             'id_clt' => 'integer|nullable',
+             'id_client' => 'integer|nullable',
              'id_cat' => 'integer'
          ]);
      
         
          $sortie->date_doc = $validatedData['date_doc'];
          $sortie->description = $validatedData['description']; 
-         $sortie->id_clt = $validatedData['id_clt'];
+         $sortie->id_client = $validatedData['id_clt'];
          $sortie->id_cat = $validatedData['id_cat'];
          $sortie->save();
 
