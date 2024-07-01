@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('id_four')->references('id')->on('fournisseurs')->onDelete('set null');
 
 
-            $table->string('attachement');
+            $table->string('attachement')->nullable();
 
             $table->text('descreption');
             $table->timestamps();

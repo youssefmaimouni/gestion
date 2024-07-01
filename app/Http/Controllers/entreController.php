@@ -21,23 +21,31 @@ class entreController extends Controller
         
         $validatedData = $request->validate([
             'date_doc'=>'date|required',
+<<<<<<< HEAD
             'attachement'=>'string',
             'descreption'=>'texte',
             'id_four'=>'integer'
+=======
+            'descreption'=>'string|nullable',
+            'id_four'=>'integer|nullable'
+>>>>>>> d3af27423c2ccfe75a549b6ea3f2b618abffa932
         ]);
     
        
         $entre = new entres(); 
-        $entre->nom = $validatedData['nom'];
-        $entre->attachement = $validatedData['attachement']; 
-        $entre->description = $validatedData['description']; 
+        $entre->date_doc = $validatedData['date_doc'];
+        $entre->descreption = $validatedData['descreption']; 
         $entre->id_four=$validatedData['id_four'];
         $entre->save();
+<<<<<<< HEAD
 
         
     
        
         return redirect()->route('entres.index')->with('success', 'entre ajouté avec succès.'); 
+=======
+        return redirect('/')->with('success', 'entre ajouté avec succès.'); 
+>>>>>>> d3af27423c2ccfe75a549b6ea3f2b618abffa932
     }
     
     public function acheter( entres $entres , categories $categories ){
@@ -66,7 +74,7 @@ class entreController extends Controller
         $entre = new entres(); 
         $entre->nom = $validatedData['nom'];
         $entre->attachement = $validatedData['attachement']; 
-        $entre->description = $validatedData['description']; 
+        $entre->descreption = $validatedData['descreption']; 
         $entre->id_four=$validatedData['id_four'];
         $entre->save();
         return view('modifier_entre');
