@@ -28,12 +28,14 @@ class vendreController extends Controller
     
        
         $vendre = new vendres(); 
-        $vendre->nom = $validatedData['id_sortie'];
+        $vendre->id_sortie = $validatedData['id_sortie'];
         $vendre->id_mar = $validatedData['id_mar']; 
+        $vendre->quantite = $validatedData['quantite'];  
         $vendre->save();
     
        
-        return redirect()->route('vendres.index')->with('success', 'vendre ajouté avec succès.'); 
+       
+        return redirect()->back()->with('success', 'vendre ajouté avec succès.'); 
     }
     
 

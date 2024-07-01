@@ -45,9 +45,9 @@
                             @error('id_four')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
-                            <label for="id_four" class="inline-block text-lg mb-2">categorie </label>
+                            <label for="id_cat" class="inline-block text-lg mb-2">categorie </label>
                             <select name="id_cat" class="border border-gray-200 rounded p-2 w-full"
-                            id="cat">
+                            id="id_cat">
                             @foreach ($categories as $item)
                                 <option value="{{ $item->id }}">{{ $item->nom }} </option>
                             @endforeach

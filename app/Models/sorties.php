@@ -11,12 +11,18 @@ class sorties extends Model
         'date_doc',
         'attachement',
         'remise',
-        'descreption'
+        'description'
     ];
     
     public function client()
     {
         return $this->belongsTo(clients::class, 'id_clt');
     }
+
+    public function categorie()
+    {
+        return $this->belongsTo(categories::class, 'id_cat');
+    }
+   
     use HasFactory;
 }

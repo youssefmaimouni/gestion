@@ -17,14 +17,17 @@ return new class extends Migration
             
            
 
-            $table->unsignedBigInteger('id_client');
+            $table->unsignedBigInteger('id_client')->nullable();
             $table->foreign('id_client')->references('id')->on('clients')->onDelete('cascade');
 
-            $table->integer('remise');
+            $table->integer('remise')->nullable();
 
-            $table->string('attachement');
+            $table->string('attachement')->nullable();
 
-            $table->text('descreption');
+            $table->unsignedBigInteger('id_cat')->nullable();
+            $table->foreign('id_cat')->references('id')->on('categories')->onDelete('set null');
+
+            $table->text('description')->nullable();
 
             $table->timestamps();
         });

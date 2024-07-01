@@ -75,8 +75,7 @@ class entreController extends Controller
             return back()->with('success', 'File uploaded successfully.')->with('file', $path);
         }
         $entre->save();
-        return view('modifier_entre');
-       
+        return redirect('/entres/'.$entre->id.'/'.$entre->id_cat.'/mar')->with('success');
         
     }
 

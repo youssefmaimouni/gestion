@@ -6,7 +6,7 @@
                 <div class="bg-gray-50 border border-gray-200 shadow-md p-10 rounded max-w-lg mx-auto mt-24">
                     <header class="text-center">
                         <h2 class="text-3xl font-bold uppercase mb-1">
-                            Ajouter une Entree
+                            Ajouter une sortie
                         </h2>
                     </header>
                     <form action="{{ route('sorties.store') }}" method="POST" enctype="multipart/form-data">
@@ -49,6 +49,16 @@
                                 <option value="">Autre </option>
                             </select>
                             @error('id_client')
+                                <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
+                            @enderror
+                            <label for="id_cat" class="inline-block text-lg mb-2">categorie </label>
+                            <select name="id_cat" class="border border-gray-200 rounded p-2 w-full"
+                            id="id_cat">
+                            @foreach ($categories as $item)
+                                <option value="{{ $item->id }}">{{ $item->nom }} </option>
+                            @endforeach
+                        </select>
+                            @error('id_cat')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
@@ -95,10 +105,7 @@
         });
     </script>
     <script>
-        // Get today's date in the format YYYY-MM-DD
         const today = new Date().toISOString().split('T')[0];
-      
-        // Set the value of the date input field to today's date
-        document.getElementById('date_doc').value = today;
+              document.getElementById('date_doc').value = today;
       </script>      
 </x-bar-nav>
