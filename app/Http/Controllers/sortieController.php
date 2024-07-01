@@ -16,7 +16,7 @@ class sortieController extends Controller
     }
 
     public function create() {
-        return view('sorties.create');
+        return view('sorties.create',['clients'=>clients::all()]);
     }
     public function store(Request $request) {
         

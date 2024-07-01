@@ -34,15 +34,22 @@
                             @enderror                    
                         </div>
                         <div class="mb-6">
-                            <label for="id_four" class="inline-block text-lg mb-2">fournisseur </label>
-                            <select name="id_four" class="border border-gray-200 rounded p-2 w-full"
-                                id="fournisseur" value="{{$entre->id_four}}">
-                                @foreach ($fournisseurs as $item)
+                            <label for="remise" class="inline-block text-lg mb-2">Remise</label>
+                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="remise" id="remise" />
+                            @error('remise')
+                                <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-6">
+                            <label for="id_client" class="inline-block text-lg mb-2">fournisseur </label>
+                            <select name="id_client" class="border border-gray-200 rounded p-2 w-full"
+                                id="fournisseur" value="{{$entre->id_client}}">
+                                @foreach ($clients as $item)
                                     <option value="{{ $item->id }}">{{ $item->nom }} </option>
                                 @endforeach
                                 <option value="">Autre </option>
                             </select>
-                            @error('id_four')
+                            @error('id_client')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
