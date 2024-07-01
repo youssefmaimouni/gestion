@@ -27,7 +27,7 @@ class marchandiseController extends Controller
             'description'=>'string|nullable',
             'quantite'=>'integer|nullable',
             'unite'=>'string|nullable',
-            // 'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
+            'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
             'categorie'=>'exists:categories,id'
         ]);
         $marchandise = new marchandises();

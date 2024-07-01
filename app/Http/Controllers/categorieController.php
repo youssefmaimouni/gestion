@@ -52,10 +52,7 @@ class CategorieController extends Controller
     public function entre_sortie(categories $categories ){
 
         $entres = entres::select('entres.*', DB::raw('"entre" as type'))
-        ->join('acheters', 'entres.id', '=', 'acheters.id_entre')
-        ->join('marchandises', 'acheters.id_mar', '=', 'marchandises.id')
-        ->join('categories', 'marchandises.id_cat', '=', 'categories.id')
-        ->where('categories.id', $categories)
+        ->where('entres.id_cat', $categories->id)
         ->orderBy('entres.date_doc', 'desc')                  
         ->get();
 
@@ -102,10 +99,7 @@ class CategorieController extends Controller
     public function sortie(categories $categories ){
 
         $entres = entres::select('entres.*', DB::raw('"entre" as type'))
-        ->join('acheters', 'entres.id', '=', 'acheters.id_entre')
-        ->join('marchandises', 'acheters.id_mar', '=', 'marchandises.id')
-        ->join('categories', 'marchandises.id_cat', '=', 'categories.id')
-        ->where('categories.id', $categories)
+        ->where('entres.id_cat', $categories->id)
         ->orderBy('entres.date_doc', 'desc')                  
         ->get();
 

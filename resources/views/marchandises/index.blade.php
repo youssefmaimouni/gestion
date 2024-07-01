@@ -43,13 +43,16 @@
                     class="text-blue-600 hover:text-blue-900">Ajouter
                     Marchendise</a> </p>
         </div>
+        @if (count($marchandises)>0)
         <div class="overflow-x-auto relative shadow-md w-full sm:rounded-lg mb-10">
+                
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                     <tr>
                         <th scope="col" class="py-3 px-6 ">image</th>
                         <th scope="col" class="py-3 px-6 ">nom</th>
                         <th scope="col" class="py-3 px-6 ">barre code</th>
+                        <th scope="col" class="py-3 px-6 ">categorie</th>
                         <th scope="col" class="py-3 px-6 ">quantite</th>
                         <th scope="col" class="py-3 px-6 ">description</th>
                         <th scope="col" class="py-3 px-6 text-center">action</th>
@@ -57,22 +60,34 @@
                 </thead>
                 <tbody>
                     @foreach ($marchandises as $marchandise)
-                        <tr class="bg-white border-b hover:bg-gray-300 hover:text-black ">
-                            <td class="py-4 px-6 ">{{ $marchandise->image }}</td>
-                            <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
-                            <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
-                            <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
-                            <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
-                            <td class="py-4 px-6 justify-center flex text-center">
+                    <tr class="bg-white border-b hover:bg-gray-300 hover:text-black ">
+                        <td class="py-4 px-6 ">
+                                <img
+                                class="image w-10 h-10 rounded-full bg-cover"
+                                {{-- src="{{$listing->logo ? asset('storage/'.$listing->logo):asset('/images/no-image.png')}}" --}}
+                                src="{{asset("/storage/".$marchandise->image )}}"
+                                alt=""
+                                
+                            />
+                    </td>
+                        <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
+                        <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
+                        <td class="py-4 px-6 ">{{ $marchandise->categories->nom }}</td>
+                        <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
+                        <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
+                        <td class="py-4 px-6 justify-center flex text-center">
                                 <p onclick="warnning({{ $marchandise->id }})"
                                     class="text-red-600 hover:text-red-900 cursor-pointer">Supprimer</p><a
                                     href="/marchandises/{{ $marchandise->id }}/edit"class="text-blue-600 hover:text-blue-900 ml-4 cursor-pointer">Modifier</a>
                             </td>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                        @endforeach
+                    </tbody>
+                </table> 
+            </div>
+            @else
+             <h2 class="text-gray-300 text-8xl select-none text-center mt-32">aucune marchendise</h2>
+            @endif
         <script>
             function warnning(id) {
                 document.getElementById('deleteGroupModal').classList.remove('hidden');
