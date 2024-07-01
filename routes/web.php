@@ -80,7 +80,7 @@ Route::put('/clients/{client}', [clientController::class, 'update'])->name('clie
 Route::delete('/clients/{client}', [clientController::class, 'delete'])->name('clients.delete');
 Route::get('/clients/{clients}/edit', [clientController::class, 'edit'])->name('clients.edit');
 
-Route::get('/entres', [entreController::class, 'index'])->name('entres.index');
+
 Route::get('/entres/create', [entreController::class, 'create'])->name('entres.create');
 Route::post('/entres', [entreController::class, 'store'])->name('entres.store');
 Route::put('/entres/{entre}', [entreController::class, 'update'])->name('entres.update');

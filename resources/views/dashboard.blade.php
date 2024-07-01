@@ -19,7 +19,7 @@
                     </svg>
                     marchandises
                 </a>
-                <a href="/entres"
+                <a href="/entres/create"
                     class="h-52 w-full bg-slate-400 m-3 flex items-center flex-col    text-center justify-center">
                     <svg width="100px" height="100px" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">

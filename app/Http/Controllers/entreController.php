@@ -12,10 +12,6 @@ use Illuminate\Http\Request;
 
 class entreController extends Controller
 {
-    public function index() {
-        $entres = entres::all();
-        return view('entres.index', ['entres'=>$entres]);
-    }
 
     public function create() {
         return view('entres.create',['fournisseurs'=>fournisseurs::all(),'marchandises'=>marchandises::all()]);
