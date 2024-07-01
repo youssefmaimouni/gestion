@@ -70,6 +70,6 @@ class entreController extends Controller
        
                $entre->delete();
 
-           return view('/');
+           return redirect()->back();
    }
 }
