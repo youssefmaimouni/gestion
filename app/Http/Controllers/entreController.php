@@ -14,7 +14,7 @@ class entreController extends Controller
 {
 
     public function create() {
-        return view('entres.create',['fournisseurs'=>fournisseurs::all(),'marchandises'=>marchandises::all()]);
+        return view('entres.create',['fournisseurs'=>fournisseurs::all(),'categories'=>categories::all()]);
     }
 
     public function store(Request $request) {
