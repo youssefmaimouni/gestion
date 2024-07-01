@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('quantite')->nullable();
             $table->string('unite')->nullable();
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('id_cat')->nullable();
+            $table->unsignedBigInteger('id_cat');
             $table->foreign('id_cat')->references('id')->on('categories');
             $table->timestamps();
         });

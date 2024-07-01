@@ -17,21 +17,29 @@ class acheterController extends Controller
         return view('acheters.create');
     }
     public function store(Request $request) {
-        
         $validatedData = $request->validate([
             'id_mar' => 'required|exists:marchandises,id',
             'id_entre' => 'required|exists:entres,id',
-             'quantite'=>'min:0'
+            'quantite' => 'numeric|min:0'
+        ], [
+            'id_mar.required' => 'The merchandise ID is required.',
+            'id_mar.exists' => 'The selected merchandise does not exist.',
+            'id_entre.required' => 'The entry ID is required.',
+            'id_entre.exists' => 'The selected entry does not exist.',
+            'quantite.numeric' => 'The quantity must be a number.',
+            'quantite.min' => 'The quantity must not be less than zero.'
         ]);
-    
+        
+
        
         $acheter = new acheters(); 
-        $acheter->nom = $validatedData['id_entre'];
+        $acheter->id_entre = $validatedData['id_entre'];
         $acheter->id_mar = $validatedData['id_mar']; 
+        $acheter->quantite = $validatedData['quantite']; 
         $acheter->save();
     
        
-        return redirect()->route('acheters.index')->with('success', 'acheter ajouté avec succès.'); 
+        return redirect()->back()->with('success', 'acheter ajouté avec succès.'); 
     }
     
 

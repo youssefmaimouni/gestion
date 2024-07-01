@@ -93,15 +93,18 @@
                             @error('id_four')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
-                        </div>
-                        <!-- Hidden field for selected category -->
-                        
-                        <select name="id_cat" class="border border-gray-200 rounded p-2 w-full"
-                        id="cat">
-                        @foreach ($categories as $item)
-                            <option value="{{ $item->id }}">{{ $item->nom }} </option>
-                        @endforeach
-                    </select>
+                            <label for="id_four" class="inline-block text-lg mb-2">categorie </label>
+                            <select name="id_cat" class="border border-gray-200 rounded p-2 w-full"
+                            id="cat">
+                            @foreach ($categories as $item)
+                                <option value="{{ $item->id }}">{{ $item->nom }} </option>
+                            @endforeach
+                        </select>
+                            @error('id_cat')
+                                <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
+                            @enderror
+                    </div>
+                      
                     <input type="hidden" id="selectedCategory" name="selectedCategory" value="">
 
                         <div class="mb-6">
@@ -120,32 +123,6 @@
 
         select.addEventListener('change', function() {
             selectedCategoryInput.value = select.value;
-        });
-
-        document.getElementById('entryForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const formData = new FormData(this);
-            fetch('{{ route('entres.store') }}', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    const selectedCategory = selectedCategoryInput.value;
-                    window.location.href = `{{ route('entres.mar', '') }}/${selectedCategory}`;
-                } else {
-                    // Gérer les erreurs
-                    console.error(data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
         });
 
         const img = document.querySelector('#photo');

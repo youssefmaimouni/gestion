@@ -23,13 +23,17 @@
         </div>
         <form action="{{ route('acheters.store') }}" method="POST" class="space-y-6">
             @csrf
+            <!-- Hidden fields for ID and ID_CAT -->
+            <input type="hidden" id="id" name="id_mar" value="">
+            <input type="hidden"  name="id_entre" value="{{$entres->id}}">
+        
             <div>
-               
-                <label for="nom" class="block text-sm font-medium text-gray-700">quantite :</label>
-                <input type="number" id="nom" name="quantite" value="0" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <label for="quantite" class="block text-sm font-medium text-gray-700">Quantité :</label>
+                <input type="number" id="quantite" name="quantite" value="0" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <button type="submit" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Ajouter</button>
         </form>
+        
     </div>
     <div id="cont" class="" >
         <div class=" flex">
@@ -48,7 +52,7 @@
                 </thead>
                 <tbody>
                     @foreach ($marchandises as $marchandise)
-                        <tr class="bg-white border-b hover:bg-gray-300 hover:text-black "  onclick="warnning({{ $marchandise->id }})">
+                        <tr class="bg-white border-b hover:bg-gray-300 hover:text-black "  onclick="warnning({{ $marchandise->id }}, {{ $marchandise->id_cat }})">
                             <td class="py-4 px-6 ">{{ $marchandise->image }}</td>
                             <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
                             <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
@@ -62,13 +66,15 @@
             </table>
         </div>
         <script>
-            function warnning(id) {
-                document.getElementById('deleteGroupModal').classList.remove('hidden');
-                const deleteGroupIdInput = document.getElementById('deleteGroupId');
-                deleteGroupIdInput.value = id;
-                document.getElementById('cont').classList.add('blur-sm');
-                document.getElementById('cont').classList.add('pointer-events-none');
-            }
+          function warnning(id) {
+    document.getElementById('deleteGroupModal').classList.remove('hidden');
+    document.getElementById('cont').classList.add('blur-sm');
+    document.getElementById('cont').classList.add('pointer-events-none');
+
+    // Update hidden inputs
+    document.getElementById('id').value = id;
+}
+
         </script>
         <script>
             function hide() {
@@ -77,5 +83,6 @@
                 document.getElementById('cont').classList.remove('pointer-events-none');
             }
         </script>
+        
     </div>
 </x-nav-bar>

@@ -19,10 +19,12 @@ return new class extends Migration
             $table->unsignedBigInteger('id_four')->nullable();
             $table->foreign('id_four')->references('id')->on('fournisseurs')->onDelete('set null');
 
+            $table->unsignedBigInteger('id_cat')->nullable();
+            $table->foreign('id_cat')->references('id')->on('categories')->onDelete('set null');
 
             $table->string('attachement')->nullable();
 
-            $table->text('descreption');
+            $table->text('description')->nullable();
             $table->timestamps();
 
         });
