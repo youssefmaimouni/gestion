@@ -23,8 +23,10 @@ return new class extends Migration
             $table->integer('remise');
 
             $table->string('attachement');
+            $table->unsignedBigInteger('id_cat')->nullable();
+            $table->foreign('id_cat')->references('id')->on('categories')->onDelete('set null');
 
-            $table->text('descreption');
+            $table->text('description');
 
             $table->timestamps();
         });

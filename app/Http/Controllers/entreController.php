@@ -48,21 +48,18 @@ class entreController extends Controller
     public function update(Request $request,entres $entre )
     {
         $validatedData = $request->validate([
-            'date_doc'=>'date|required',
-            'attachement'=>'string',
-            'descreption'=>'texte',
-            'id_four'=>'integer',
-            'id_cat'=>'integer'
+            'date_doc' => 'date|required',
+            'description' => 'string|nullable',
+            'id_four' => 'integer|nullable',
+            'id_cat' => 'integer'
         ]);
     
-        $entre->nom = $validatedData['nom'];
-        $entre->attachement = $validatedData['attachement']; 
-        $entre->descreption = $validatedData['descreption']; 
-        $entre->id_four=$validatedData['id_four'];
-        $entre->id_four=$validatedData['id_cat'];
+        $entre->date_doc = $validatedData['date_doc'];
+        $entre->description = $validatedData['description']; 
+        $entre->id_four = $validatedData['id_four'];
+        $entre->id_cat = $validatedData['id_cat'];
         $entre->save();
-        return view('modifier_entre');
-       
+        return redirect('/entres/'.$entre->id.'/'.$entre->id_cat.'/mar')->with('success');
         
     }
 

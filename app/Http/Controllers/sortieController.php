@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\categories;
+use App\Models\marchandises;
 use App\Models\sorties;
 use Illuminate\Http\Request;
 
@@ -19,18 +21,27 @@ class sortieController extends Controller
     public function store(Request $request) {
         
         $validatedData = $request->validate([
-            'nom' => 'required|min:3|string',
-            'id_mar' => 'required|exists:marchandises,id'
+           'date_doc' => 'date|required',
+            'description' => 'string|nullable',
+            'id_clt' => 'integer|nullable',
+            'id_cat' => 'integer',
+            'remise'=>'number'
         ]);
     
-       
         $sortie = new sorties(); 
-        $sortie->nom = $validatedData['nom'];
-        $sortie->id_mar = $validatedData['id_mar']; 
+        $sortie->date_doc = $validatedData['date_doc'];
+        $sortie->description = $validatedData['description']; 
+        $sortie->remise = $validatedData['remise']; 
+        $sortie->id_clt = $validatedData['id_clt'];
+        $sortie->id_cat = $validatedData['id_cat'];
+
         $sortie->save();
-    
-       
-        return redirect()->route('sorties.index')->with('success', 'sortie ajouté avec succès.'); 
+        return redirect('/sorties/'.$sortie->id.'/'.$sortie->id_cat.'/mar')->with('success');
+    }
+
+    public function vendre(sorties $sorties, categories $categories ){
+        $marchandises = $marchandises=marchandises::where('id_cat','=',$categories->id)->get();
+        return view('sorties.index_mar',['sorties'=>$sorties,'marchandises'=>$marchandises]);
     }
     
 
@@ -41,14 +52,21 @@ class sortieController extends Controller
     
     public function update(Request $request,sorties $sortie )
     {
-        $valid = $request->validate([
-        'nom'=>'min:3|string',
-        'id_mar'=>'required|exists:marazins,id'
-        ]);
-            $sortie->nom=$valid['nom'];
-            $sortie->id_sortie=$valid['id_mar'];
-        $sortie->save();
-        return view('modifier_sortie');
+        $validatedData = $request->validate([
+            'date_doc' => 'date|required',
+             'description' => 'string|nullable',
+             'id_clt' => 'integer|nullable',
+             'id_cat' => 'integer'
+         ]);
+     
+        
+         $sortie->date_doc = $validatedData['date_doc'];
+         $sortie->description = $validatedData['description']; 
+         $sortie->id_clt = $validatedData['id_clt'];
+         $sortie->id_cat = $validatedData['id_cat'];
+         $sortie->save();
+
+         return redirect('/sorties/'.$sortie->id.'/'.$sortie->id_cat.'/mar')->with('success');
        
         
     }
