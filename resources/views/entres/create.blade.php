@@ -76,8 +76,8 @@
                         </div>
                         <div class="mb-6">
                             <label for="tite" class="inline-block text-lg mb-2">Description du site Web</label>
-                            <textarea name="descreption" id="" class="border border-gray-200 rounded p-2 w-full h-52" placeholder="descreption"></textarea>
-                            @error('descreption')
+                            <textarea name="description" id="" class="border border-gray-200 rounded p-2 w-full h-52" placeholder="description"></textarea>
+                            @error('description')
                                 <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror                    
                         </div>

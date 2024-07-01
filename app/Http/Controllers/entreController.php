@@ -50,14 +50,14 @@ class entreController extends Controller
         $validatedData = $request->validate([
             'date_doc'=>'date|required',
             'attachement'=>'string',
-            'descreption'=>'texte',
+            'description'=>'texte',
             'id_four'=>'integer',
             'id_cat'=>'integer'
         ]);
     
         $entre->nom = $validatedData['nom'];
         $entre->attachement = $validatedData['attachement']; 
-        $entre->descreption = $validatedData['descreption']; 
+        $entre->description = $validatedData['description']; 
         $entre->id_four=$validatedData['id_four'];
         $entre->id_four=$validatedData['id_cat'];
         $entre->save();
