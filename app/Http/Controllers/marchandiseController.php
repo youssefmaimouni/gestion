@@ -26,7 +26,6 @@ class marchandiseController extends Controller
             'barre_code'=>'integer|nullable',
             'description'=>'string|nullable',
             'quantite'=>'integer|nullable',
-            'unite'=>'string|nullable',
             'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
             'categorie'=>'exists:categories,id'
         ]);
@@ -35,7 +34,6 @@ class marchandiseController extends Controller
         $marchandise->barre_code=$valid['barre_code'];
         $marchandise->description=$valid['description'];
         $marchandise->quantite=$valid['quantite'];
-        $marchandise->unite=$valid['unite'];
         if ($request->file('image') != null) {
             $marchandise->image =  $request->file('image')->store('logos', 'public');
         }

@@ -96,18 +96,10 @@
                         @enderror
                     </div>
                     <div class="mb-6">
-                        <label for="title" class="inline-block text-lg mb-2">quantite</label>
+                        <label for="quantite" class="inline-block text-lg mb-2">quantite</label>
                         <input type="number" class="border border-gray-200 rounded p-2 w-full" name="quantite"
-                        placeholder="title"  />
+                        placeholder="quantite" value="0"  />
                         @error('quantite')
-                        <p class="text-red-500 test-xs mt-1">{{$message}}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-6">
-                        <label for="title" class="inline-block text-lg mb-2">unité</label>
-                        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="unite"
-                            placeholder="title"  />
-                        @error('unite')
                         <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>

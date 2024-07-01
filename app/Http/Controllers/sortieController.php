@@ -18,20 +18,28 @@ class sortieController extends Controller
         return view('sorties.create',['clients'=>clients::all()]);
     }
     public function store(Request $request) {
-        
         $validatedData = $request->validate([
-            'nom' => 'required|min:3|string',
-            'id_mar' => 'required|exists:marchandises,id'
+            'date_doc' => 'required|date',
+            'attachments' => 'nullable|mimes:png,gif,jpeg,jpg,pdf|max:2048',
+            'description' => 'nullable|string',
+            'id_client' => 'nullable|integer',
+            'id_cat' => 'nullable|integer',
         ]);
-    
-       
         $sortie = new sorties(); 
-        $sortie->nom = $validatedData['nom'];
-        $sortie->id_mar = $validatedData['id_mar']; 
+        $sortie->date_doc = $validatedData['date_doc'];
+        $sortie->description = $validatedData['description']; 
+        $sortie->id_four = $validatedData['id_four'];
+        $sortie->id_cat = $validatedData['id_cat'];
+    
+        if ($request->file('attachments')) {
+            $file = $request->file('attachments');
+            $path = $file->store('uploads', 'public');
+            $sortie->attachement = $path; // Save the file path in the database
+        }
+    
         $sortie->save();
     
-       
-        return redirect()->route('sorties.index')->with('success', 'sortie ajouté avec succès.'); 
+        return redirect('/sorties/'.$sortie->id.'/'.$sortie->id_cat.'/mar')->with('success', 'Entry created successfully.');
     }
     
 
