@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\acheters;
+use App\Models\categories;
 use App\Models\entres;
 use App\Models\fournisseurs;
 use App\Models\marchandises;
@@ -11,48 +12,64 @@ use Illuminate\Http\Request;
 
 class entreController extends Controller
 {
-    public function index() {
-        $entres = entres::all();
-        return view('entres.index', ['entres'=>$entres]);
-    }
+
     public function create() {
-        return view('entres.create',['fournisseurs'=>fournisseurs::all(),'marchandises'=>marchandises::all()]);
+        return view('entres.create',['fournisseurs'=>fournisseurs::all(),'categories'=>categories::all()]);
     }
+
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'date_doc'=>'date|required',
-            'descreption'=>'string|nullable',
-            'id_four'=>'integer|nullable'
+            'date_doc' => 'date|required',
+            'description' => 'string|nullable',
+            'id_four' => 'integer|nullable',
+            'id_cat' => 'integer'
         ]);
+    
         $entre = new entres(); 
         $entre->date_doc = $validatedData['date_doc'];
-        $entre->descreption = $validatedData['descreption']; 
-        $entre->id_four=$validatedData['id_four'];
+        $entre->description = $validatedData['description']; 
+        $entre->id_four = $validatedData['id_four'];
+        $entre->id_cat = $validatedData['id_cat'];
         $entre->save();
-        return redirect('/')->with('success', 'entre ajouté avec succès.'); 
+        return redirect('/entres/'.$entre->id.'/'.$entre->id_cat.'/mar')->with('success');
     }
+    
+    
+    public function acheter(entres $entres, categories $categories ){
+        $marchandises = $marchandises=marchandises::where('id_cat','=',$categories->id)->get();
+        return view('entres.index_mar',['entres'=>$entres,'marchandises'=>$marchandises]);
+    }
+
     public function edit(entres $entres)
     {
         return view('entres.edit', ['entre' => $entres]);
     }
+    
     public function update(Request $request,entres $entre )
     {
         $validatedData = $request->validate([
             'date_doc'=>'date|required',
             'attachement'=>'string',
             'descreption'=>'texte',
-            'id_four'=>'integer'
+            'id_four'=>'integer',
+            'id_cat'=>'integer'
         ]);
-        $entre = new entres(); 
+    
         $entre->nom = $validatedData['nom'];
         $entre->attachement = $validatedData['attachement']; 
         $entre->descreption = $validatedData['descreption']; 
         $entre->id_four=$validatedData['id_four'];
+        $entre->id_four=$validatedData['id_cat'];
         $entre->save();
         return view('modifier_entre');
+       
+        
     }
+
     public function delete(entres  $entre) {
+       
                $entre->delete();
+
            return view('/');
    }
 }

@@ -23,12 +23,17 @@
         </div>
         <form action="{{ route('acheters.store') }}" method="POST" class="space-y-6">
             @csrf
+            <!-- Hidden fields for ID and ID_CAT -->
+            <input type="hidden" id="id" name="id_mar" value="">
+            <input type="hidden"  name="id_entre" value="{{$entres->id}}">
+        
             <div>
-                <label for="nom" class="block text-sm font-medium text-gray-700">quantite :</label>
-                <input type="text" id="nom" name="quantite" value="{{ old('nom') }}" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <label for="quantite" class="block text-sm font-medium text-gray-700">Quantité :</label>
+                <input type="number" id="quantite" name="quantite" value="0" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <button type="submit" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Ajouter</button>
         </form>
+        
     </div>
     <div id="cont" class="" >
         <div class=" flex">
@@ -43,21 +48,17 @@
                         <th scope="col" class="py-3 px-6 ">barre code</th>
                         <th scope="col" class="py-3 px-6 ">quantite</th>
                         <th scope="col" class="py-3 px-6 ">description</th>
-                        <th scope="col" class="py-3 px-6 text-center">action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($marchandises as $marchandise)
-                        <tr class="bg-white border-b hover:bg-gray-300 hover:text-black " onclick="">
+                        <tr class="bg-white border-b hover:bg-gray-300 hover:text-black "  onclick="warnning({{ $marchandise->id }}, {{ $marchandise->id_cat }})">
                             <td class="py-4 px-6 ">{{ $marchandise->image }}</td>
                             <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
                             <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
                             <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
                             <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
                             <td class="py-4 px-6 justify-center flex text-center">
-                                <p onclick="warnning({{ $marchandise->id }})"
-                                    class="text-red-600 hover:text-red-900 cursor-pointer">Supprimer</p><a
-                                    href="/marchandises/{{ $marchandise->id }}/edit"class="text-blue-600 hover:text-blue-900 ml-4 cursor-pointer">Modifier</a>
                             </td>
                         </tr>
                     @endforeach
@@ -65,14 +66,15 @@
             </table>
         </div>
         <script>
-            function warnning(id) {
-                document.getElementById('deleteGroupModal').classList.remove('hidden');
-                const deleteGroupIdInput = document.getElementById('deleteGroupId');
-                // Set the hidden input field's value to the retrieved group ID
-                deleteGroupIdInput.value = id;
-                document.getElementById('cont').classList.add('blur-sm');
-                document.getElementById('cont').classList.add('pointer-events-none');
-            }
+          function warnning(id) {
+    document.getElementById('deleteGroupModal').classList.remove('hidden');
+    document.getElementById('cont').classList.add('blur-sm');
+    document.getElementById('cont').classList.add('pointer-events-none');
+
+    // Update hidden inputs
+    document.getElementById('id').value = id;
+}
+
         </script>
         <script>
             function hide() {
@@ -81,5 +83,6 @@
                 document.getElementById('cont').classList.remove('pointer-events-none');
             }
         </script>
+        
     </div>
 </x-nav-bar>

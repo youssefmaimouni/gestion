@@ -28,7 +28,7 @@ class marchandiseController extends Controller
             'quantite'=>'integer|nullable',
             'unite'=>'string|nullable',
             // 'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-            'categorier'=>'exists:categories,id|nullable'
+            'categorie'=>'exists:categories,id'
         ]);
         $marchandise = new marchandises();
         $marchandise->nom=$valid['nom'];
@@ -39,7 +39,7 @@ class marchandiseController extends Controller
         if ($request->file('image') != null) {
             $marchandise->image =  $request->file('image')->store('logos', 'public');
         }
-        $marchandise->id_cat=$valid['categorier']?? null;
+        $marchandise->id_cat=$valid['categorie'];
         $marchandise->save();
         return redirect('/marchandises')->with('success','marchandise ajouter avec success');
     }

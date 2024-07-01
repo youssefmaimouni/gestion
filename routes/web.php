@@ -76,12 +76,13 @@ Route::put('/clients/{client}', [clientController::class, 'update'])->name('clie
 Route::delete('/clients/{client}', [clientController::class, 'delete'])->name('clients.delete');
 Route::get('/clients/{clients}/edit', [clientController::class, 'edit'])->name('clients.edit');
 
-Route::get('/entres', [entreController::class, 'index'])->name('entres.index');
+
 Route::get('/entres/create', [entreController::class, 'create'])->name('entres.create');
 Route::post('/entres', [entreController::class, 'store'])->name('entres.store');
 Route::put('/entres/{entre}', [entreController::class, 'update'])->name('entres.update');
 Route::delete('/entres/{entre}', [entreController::class, 'delete'])->name('entres.delete');
 Route::get('/entres/{entres}/edit', [entreController::class, 'edit'])->name('entres.edit');
+Route::get('/entres/{entres}/{categories}/mar', [entreController::class, 'acheter'])->name('entres.mar');
 
 Route::get('/fournisseurs', [fournisseurController::class, 'index'])->name('fournisseurs.index');
 Route::get('/fournisseurs/create', [fournisseurController::class, 'create'])->name('fournisseurs.create');
