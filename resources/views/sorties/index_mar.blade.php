@@ -21,11 +21,11 @@
             </svg>
             <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">quantite</h5>
         </div>
-        <form action="{{ route('acheters.store') }}" method="POST" class="space-y-6">
+        <form action="{{ route('vendres.store') }}" method="POST" class="space-y-6">
             @csrf
             <!-- Hidden fields for ID and ID_CAT -->
             <input type="hidden" id="id" name="id_mar" value="">
-            <input type="hidden"  name="id_entre" value="{{$entres->id}}">
+            <input type="hidden"  name="id_sortie" value="{{$sorties->id}}">
         
             <div>
                 <label for="quantite" class="block text-sm font-medium text-gray-700">Quantité :</label>

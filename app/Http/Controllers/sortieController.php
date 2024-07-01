@@ -25,8 +25,9 @@ class sortieController extends Controller
            'date_doc' => 'date|required',
             'description' => 'string|nullable',
             'id_client' => 'integer|nullable',
-            'id_cat' => 'integer',
-            'remise'=>'integer'
+            'id_cat' => 'integer|nullable',
+            'remise'=>'integer|nullable',
+            'attachement' => 'nullable|mimes:png,gif,jpeg,jpg,pdf|max:2048',
         ]);
     
         $sortie = new sorties(); 
@@ -35,6 +36,11 @@ class sortieController extends Controller
         $sortie->remise = $validatedData['remise']; 
         $sortie->id_client = $validatedData['id_client'];
         $sortie->id_cat = $validatedData['id_cat'];
+        if ($request->file('attachement')) {
+            $file = $request->file('attachement');
+            $path = $file->store('uploads', 'public');
+            $sortie->attachement = $path; 
+        }
 
         $sortie->save();
         return redirect('/sorties/'.$sortie->id.'/'.$sortie->id_cat.'/mar')->with('success');

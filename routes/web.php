@@ -47,7 +47,6 @@ Route::get('/categories/{categories}/documents', [categorieController::class, 'e
 Route::get('/categories/{categories}/documents/entres', [categorieController::class, 'entre'])->name('categories.entre'); 
 Route::get('/categories/{categories}/documents/sorties', [categorieController::class, 'sortie'])->name('categories.sortie'); 
 
-
 Route::get('/marchandises', [marchandiseController::class, 'index'])->name('marchandises.index');
 Route::get('/marchandises/create', [marchandiseController::class, 'create'])->name('marchandises.create');
 Route::post('/marchandises', [marchandiseController::class, 'store'])->name('marchandises.store');
@@ -83,7 +82,7 @@ Route::put('/entres/{entre}', [entreController::class, 'update'])->name('entres.
 Route::delete('/entres/{entre}', [entreController::class, 'delete'])->name('entres.delete');
 Route::get('/entres/{entres}/edit', [entreController::class, 'edit'])->name('entres.edit');
 Route::get('/entres/{entres}/{categories}/mar', [entreController::class, 'acheter'])->name('entres.mar');
-Route::get('/entres/{sorties}/{categories}/mar', [entreController::class, 'vendre'])->name('sorties.mar');
+Route::get('/sorties/{sorties}/{categories}/mar', [sortieController::class, 'vendre'])->name('sorties.mar');
 
 Route::get('/fournisseurs', [fournisseurController::class, 'index'])->name('fournisseurs.index');
 Route::get('/fournisseurs/create', [fournisseurController::class, 'create'])->name('fournisseurs.create');
