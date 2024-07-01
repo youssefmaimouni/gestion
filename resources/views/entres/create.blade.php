@@ -59,7 +59,7 @@
                         </h2>
                     </header>
     
-                    <form action="{{ route('entre.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('entres.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">Nom du marchandise </label>
@@ -92,6 +92,12 @@
                                 @endforeach
                                 <option>Autre </option>
                             </select>
+                            <select name="id_cat" class="border border-gray-200 rounded p-2 w-full"
+                            id="cat">
+                            @foreach ($categories as $item)
+                                <option value="{{ $item->id }}">{{ $item->nom }} </option>
+                            @endforeach
+                        </select>
                             @error('id_four')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
