@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\clients;
 use App\Models\sorties;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class sortieController extends Controller
     }
 
     public function create() {
-        return view('sorties.create');
+        return view('sorties.create',['clients'=>clients::all()]);
     }
     public function store(Request $request) {
         

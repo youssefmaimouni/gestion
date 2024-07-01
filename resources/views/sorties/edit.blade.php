@@ -1,5 +1,4 @@
 <x-bar-nav>
-
     <div class="mb-48 bg-gray-100">
         <main>
             <div class="mx-4">
@@ -13,36 +12,44 @@
                     <form action="{{ route('entres.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-6">
-                            <label for="attachement" class="inline-block text-lg mb-2">Attachment</label><br>
-                            <input type="File" name="attachments" accept="image/png, image/gif, image/jpeg, image/jpg, application/pdf" id="attachement">
+                            <label for="attachement" class="inline-block text-lg mb-2">Attachments</label>
+                            <input type="File" name="Attachments"
+                                accept="image/png, image/gif, image/jpeg, image/jpg, application/pdf" value="{{$entre->attachement}}" id="attachement">
                             @error('attachement')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
                             <label for="date_doc" class="inline-block text-lg mb-2">Date du Document</label>
-                            <input type="date" class="border border-gray-200 rounded p-2 w-full" name="date_doc" id="date_doc" />
+                            <input type="date" class="border border-gray-200 rounded p-2 w-full" name="date_doc" value="{{$entre->date_doc}}" id="date_doc" />
                             @error('date_doc')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="tite" class="inline-block text-lg mb-2">Description du site Web</label>
-                            <textarea name="descreption" id="" class="border border-gray-200 rounded p-2 w-full h-52" placeholder="descreption"></textarea>
-                            @error('descreption')
+                            <label for="tite" class="inline-block text-lg mb-2">Description</label>
+                            <textarea name="description" id="" class="border border-gray-200 rounded p-2 w-full h-52" placeholder="description">{{$entre->description}}</textarea>
+                            @error('description')
                                 <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror                    
                         </div>
                         <div class="mb-6">
-                            <label for="id_four" class="inline-block text-lg mb-2">fournisseur </label>
-                            <select name="id_four" class="border border-gray-200 rounded p-2 w-full"
-                                id="fournisseur">
-                                @foreach ($fournisseurs as $item)
+                            <label for="remise" class="inline-block text-lg mb-2">Remise</label>
+                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="remise" id="remise" />
+                            @error('remise')
+                                <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-6">
+                            <label for="id_client" class="inline-block text-lg mb-2">fournisseur </label>
+                            <select name="id_client" class="border border-gray-200 rounded p-2 w-full"
+                                id="fournisseur" value="{{$entre->id_client}}">
+                                @foreach ($clients as $item)
                                     <option value="{{ $item->id }}">{{ $item->nom }} </option>
                                 @endforeach
                                 <option value="">Autre </option>
                             </select>
-                            @error('id_four')
+                            @error('id_client')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
