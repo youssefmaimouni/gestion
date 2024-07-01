@@ -64,7 +64,7 @@
                     <div class="mb-6">
                         <center>
                             <label for="fileToUpload">
-                                <div class="profile-pic" id="photo" style="background-image: url('logo.jpg')">
+                                <div class="profile-pic" id="photo" style="background-image: url('/logo.jpg')">
                                     <!-- <span class="glyphicon glyphicon-camera"></span> -->
                                     <span>Add Image</span>
                                 </div>
