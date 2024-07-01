@@ -21,21 +21,15 @@ class entreController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'date_doc'=>'date|required',
-            'attachement'=>'string|nullable',
-            'descreption'=>'texte|nullable',
+            'descreption'=>'string|nullable',
             'id_four'=>'integer|nullable'
-        ],[
-            'date_doc.required'=>'date de document est obligatoire',
-            'descreption.texte'=>'descreption est obligatoire',
-            'id_four.integer'=>'id_four est obligatoire',
         ]);
         $entre = new entres(); 
-        $entre->nom = $validatedData['nom'];
-        $entre->attachement = $validatedData['attachement']; 
-        $entre->description = $validatedData['description']; 
+        $entre->date_doc = $validatedData['date_doc'];
+        $entre->descreption = $validatedData['descreption']; 
         $entre->id_four=$validatedData['id_four'];
         $entre->save();
-        return redirect()->route('entres.index')->with('success', 'entre ajouté avec succès.'); 
+        return redirect('/')->with('success', 'entre ajouté avec succès.'); 
     }
     public function edit(entres $entres)
     {
@@ -52,7 +46,7 @@ class entreController extends Controller
         $entre = new entres(); 
         $entre->nom = $validatedData['nom'];
         $entre->attachement = $validatedData['attachement']; 
-        $entre->description = $validatedData['description']; 
+        $entre->descreption = $validatedData['descreption']; 
         $entre->id_four=$validatedData['id_four'];
         $entre->save();
         return view('modifier_entre');
