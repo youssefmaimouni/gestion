@@ -20,26 +20,26 @@ class clientController extends Controller
         
         $validatedData = $request->validate([
             'nom' => 'required|min:3|string',
-            'adresse'=>'min:8|string',
-            'telephone'=>'tel|min:10|max:10',
-            'email'=>'mail',
-            'num_fiscal'=>'integer',
-            'compt-bancaire'=>'min:13',
-            'remarque'=>'text',
-            'remise',
+            'adresse'=>'min:8|string|nullable',
+            'telephone'=>'min:10|max:10|nullable',
+            'email'=>'email|nullable',
+            'num_fiscal'=>'integer|nullable',
+            'compt_bancaire'=>'min:13|nullable',
+            'remarque'=>'string|nullable',
+            'remise'=>'integer|nullable',
         ]);
     
        
         $client = new clients(); 
         $client->nom = $validatedData['nom'];
-        $client->nom = $validatedData['adresse'];
-        $client->nom = $validatedData['telephone'];
-        $client->nom = $validatedData['email'];
-        $client->nom = $validatedData['num_fiscal'];
-        $client->nom = $validatedData['compt_bancaire'];
-        $client->nom = $validatedData['remarque'];
-        $client->nom = $validatedData['remise'];
-        $client->save();
+        $client->adresse = $validatedData['adresse'];
+        $client->telephone = $validatedData['telephone'];
+        $client->email = $validatedData['email'];
+        $client->num_fiscal = $validatedData['num_fiscal'];
+        $client->compt_bancaire = $validatedData['compt_bancaire'];
+        $client->remarque = $validatedData['remarque'];
+        $client->remise = $validatedData['remise'];
+        $client->save();   
     
        
         return redirect()->route('clients.index')->with('success', 'client ajouté avec succès.'); 
@@ -56,25 +56,25 @@ class clientController extends Controller
        
         $validatedData = $request->validate([
             'nom' => 'required|min:3|string',
-            'adresse'=>'min:8|string',
-            'telephone'=>'tel|min:10|max:10',
-            'email'=>'mail',
-            'num_fiscal'=>'integer',
-            'compt-bancaire'=>'min:13',
-            'remarque'=>'text',
-            'remise',
+            'adresse'=>'min:8|string|nullable',
+            'telephone'=>'min:10|max:10|nullable',
+            'email'=>'email|nullable',
+            'num_fiscal'=>'integer|nullable',
+            'compt_bancaire'=>'min:13|nullable',
+            'remarque'=>'string|nullable',
+            'remise'=>'integer|nullable',
         ]);
     
        
-        $client = new clients(); 
+        
         $client->nom = $validatedData['nom'];
-        $client->nom = $validatedData['adresse'];
-        $client->nom = $validatedData['telephone'];
-        $client->nom = $validatedData['email'];
-        $client->nom = $validatedData['num_fiscal'];
-        $client->nom = $validatedData['compt_bancaire'];
-        $client->nom = $validatedData['remarque'];
-        $client->nom = $validatedData['remise'];
+        $client->adresse = $validatedData['adresse'];
+        $client->telephone = $validatedData['telephone'];
+        $client->email = $validatedData['email'];
+        $client->num_fiscal = $validatedData['num_fiscal'];
+        $client->compt_bancaire = $validatedData['compt_bancaire'];
+        $client->remarque = $validatedData['remarque'];
+        $client->remise = $validatedData['remise'];
         $client->save();   
         
     }

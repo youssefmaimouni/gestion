@@ -22,12 +22,12 @@
             <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Confirmation de la suppression</h5>
         </div>
         <div class="text-sm text-gray-900">
-            Êtes-vous sûr de vouloir supprimer cette marchendise?
+            Êtes-vous sûr de vouloir supprimer ce client?
         </div>
         <div class="flex w-2/3 justify-around">
             <button type="button" class="btn btn-secondary" onclick="hide()"
                 data-bs-dismiss="modal">Annuler</button>
-            <form action="/marchandises/delete" method="POST">
+            <form action="/clients/delete" method="POST">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="id" id="deleteGroupId" value="">
@@ -38,47 +38,43 @@
     </div>
     <div id="cont" class="" >
         <div class=" flex">
-            <p class="text-2xl w-2/3 m-3 pl-6 underline underline-offset-4">marchandises</p>
-            <p class="text-xl w-1/3  m-3 pl-6"><a href="/marchandises/create"
+            <p class="text-2xl w-2/3 m-3 pl-6 underline underline-offset-4">clients</p>
+            <p class="text-xl w-1/3  m-3 pl-6"><a href="/clients/create"
                     class="text-blue-600 hover:text-blue-900">Ajouter
-                    Marchendise</a> </p>
+                    client</a> </p>
         </div>
-        @if (count($marchandises)>0)
+        @if (count($clients)>0)
         <div class="overflow-x-auto relative shadow-md w-full sm:rounded-lg mb-10">
                 
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                     <tr>
-                        <th scope="col" class="py-3 px-6 ">image</th>
                         <th scope="col" class="py-3 px-6 ">nom</th>
-                        <th scope="col" class="py-3 px-6 ">barre code</th>
-                        <th scope="col" class="py-3 px-6 ">categorie</th>
-                        <th scope="col" class="py-3 px-6 ">quantite</th>
-                        <th scope="col" class="py-3 px-6 ">description</th>
+                        <th scope="col" class="py-3 px-6 ">adresse</th>
+                        <th scope="col" class="py-3 px-6 ">telephone</th>
+                        <th scope="col" class="py-3 px-6 ">email</th>
+                        <th scope="col" class="py-3 px-6 ">num_fiscal</th>
+                        <th scope="col" class="py-3 px-6 ">cordonnées bancaire</th>
+                        <th scope="col" class="py-3 px-6 text-center">remarque</th>
+                        <th scope="col" class="py-3 px-6 text-center">remise</th>
                         <th scope="col" class="py-3 px-6 text-center">action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($marchandises as $marchandise)
+                    @foreach ($clients as $client)
                     <tr class="bg-white border-b hover:bg-gray-300 hover:text-black ">
-                        <td class="py-4 px-6 ">
-                                <img
-                                class="image w-10 h-10 rounded-full bg-cover"
-                                {{-- src="{{$listing->logo ? asset('storage/'.$listing->logo):asset('/images/no-image.png')}}" --}}
-                                src="{{asset("/storage/".$marchandise->image )}}"
-                                alt=""
-                                
-                            />
-                    </td>
-                        <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
-                        <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
-                        <td class="py-4 px-6 ">{{ $marchandise->categories->nom }}</td>
-                        <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
-                        <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
+                        <td class="py-4 px-6 ">{{$client->nom}}</td>
+                        <td class="py-4 px-6  ">{{ $client->adresse }}</td>
+                        <td class="py-4 px-6 ">{{ $client->telephone }}</td>
+                        <td class="py-4 px-6 ">{{ $client->email }}</td>
+                        <td class="py-4 px-6 ">{{ $client->num_fiscal }}</td>
+                        <td class="py-4 px-6 ">{{ $client->compt_bancaire }}</td>
+                        <td class="py-4 px-6 ">{{ $client->remarque }}</td>
+                        <td class="py-4 px-6 ">{{ $client->remise }}</td>
                         <td class="py-4 px-6 justify-center flex text-center">
-                                <p onclick="warnning({{ $marchandise->id }})"
+                                <p onclick="warnning({{ $client->id }})"
                                     class="text-red-600 hover:text-red-900 cursor-pointer">Supprimer</p><a
-                                    href="/marchandises/{{ $marchandise->id }}/edit"class="text-blue-600 hover:text-blue-900 ml-4 cursor-pointer">Modifier</a>
+                                    href="/clients/{{ $client->id }}/edit"class="text-blue-600 hover:text-blue-900 ml-4 cursor-pointer">Modifier</a>
                             </td>
                         </tr>
                         @endforeach
@@ -86,7 +82,7 @@
                 </table> 
             </div>
             @else
-             <h2 class="text-gray-300 text-8xl select-none text-center mt-32">aucune marchendise</h2>
+             <h2 class="text-gray-300 text-8xl select-none text-center mt-32">aucune client</h2>
             @endif
         <script>
             function warnning(id) {

@@ -13,7 +13,7 @@ class clients extends Model
             'telephone',
             'email',
             'num_fiscal',
-            'compt-bancaire',
+            'compt_bancaire',
             'remarque',
             'remise',
     ];

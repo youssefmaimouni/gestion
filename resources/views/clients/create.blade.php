@@ -55,72 +55,70 @@
             <div class="bg-gray-50 border border-gray-200 shadow-md p-10 rounded max-w-lg mx-auto mt-24">
                 <header class="text-center">
                     <h2 class="text-3xl font-bold uppercase mb-1">
-                        Ajouter une Marchendise
+                        Ajouter un client
                     </h2>
                 </header>
 
-                <form action="{{ route('marchandises.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('clients.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                   
                     <div class="mb-6">
-                        <center>
-                            <label for="fileToUpload">
-                                <div class="profile-pic" id="photo" style="background-image: url('/logo.jpg')">
-                                    <!-- <span class="glyphicon glyphicon-camera"></span> -->
-                                    <span>Add Image</span>
-                                </div>
-                            </label>
-                        </center>
-                    </div>
-                    <input type="File" name="image" accept="image/png, image/gif, image/jpeg,image/jpg" id="fileToUpload">
-                    <div class="mb-6">
-                        <label for="title" class="inline-block text-lg mb-2">Nom du marchandise </label>
+                        <label for="title" class="inline-block text-lg mb-2">Nom du client </label>
                         <input type="text" class="border border-gray-200 rounded p-2 w-full" name="nom"
-                        placeholder="title"  />
+                        placeholder="nom"  />
                         @error('nom')
                         <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="mb-6">
-                        <label for="title" class="inline-block text-lg mb-2">Code barre</label>
-                        <input type="number" class="border border-gray-200 rounded p-2 w-full" name="barre_code"
+                        <label for="title" class="inline-block text-lg mb-2">telephone</label>
+                        <input type="number" class="border border-gray-200 rounded p-2 w-full" name="telephone"
                         placeholder="title"  />
-                        @error('barre_code')
+                        @error('telephone')
                         <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="mb-6">
-                        <label for="title" class="inline-block text-lg mb-2">description</label>
-                        <textarea name="description" id="" class="border border-gray-200 rounded p-2 w-full h-52" placeholder="description"></textarea>
-                        @error('description')
+                        <label for="title" class="inline-block text-lg mb-2">adresse</label>
+                        <textarea name="adresse" id="" class="border border-gray-200 rounded p-2 w-full h-52" placeholder="description"></textarea>
+                        @error('adresse')
                         <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="mb-6">
-                        <label for="title" class="inline-block text-lg mb-2">quantite</label>
-                        <input type="number" class="border border-gray-200 rounded p-2 w-full" name="quantite"
+                        <label for="title" class="inline-block text-lg mb-2">email</label>
+                        <input type="number" class="border border-gray-200 rounded p-2 w-full" name="email"
                         placeholder="title"  />
-                        @error('quantite')
+                        @error('email')
                         <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="mb-6">
-                        <label for="title" class="inline-block text-lg mb-2">unité</label>
-                        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="unite"
+                        <label for="title" class="inline-block text-lg mb-2">num fiscal</label>
+                        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="num_fiscal"
                             placeholder="title"  />
-                        @error('unite')
+                        @error('num_fiscal')
                         <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
                     <div class="mb-6">
-                        <label for="categorie" class="inline-block text-lg mb-2">Catégorie </label>
-                        <select name="categorie" class="border border-gray-200 rounded p-2 w-full" id="categorie">
-                            @foreach ($categorie as $item)
-                            <option value="{{$item->id}}">{{$item->nom}} </option>
-                            @endforeach
-                            <option>Autre </option>
-                        </select>
-                        <input type="hidden" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="new_cat" placeholder="Nouvelle Catégorie"  />
-                        @error('categorie')
+                        <label for="categorie" class="inline-block text-lg mb-2"> cordonnées bancaire </label>
+                        <input type="text" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="compt_bancaire" placeholder="Nouvelle Catégorie"  />
+                        @error('compt_bancaire')
+                        <p class="text-red-500 test-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-6">
+                        <label for="categorie" class="inline-block text-lg mb-2"> remise </label>
+                        <input type="text" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="remise" placeholder="Nouvelle Catégorie"  />
+                        @error('remise')
+                        <p class="text-red-500 test-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div class="mb-6">
+                        <label for="title" class="inline-block text-lg mb-2">remarque</label>
+                        <textarea name="remarque" id="" class="border border-gray-200 rounded p-2 w-full h-52" placeholder="description"></textarea>
+                        @error('remarque')
                         <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                         @enderror
                     </div>
