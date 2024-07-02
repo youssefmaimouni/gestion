@@ -13,23 +13,12 @@ return new class extends Migration
     {
         Schema::create('sorties', function (Blueprint $table) {
             $table->id();
-            $table->date('date_doc');
-            
-           
 
-            $table->unsignedBigInteger('id_client')->nullable();
-            $table->foreign('id_client')->references('id')->on('clients')->onDelete('cascade');
-
-            $table->integer('remise')->nullable();
-
-            $table->string('attachement')->nullable();
-
-            $table->unsignedBigInteger('id_cat')->nullable();
-            $table->foreign('id_cat')->references('id')->on('categories')->onDelete('set null');
-
-            $table->text('description')->nullable();
-
+            $table->integer('quantite');
+            $table->unsignedBigInteger('id_mar')->nullable();
+            $table->foreign('id_mar')->references('id')->on('marchandises')->onDelete('set null');
             $table->timestamps();
+
         });
     }
 

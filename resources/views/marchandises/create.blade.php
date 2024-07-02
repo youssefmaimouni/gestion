@@ -110,28 +110,6 @@
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
                         </div>
-                        <div id="additionalFields" style="display: none;">
-                            
-                            <div class="mb-6">
-                                <label for="date_doc" class="inline-block text-lg mb-2">Date du Document</label>
-                                <input type="date" class="border border-gray-200 rounded p-2 w-full" name="date_doc" id="date_doc" />
-                                @error('date_doc')
-                                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                                @enderror
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label for="id_four" class="inline-block text-lg mb-2">Fournisseur</label>
-                                <select name="id_four" class="border border-gray-200 rounded p-2 w-full" id="fournisseur">
-                                    @foreach ($fournisseurs as $item)
-                                        <option value="{{$item->id}}">{{$item->nom}}</option>
-                                    @endforeach
-                                </select>
-                                @error('id_four')
-                                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="mb-6">
                             <button class="bg-blue-500 text-white rounded py-2 px-4 hover:bg-gray-600 text-lg">
                                 Soumettre
@@ -143,28 +121,7 @@
         </main>
     </div>
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const quantiteInput = document.getElementById('quantite');
-        const additionalFields = document.getElementById('additionalFields');
-        const select = document.getElementById('categorie');
-        const writeIn = document.getElementById('writeIn');
-    
-        function toggleEntranceFields() {
-            const quantity = parseInt(quantiteInput.value, 10);
-            additionalFields.style.display = quantity > 0 ? 'block' : 'none';
-        }
-    
-        quantiteInput.addEventListener('change', toggleEntranceFields);
-        toggleEntranceFields();
-    
-        select.addEventListener('change', function() {
-            if (this.value === 'Autre') {
-                writeIn.type = "text";
-            } else {
-                writeIn.type = "hidden";
-            }
-        });
-    
+   
         const img = document.querySelector('#photo');
         const file = document.querySelector('#fileToUpload');
         file.addEventListener('change', function () {

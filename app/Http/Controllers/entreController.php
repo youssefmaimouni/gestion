@@ -13,33 +13,21 @@ use Illuminate\Http\Request;
 class entreController extends Controller
 {
 
-    public function create() {
-        return view('entres.create',['fournisseurs'=>fournisseurs::all(),'categories'=>categories::all()]);
-    }
-
     public function store(Request $request) {
         $validatedData = $request->validate([
-            'date_doc' => 'required|date',
-            'attachments' => 'nullable|mimes:png,gif,jpeg,jpg,pdf|max:2048',
-            'description' => 'nullable|string',
-            'id_four' => 'nullable|integer',
-            'id_cat' => 'nullable|integer',
+                'quantite'=>'integer',
+                'id_mar'=>'exists:marchandises,id'
         ]);
         $entre = new entres(); 
-        $entre->date_doc = $validatedData['date_doc'];
-        $entre->description = $validatedData['description']; 
-        $entre->id_four = $validatedData['id_four'];
-        $entre->id_cat = $validatedData['id_cat'];
-    
-        if ($request->file('attachments')) {
-            $file = $request->file('attachments');
-            $path = $file->store('uploads', 'public');
-            $entre->attachement = $path; // Save the file path in the database
-        }
-    
+       $entre->quantite=$validatedData['quantite'];
+       $entre->id_mar=$validatedData['id_mar'];
+       $marchandises=marchandises::find($validatedData['id_mar']);
+       $marchandises->quantite=$marchandises->quantite+$validatedData['quantite'];
+       $marchandises->save();
         $entre->save();
+
     
-        return redirect('/entres/'.$entre->id.'/'.$entre->id_cat.'/mar')->with('success', 'Entry created successfully.');
+        return redirect()->back()->with('success', 'Entry created successfully.');
     }
     
     
@@ -56,26 +44,15 @@ class entreController extends Controller
     
     public function update(Request $request,entres $entre )
     {
-        $validatedData = $request->validate([
-            'date_doc'=>'date|required',
-            'attachement'=>'nullable|mimes:png,gif,jpeg,jpg,pdf|max:2048',
-            'description'=>'texte|nullable',
-            'id_four'=>'integer|nullable',
-            'id_cat'=>'integer|nullable',
-        ]);
-    
-        $entre->nom = $validatedData['nom'];
-        $entre->description = $validatedData['description']; 
-        $entre->id_four=$validatedData['id_four'];
-        $entre->id_four=$validatedData['id_cat'];
-        if ($request->file('attachement')) {
-            $file = $request->file('file');
-            $path = $file->store('uploads', 'public');
+                $validatedData = $request->validate([
+                    'quantite'=>'integer',
+                    'id_mar'=>'exists:marchandises,id'
+                ]); 
+                $entre->quantite=$validatedData['quantite'];
+                $entre->id_mar=$validatedData['id_mar'];
+                $entre->save();
 
-            return back()->with('success', 'File uploaded successfully.')->with('file', $path);
-        }
-        $entre->save();
-        return redirect('/entres/'.$entre->id.'/'.$entre->id_cat.'/mar')->with('success');
+            return redirect()->back()->with('success');
         
     }
 

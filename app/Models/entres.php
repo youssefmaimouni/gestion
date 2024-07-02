@@ -7,20 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class entres extends Model
 {
+    use HasFactory;
     protected $fillable =[
-        'date_doc',
-        'attachement',
-        'description',
-        
+        'quantite'
     ];
-    
-    public function fournisseur()
+
+    public function marchandise()
     {
-        return $this->belongsTo(fournisseurs::class, 'id_four');
-    }
-    public function categorie()
-    {
-        return $this->belongsTo(categories::class, 'id_cat');
+        return $this->belongsTo(marchandises::class, 'id_mar');
     }
    
     use HasFactory;
