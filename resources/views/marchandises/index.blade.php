@@ -71,7 +71,12 @@
                                 </td>
                                 <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
                                 <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
-                                <td class="py-4 px-6 ">{{ $marchandise->categories->nom }}</td>
+                                <td class="py-4 px-6 ">@if ($marchandise->categories)
+                                      {{ $marchandise->categories->nom }}
+                                    @else 
+                                    {{ $marchandise->categories }}
+                                    @endif
+                                </td>
                                 <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
                                 <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
                                 <td class="py-4 px-6 justify-center flex text-center">

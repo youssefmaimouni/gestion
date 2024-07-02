@@ -97,7 +97,6 @@
                                 @foreach ($categorie as $item)
                                     <option value="{{$item->id}}">{{$item->nom}}</option>
                                 @endforeach
-                                <option>Autre</option>
                             </select>
                             <input type="hidden" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="new_cat" placeholder="Nouvelle Catégorie" />
                             @error('categorie')

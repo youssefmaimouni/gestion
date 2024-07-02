@@ -30,7 +30,7 @@ class marchandiseController extends Controller
             'description'=>'string|nullable',
             'quantite'=>'integer|nullable',
             'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-            'categorie'=>'exists:categories,id',
+            'categorie'=>'nullable|exists:categories,id',
         ]);
         $marchandise = new marchandises();
         $marchandise->nom=$valid['nom'];
@@ -40,7 +40,7 @@ class marchandiseController extends Controller
          if ($request->file('image') != null) {
             $marchandise->image =  $request->file('image')->store('logos', 'public');
         }
-        $marchandise->id_cat=$valid['categorie'];
+        $marchandise->id_cat=$valid['categorie']??null;
         $marchandise->save();
         if ($marchandise->quantite>0){
             $validate=$request->validate([
@@ -51,7 +51,7 @@ class marchandiseController extends Controller
             $entre->date_doc =$validate['date_doc'];
             $entre->description =$valid['description']; 
             $entre->id_four =$validate['id_four']?? null;
-            $entre->id_cat = $valid['categorie'];
+            $entre->id_cat = $valid['categorie']??null;
             $entre->save();
 
             $acheter = new acheters(); 
@@ -70,13 +70,12 @@ class marchandiseController extends Controller
     public function update(Request $request,marchandises $marchandise )
     {
         $valid = $request->validate([
-        'nom'=>'required|min:3|string',
-        'barre_code'=>'integer',
-        'description'=>'string|min:50',
-        'quantite'=>'integer',
-        'unite'=>'string',
-        'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-        'id_cat'=>'required|exists:categories,id'
+            'nom'=>'required|min:3|string',
+            'barre_code'=>'integer|nullable',
+            'description'=>'string|nullable',
+            'quantite'=>'integer|nullable',
+            'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
+            'categorie'=>'nullable|exists:categories,id',
         ]);
             $marchandise->nom=$valid['nom'];
             $marchandise->barre_code=$valid['barre_code'];
@@ -85,7 +84,7 @@ class marchandiseController extends Controller
             if ($request->file('image') != null) {
                 $marchandise->image =  $request->file('image')->store('logos', 'public');
             }
-            $marchandise->id_cat=$valid['id_cat'];
+            $marchandise->id_cat=$valid['categorie']??null;
             $marchandise->save();
         return redirect('/marchandises')->with('success', 'marchandise modifier  avec success');
     }
