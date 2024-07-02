@@ -96,14 +96,6 @@
                         @enderror
                     </div>
                     <div class="mb-6">
-                        <label for="title" class="inline-block text-lg mb-2">quantite</label>
-                        <input type="number" class="border border-gray-200 rounded p-2 w-full" name="quantite"
-                        placeholder="title"  />
-                        @error('quantite')
-                        <p class="text-red-500 test-xs mt-1">{{$message}}</p>
-                        @enderror
-                    </div>
-                    <div class="mb-6">
                         <label for="title" class="inline-block text-lg mb-2">unité</label>
                         <input type="text" class="border border-gray-200 rounded p-2 w-full" name="unite"
                             placeholder="title"  />
@@ -125,6 +117,51 @@
                         @enderror
                     </div>
                     <div class="mb-6">
+                        <label for="title" class="inline-block text-lg mb-2">quantite</label>
+                        <input type="number" class="border border-gray-200 rounded p-2 w-full" name="quantite"
+                        placeholder="title" onchange="toggleEntranceFields()" />
+                        @error('quantite')
+                        <p class="text-red-500 test-xs mt-1">{{$message}}</p>
+                        @enderror
+                    </div>
+                    <div id="additionalFields" style="display: none;">
+                        <div class="mb-6">
+                            <label for="attachement" class="inline-block text-lg mb-2">Attachment</label><br>
+                            <input type="File" name="attachments" accept="image/png, image/gif, image/jpeg, image/jpg, application/pdf" id="attachement">
+                            @error('attachement')
+                                <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-6">
+                            <label for="date_doc" class="inline-block text-lg mb-2">Date du Document</label>
+                            <input type="date" class="border border-gray-200 rounded p-2 w-full" name="date_doc" id="date_doc" />
+                            @error('date_doc')
+                                <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-6">
+                            <label for="tite" class="inline-block text-lg mb-2">Description du site Web</label>
+                            <textarea name="description" id="" class="border border-gray-200 rounded p-2 w-full h-52" placeholder="description"></textarea>
+                            @error('description')
+                                <p class="text-red-500 test-xs mt-1">{{$message}}</p>
+                            @enderror                    
+                        </div>
+                        <div class="mb-6">
+                            <label for="id_four" class="inline-block text-lg mb-2">fournisseur </label>
+                            <select name="id_four" class="border border-gray-200 rounded p-2 w-full"
+                                id="fournisseur">
+                                @foreach ($fournisseurs as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nom }} </option>
+                                @endforeach
+                                <option value="">Autre </option>
+                            </select>
+                            @error('id_four')
+                                <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
+                            @enderror
+                           
+                    </div>
+                    </div>
+                    <div class="mb-6">
                         <button class="bg-blue-500 text-white rounded py-2 px-4 hover:bg-gray-600 text-lg">
                             Soumettre
                         </button>
@@ -137,6 +174,25 @@
 <script>
     const select = document.getElementById('categorier');
     const writeIn = document.getElementById('writeIn');
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const quantiteInput = document.getElementById('quantite');
+    const additionalFields = document.getElementById('additionalFields');
+
+    // Fonction pour gérer l'affichage des champs supplémentaires
+    function toggleEntranceFields() {
+        const quantity = parseInt(quantiteInput.value, 10);
+        additionalFields.style.display = quantity > 0 ? 'block' : 'none';
+    }
+
+    // Ajout d'un écouteur d'événements sur le changement de valeur
+    quantiteInput.addEventListener('change', toggleEntranceFields);
+
+    // Appel initial pour définir l'état correct lors du chargement de la page
+    toggleEntranceFields();
+});
+</script>
 
     select.addEventListener('change', function() {
     if (select.value === '-1') {

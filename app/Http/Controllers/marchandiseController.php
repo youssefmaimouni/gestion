@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\categories;
+use App\Models\entres;
+use App\Models\fournisseurs;
 use App\Models\marchandises;
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -18,7 +20,7 @@ class marchandiseController extends Controller
 
    
     public function create() {
-        return View('marchandises.create',['categorie'=>categories::all()]);
+        return View('marchandises.create',['categorie'=>categories::all(),'fournisseurs'=>fournisseurs::all()]);
     }
     public function store(Request $request){
         $valid = $request->validate([
@@ -35,6 +37,28 @@ class marchandiseController extends Controller
         $marchandise->barre_code=$valid['barre_code'];
         $marchandise->description=$valid['description'];
         $marchandise->quantite=$valid['quantite'];
+        if ($marchandise->quantite>0){
+            $validatedData = $request->validate([
+                'date_doc' => 'required|date',
+                'attachments' => 'nullable|mimes:png,gif,jpeg,jpg,pdf|max:2048',
+                'description' => 'nullable|string',
+                'id_four' => 'nullable|integer',
+                'id_cat' => 'nullable|integer',
+            ]);
+            $entre = new entres(); 
+            $entre->date_doc = $validatedData['date_doc'];
+            $entre->description = $validatedData['description']; 
+            $entre->id_four = $validatedData['id_four'];
+            $entre->id_cat = $validatedData['id_cat'];
+        
+            if ($request->file('attachments')) {
+                $file = $request->file('attachments');
+                $path = $file->store('uploads', 'public');
+                $entre->attachement = $path; // Save the file path in the database
+            }
+        
+            $entre->save();
+        }
         $marchandise->unite=$valid['unite'];
         if ($request->file('image') != null) {
             $marchandise->image =  $request->file('image')->store('logos', 'public');
