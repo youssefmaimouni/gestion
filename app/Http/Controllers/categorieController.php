@@ -10,12 +10,19 @@ use App\Models\sorties;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
 class CategorieController extends Controller 
 {
     public function index(){
-        $categories = categories::all();
-        return view('categories.index', compact('categories'));
+        $categories = categories::select('categories.nom','categories.id', DB::raw('COALESCE(SUM(acheters.quantite), 0) as total_achetes'), 
+        DB::raw('COALESCE(SUM(vendres.quantite), 0) as total_vendus'))
+->leftJoin('marchandises', 'marchandises.id_cat', '=', 'categories.id')
+->leftJoin('acheters', 'acheters.id_mar', '=', 'marchandises.id')
+->leftJoin('vendres', 'vendres.id_mar', '=', 'marchandises.id')
+->groupBy('categories.id', 'categories.nom')
+->get();
+
+return view('categories.index', compact('categories'));
+
     }
 
     public function create() {

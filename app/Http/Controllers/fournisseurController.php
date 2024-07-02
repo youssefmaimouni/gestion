@@ -17,7 +17,6 @@ class fournisseurController extends Controller
         return view('fournisseurs.create');
     }
     public function store(Request $request) {
-        
         $validatedData = $request->validate([
             'nom' => 'required|min:3|string',
             'adresse'=>'min:8|string',
@@ -27,31 +26,23 @@ class fournisseurController extends Controller
             'compt-bancaire'=>'min:13',
             'remarque'=>'text',
         ]);
-    
-       
         $fournisseur = new fournisseurs(); 
         $fournisseur->nom = $validatedData['nom'];
-        $fournisseur->nom = $validatedData['adresse'];
-        $fournisseur->nom = $validatedData['telephone'];
-        $fournisseur->nom = $validatedData['email'];
-        $fournisseur->nom = $validatedData['num_fiscal'];
-        $fournisseur->nom = $validatedData['compt_bancaire'];
-        $fournisseur->nom = $validatedData['remarque'];
+        $fournisseur->adresse = $validatedData['adresse'];
+        $fournisseur->telephone = $validatedData['telephone'];
+        $fournisseur->email = $validatedData['email'];
+        $fournisseur->num_fiscal = $validatedData['num_fiscal'];
+        $fournisseur->compt_bancaire = $validatedData['compt_bancaire'];
+        $fournisseur->remarque = $validatedData['remarque'];
         $fournisseur->save();
-    
-       
         return redirect()->route('fournisseurs.index')->with('success', 'fournisseur ajouté avec succès.'); 
     }
-    
-
     public function edit(fournisseurs $fournisseurs)
     {
         return view('fournisseurs.edit',[ 'fournisseur' => $fournisseurs]);
     }
-    
     public function update(Request $request,fournisseurs $fournisseur )
     {
-       
         $validatedData = $request->validate([
             'nom' => 'required|min:3|string',
             'adresse'=>'min:8|string',
@@ -61,24 +52,19 @@ class fournisseurController extends Controller
             'compt-bancaire'=>'min:13',
             'remarque'=>'text',
         ]);
-    
-       
         $fournisseur = new fournisseurs(); 
         $fournisseur->nom = $validatedData['nom'];
-        $fournisseur->nom = $validatedData['adresse'];
-        $fournisseur->nom = $validatedData['telephone'];
-        $fournisseur->nom = $validatedData['email'];
-        $fournisseur->nom = $validatedData['num_fiscal'];
-        $fournisseur->nom = $validatedData['compt_bancaire'];
-        $fournisseur->nom = $validatedData['remarque'];
+        $fournisseur->adresse = $validatedData['adresse'];
+        $fournisseur->telephone = $validatedData['telephone'];
+        $fournisseur->email = $validatedData['email'];
+        $fournisseur->num_fiscal = $validatedData['num_fiscal'];
+        $fournisseur->compt_bancaire = $validatedData['compt_bancaire'];
+        $fournisseur->remarque = $validatedData['remarque'];
         $fournisseur->save();   
-        
+        return redirect()->route('fournisseurs.index')->with('success', 'fournisseur modifier avec succès.'); 
     }
-
     public function delete(fournisseurs  $fournisseur) {
-       
-               $fournisseur->delete();
-
-           return view('/');
+        $fournisseur->delete();
+        return view('/');
    }
 }

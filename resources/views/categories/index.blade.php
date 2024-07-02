@@ -10,7 +10,9 @@
             <div class=" overflow-hidden gap-3 grid grid-cols-3 justify-items-center">
             @foreach($categories as $categorie)
                <a href="{{ route('categories.entre_sortie', $categorie) }}" class="h-52 w-full bg-slate-400 m-3 flex items-center flex-col   text-center justify-center">
-                {{ $categorie->nom }} 
+                {{ $categorie->nom }} <br>
+                entré:{{ $categorie->total_achetes }} <br>
+                sortié:{{ $categorie->total_vendus }} 
                </a>
                
                @endforeach
