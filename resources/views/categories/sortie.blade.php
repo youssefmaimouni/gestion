@@ -19,12 +19,13 @@
                     <tr class="bg-white  hover:bg-gray-50" href='categories.index_mar_'>
                         <td class="py-4 px-6">{{ $item->type }}</td>
                         <td class="py-4 px-6">{{ $item->date_doc }}</td>
-                        <td class="py-4 px-6">
+                        <td class="py-4 px-6 justify-center space-x-4 flex ">
                             <form action="{{ route('sorties.delete', $item) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:text-red-900">Supprimer</button>
                             </form>
+                            <a href="{{ route('categories.index_mar_v', [ $item->id]) }}">consulter</a>
                         </td>
                     </tr>
                 @endforeach

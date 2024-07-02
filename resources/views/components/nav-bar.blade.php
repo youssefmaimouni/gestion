@@ -104,7 +104,7 @@
             </a>
             <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full"
                 href="/categories">
-                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M4 19V6.2C4 5.0799 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V17H6C4.89543 17 4 17.8954 4 19ZM4 19C4 20.1046 4.89543 21 6 21H20M9 7H15M9 11H15M19 17V21"
@@ -115,7 +115,7 @@
                 </p>
             </a>
             <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full" href="/rapports">
-                <svg width="20px" height="20px" viewBox="0 0 48 48" data-name="Layer 1" id="Layer_1"
+                <svg width="30px" height="30px" viewBox="0 0 48 48" data-name="Layer 1" id="Layer_1"
                     xmlns="http://www.w3.org/2000/svg">
                     <defs>
                         <style>
@@ -151,10 +151,10 @@
                     Rapports
                 </p>
             </a>
-            <div class="h-px  w-full mt-4 bg-gray-600">‎</div>
+            <div class="h-px  w-full my-4 bg-gray-600">‎</div>
             <a href="/entres/create"
                 class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
-                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M23 18C23 18.75 22.79 19.46 22.42 20.06C22.21 20.42 21.94 20.74 21.63 21C20.93 21.63 20.01 22 19 22C17.78 22 16.69 21.45 15.97 20.59C15.95 20.56 15.92 20.54 15.9 20.51C15.78 20.37 15.67 20.22 15.58 20.06C15.21 19.46 15 18.75 15 18C15 16.74 15.58 15.61 16.5 14.88C17.19 14.33 18.06 14 19 14C20 14 20.9 14.36 21.6 14.97C21.72 15.06 21.83 15.17 21.93 15.28C22.59 16 23 16.95 23 18Z"
@@ -178,7 +178,7 @@
             </a>
             <a href="/sorties/create"
                 class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
-                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M23 18C23 18.75 22.79 19.46 22.42 20.06C22.21 20.42 21.94 20.74 21.63 21C20.93 21.63 20.01 22 19 22C17.78 22 16.69 21.45 15.97 20.59C15.95 20.56 15.92 20.54 15.9 20.51C15.78 20.37 15.67 20.22 15.58 20.06C15.21 19.46 15 18.75 15 18C15 16.74 15.58 15.61 16.5 14.88C17.19 14.33 18.06 14 19 14C20 14 20.9 14.36 21.6 14.97C21.72 15.06 21.83 15.17 21.93 15.28C22.59 16 23 16.95 23 18Z"
@@ -198,7 +198,7 @@
                     Ajouter sorties
                 </p>
             </a>
-            <div class="h-px  w-full mt-4 bg-gray-600">‎</div>
+            <div class="h-px  w-full my-4 bg-gray-600">‎</div>
             <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full" href="/clients">
                 <svg enable-background="new 0 0 91 91" height="30px" id="Layer_1" version="1.1"
                     viewBox="0 0 91 91" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"

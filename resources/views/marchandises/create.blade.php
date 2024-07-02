@@ -1,4 +1,4 @@
-<x-bar-nav>
+<x-nav-bar>
     <style>
         .tabAnim {
             z-index: 1;
@@ -182,5 +182,5 @@
         });
     });
     </script>
-    </x-bar-nav>
+</x-nav-bar>
     

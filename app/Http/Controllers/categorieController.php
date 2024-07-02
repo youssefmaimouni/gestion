@@ -62,6 +62,7 @@ return view('categories.index', compact('categories'));
         return view('categories.index_mar',['marchandises'=>$mar_s]);
         
     }
+    
     public function create() {
         return view('categories.create');
     }

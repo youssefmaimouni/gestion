@@ -19,7 +19,7 @@
                     <tr class="bg-white  hover:bg-gray-50"  >
                         <td class="py-4 px-6">{{ $entre->type }}</td>
                         <td class="py-4 px-6">{{ $entre->date_doc }}</td>
-                        <td class="py-4 px-6">
+                        <td class="py-4 px-6 justify-center space-x-4 flex ">
                             <form action="{{ route('entres.delete', $entre) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')

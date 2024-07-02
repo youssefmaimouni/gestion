@@ -1,4 +1,4 @@
-<x-bar-nav>
+<x-nav-bar>
     <style>
         
         .tabAnim {
@@ -159,4 +159,4 @@
             }
         });
     </script>
-    </x-bar-nav>
+    </x-nav-bar>
