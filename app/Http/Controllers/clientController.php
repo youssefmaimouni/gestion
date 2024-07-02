@@ -48,7 +48,7 @@ class clientController extends Controller
 
     public function edit(clients $clients)
     {
-        return view('clients.edit',[ 'client' => $clients]);
+        return view('clients.edit',[ 'clients' => $clients]);
     }
     
     public function update(Request $request,clients $client )
