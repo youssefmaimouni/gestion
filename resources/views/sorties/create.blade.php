@@ -14,7 +14,7 @@
                         <div class="mb-6">
                             <label for="attachement" class="inline-block text-lg mb-2">Attachment</label><br>
                             <input type="File" name="attachments" accept="image/png, image/gif, image/jpeg, image/jpg, application/pdf" id="attachement">
-                            @error('attachement')
+                            @error('attachments')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>

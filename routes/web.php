@@ -75,7 +75,7 @@ Route::get('/clients', [clientController::class, 'index'])->name('clients.index'
 Route::get('/clients/create', [clientController::class, 'create'])->name('clients.create');
 Route::post('/clients', [clientController::class, 'store'])->name('clients.store');
 Route::put('/clients/{client}', [clientController::class, 'update'])->name('clients.update');
-Route::delete('/clients/{client}', [clientController::class, 'delete'])->name('clients.delete');
+Route::delete('/clients/delete', [clientController::class, 'delete'])->name('clients.delete');
 Route::get('/clients/{clients}/edit', [clientController::class, 'edit'])->name('clients.edit');
 
 
@@ -91,7 +91,7 @@ Route::get('/fournisseurs', [fournisseurController::class, 'index'])->name('four
 Route::get('/fournisseurs/create', [fournisseurController::class, 'create'])->name('fournisseurs.create');
 Route::post('/fournisseurs', [fournisseurController::class, 'store'])->name('fournisseurs.store');
 Route::put('/fournisseurs/{fournisseur}', [fournisseurController::class, 'update'])->name('fournisseurs.update');
-Route::delete('/fournisseurs/{fournisseur}', [fournisseurController::class, 'delete'])->name('fournisseurs.delete');
+Route::delete('/fournisseurs/delete', [fournisseurController::class, 'delete'])->name('fournisseurs.delete');
 Route::get('/fournisseurs/{fournisseurs}/edit', [fournisseurController::class, 'edit'])->name('fournisseurs.edit');
 
 Route::get('/sorties', [sortieController::class, 'index'])->name('sorties.index');

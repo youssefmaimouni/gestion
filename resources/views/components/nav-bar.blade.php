@@ -153,8 +153,8 @@
             </a>
             <div class="h-px  w-full mt-4 bg-gray-600">‎</div>
             <a href="/entres/create"
-            class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
-            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
+                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M23 18C23 18.75 22.79 19.46 22.42 20.06C22.21 20.42 21.94 20.74 21.63 21C20.93 21.63 20.01 22 19 22C17.78 22 16.69 21.45 15.97 20.59C15.95 20.56 15.92 20.54 15.9 20.51C15.78 20.37 15.67 20.22 15.58 20.06C15.21 19.46 15 18.75 15 18C15 16.74 15.58 15.61 16.5 14.88C17.19 14.33 18.06 14 19 14C20 14 20.9 14.36 21.6 14.97C21.72 15.06 21.83 15.17 21.93 15.28C22.59 16 23 16.95 23 18Z"
@@ -162,7 +162,7 @@
                         stroke-linejoin="round" />
                     <path d="M20.49 17.98H17.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
                         stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M19 16.52V19.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                    <path d="M19 16.52V19.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
                         stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M3.17004 7.43994L12 12.5499L20.7701 7.46991" stroke="#292D32" stroke-width="1.5"
                         stroke-linecap="round" stroke-linejoin="round" />
@@ -179,8 +179,8 @@
             <a href="/sorties/create"
                 class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
                         d="M23 18C23 18.75 22.79 19.46 22.42 20.06C22.21 20.42 21.94 20.74 21.63 21C20.93 21.63 20.01 22 19 22C17.78 22 16.69 21.45 15.97 20.59C15.95 20.56 15.92 20.54 15.9 20.51C15.78 20.37 15.67 20.22 15.58 20.06C15.21 19.46 15 18.75 15 18C15 16.74 15.58 15.61 16.5 14.88C17.19 14.33 18.06 14 19 14C20 14 20.9 14.36 21.6 14.97C21.72 15.06 21.83 15.17 21.93 15.28C22.59 16 23 16.95 23 18Z"
                         stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
                         stroke-linejoin="round" />
@@ -189,7 +189,7 @@
                     <path d="M3.17004 7.43994L12 12.5499L20.7701 7.46991" stroke="#292D32" stroke-width="1.5"
                         stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M12 21.6099V12.5399" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
+                        stroke-linejoin="round" />
                     <path
                         d="M21.61 9.17V14.83C21.61 14.88 21.61 14.92 21.6 14.97C20.9 14.36 20 14 19 14C18.06 14 17.19 14.33 16.5 14.88C15.58 15.61 15 16.74 15 18C15 18.75 15.21 19.46 15.58 20.06C15.67 20.22 15.78 20.37 15.9 20.51L14.07 21.52C12.93 22.16 11.07 22.16 9.93001 21.52L4.59001 18.56C3.38001 17.89 2.39001 16.21 2.39001 14.83V9.17C2.39001 7.79 3.38001 6.11002 4.59001 5.44002L9.93001 2.48C11.07 1.84 12.93 1.84 14.07 2.48L19.41 5.44002C20.62 6.11002 21.61 7.79 21.61 9.17Z"
                         stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -199,23 +199,41 @@
                 </p>
             </a>
             <div class="h-px  w-full mt-4 bg-gray-600">‎</div>
-                <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full" href="/clients">
-                    <svg enable-background="new 0 0 91 91" height="30px" id="Layer_1" version="1.1" viewBox="0 0 91 91"
-                        width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g>
-                            <path
-                                d="M23.352,47.335c2.598,2.436,6.07,3.938,9.893,3.938c3.863,0,7.369-1.533,9.977-4.014c2.654,1.574,4.25,3.844,4.25,6.234   v15.814h3.4V53.493c0-3.463-2.045-6.67-5.455-8.863c1.496-2.299,2.375-5.041,2.375-7.986c0-8.068-6.527-14.631-14.547-14.631   s-14.543,6.563-14.543,14.631c0,2.986,0.898,5.766,2.432,8.082c-3.32,2.193-5.311,5.365-5.311,8.768v15.814h3.4V53.493   C19.223,51.147,20.775,48.907,23.352,47.335z M33.244,25.413c6.146,0,11.146,5.037,11.146,11.23c0,6.191-5,11.229-11.146,11.229   c-6.145,0-11.143-5.037-11.143-11.229C22.102,30.45,27.1,25.413,33.244,25.413z" />
-                            <rect height="3.4" width="23.799" x="51.729" y="26.688" />
-                            <rect height="3.4" width="23.799" x="51.729" y="38.87" />
-                            <rect height="3.4" width="20.398" x="55.129" y="51.056" />
-                            <rect height="3.398" width="20.398" x="55.129" y="63.239" />
-                        </g>
-                    </svg>
-                    <p class="ml-4">
-                        clients
-                    </p>
-                </a>
+            <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full" href="/clients">
+                <svg enable-background="new 0 0 91 91" height="30px" id="Layer_1" version="1.1"
+                    viewBox="0 0 91 91" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g>
+                        <path
+                            d="M23.352,47.335c2.598,2.436,6.07,3.938,9.893,3.938c3.863,0,7.369-1.533,9.977-4.014c2.654,1.574,4.25,3.844,4.25,6.234   v15.814h3.4V53.493c0-3.463-2.045-6.67-5.455-8.863c1.496-2.299,2.375-5.041,2.375-7.986c0-8.068-6.527-14.631-14.547-14.631   s-14.543,6.563-14.543,14.631c0,2.986,0.898,5.766,2.432,8.082c-3.32,2.193-5.311,5.365-5.311,8.768v15.814h3.4V53.493   C19.223,51.147,20.775,48.907,23.352,47.335z M33.244,25.413c6.146,0,11.146,5.037,11.146,11.23c0,6.191-5,11.229-11.146,11.229   c-6.145,0-11.143-5.037-11.143-11.229C22.102,30.45,27.1,25.413,33.244,25.413z" />
+                        <rect height="3.4" width="23.799" x="51.729" y="26.688" />
+                        <rect height="3.4" width="23.799" x="51.729" y="38.87" />
+                        <rect height="3.4" width="20.398" x="55.129" y="51.056" />
+                        <rect height="3.398" width="20.398" x="55.129" y="63.239" />
+                    </g>
+                </svg>
+                <p class="ml-4">
+                    clients
+                </p>
+            </a>
+            <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full"
+                href="/fournisseurs">
+                <svg width="30px" height="30px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"
+                    stroke-width="3" stroke="#000000" fill="none">
+                    <path
+                        d="M21.68,42.22H37.17a1.68,1.68,0,0,0,1.68-1.68L44.7,19.12A1.68,1.68,0,0,0,43,17.44H17.61a1.69,1.69,0,0,0-1.69,1.68l-5,21.42a1.68,1.68,0,0,0,1.68,1.68h2.18" />
+                    <path
+                        d="M41.66,42.22H38.19l5-17.29h8.22a.85.85,0,0,1,.65.3l3.58,6.3a.81.81,0,0,1,.2.53L52.51,42.22h-3.6" />
+                    <ellipse cx="18.31" cy="43.31" rx="3.71" ry="3.76" />
+                    <ellipse cx="45.35" cy="43.31" rx="3.71" ry="3.76" />
+                    <line x1="23.25" y1="22.36" x2="6.87" y2="22.36" stroke-linecap="round" />
+                    <line x1="20.02" y1="27.6" x2="8.45" y2="27.6" stroke-linecap="round" />
+                    <line x1="21.19" y1="33.5" x2="3.21" y2="33.5" stroke-linecap="round" />
+                </svg>
+                <p class="ml-4">
+                    fournisseurs
+                </p>
+            </a>
 
         </div>
         <main id="item" class="calc w-full p-2 overflow-y-auto">

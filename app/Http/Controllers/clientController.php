@@ -76,13 +76,13 @@ class clientController extends Controller
         $client->remarque = $validatedData['remarque'];
         $client->remise = $validatedData['remise'];
         $client->save();   
-        
+        return redirect()->route('clients.index')->with('success', 'client ajouté avec succès.'); 
     }
 
-    public function delete(clients  $client) {
-       
+    public function delete(Request $request) {
+                $client=clients::find($request->id);
                $client->delete();
 
-           return view('/');
+               return redirect()->route('clients.index')->with('success', 'client ajouté avec succès.'); 
    }
 }

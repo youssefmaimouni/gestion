@@ -20,7 +20,6 @@ class sortieController extends Controller
         return view('sorties.create',['clients'=>clients::all(),'categories'=>categories::all()]);
     }
     public function store(Request $request) {
-        
         $validatedData = $request->validate([
            'date_doc' => 'date|required',
             'description' => 'string|nullable',

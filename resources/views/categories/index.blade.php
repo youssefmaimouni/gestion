@@ -7,10 +7,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           
 
-            <div class=" overflow-hidden shadow-sm sm:rounded-lg flex" >
+            <div class=" overflow-hidden gap-3 grid grid-cols-3 justify-items-center">
             @foreach($categories as $categorie)
-               <a href="{{ route('categories.entre_sortie', $categorie) }}" class="h-52 w-1/2 bg-slate-400 m-3 flex items-center flex-col   text-center justify-center">
-                {{ $categorie->nom }} 
+               <a href="{{ route('categories.entre_sortie', $categorie) }}" class="h-52 w-full bg-slate-400 m-3 flex items-center flex-col   text-center justify-center">
+                {{ $categorie->nom }} <br>
+                entré:{{ $categorie->total_achetes }} <br>
+                sortié:{{ $categorie->total_vendus }} 
                </a>
                
                @endforeach

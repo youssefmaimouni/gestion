@@ -65,7 +65,7 @@
                             <center>
                                 <label for="fileToUpload">
                                     {{-- @dd($site->logo) --}}
-                                        <div class="profile-pic" id="photo" style="background-image: url('{{asset("/storage/".$marchandise->logo)}}')">
+                                        <div class="profile-pic" id="photo" style="background-image: url('{{asset("/storage/".$marchandise->image)}}')">
                                             <!-- <span class="glyphicon glyphicon-camera"></span> -->
                                             <span>Changer Image</span>
                                         </div>

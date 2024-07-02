@@ -5,69 +5,62 @@
                 <div class="bg-gray-50 border border-gray-200 shadow-md p-10 rounded max-w-lg mx-auto mt-24">
                     <header class="text-center">
                         <h2 class="text-3xl font-bold uppercase mb-1">
-                            Ajouter un client
+                            Modifier un fournisseur
                         </h2>
                     </header>
     
-                    <form action="{{ route('clients.update',$clients) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('fournisseurs.update',$fournisseur) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                        @method('PUT')
                         <div class="mb-6">
-                            <label for="title" class="inline-block text-lg mb-2">Nom du client </label>
-                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="nom"
-                            placeholder="nom" value="{{$clients->nom}}" />
+                            <label for="title" class="inline-block text-lg mb-2">Nom du fournisseur </label>
+                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="nom" value="{{$fournisseur->nom}}"
+                            placeholder="nom"  />
                             @error('nom')
                             <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">telephone</label>
-                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="telephone"
-                            placeholder="title" value="{{$clients->telephone}}" />
+                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="telephone" value="{{$fournisseur->telephone}}"
+                            placeholder="title"  />
                             @error('telephone')
                             <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">adresse</label>
-                            <textarea name="adresse" id="" class="border border-gray-200 rounded p-2 w-full h-52" placeholder="description" value="{{$clients->adresse}}"></textarea>
+                            <textarea name="adresse" id="" class="border border-gray-200 rounded p-2 w-full h-52" value="{{$fournisseur->adresse}}" placeholder="description"></textarea>
                             @error('adresse')
                             <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">email</label>
-                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="email"
-                            placeholder="title" value="{{$clients->email}}" />
+                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="email" value="{{$fournisseur->email}}"
+                            placeholder="title"  />
                             @error('email')
                             <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">num fiscal</label>
-                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="num_fiscal"
-                                placeholder="title" value="{{$clients->num_fiscal}}" />
+                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="num_fiscal" value="{{$fournisseur->num_fiscal}}"
+                                placeholder="title"  />
                             @error('num_fiscal')
                             <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
                             <label for="categorie" class="inline-block text-lg mb-2"> cordonnées bancaire </label>
-                            <input type="text" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="compt_bancaire" placeholder="Nouvelle Catégorie"  value="{{$clients->compt_bancaire}}" />
+                            <input type="text" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="compt_bancaire" value="{{$fournisseur->compt_bancaire}}" placeholder="Nouvelle Catégorie"  />
                             @error('compt_bancaire')
                             <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="categorie" class="inline-block text-lg mb-2"> remise </label>
-                            <input type="text" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="remise" placeholder="Nouvelle Catégorie" value="{{$clients->remise}}" />
-                            @error('remise')
-                            <p class="text-red-500 test-xs mt-1">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">remarque</label>
-                            <textarea name="remarque" id="" class="border border-gray-200 rounded p-2 w-full h-52" placeholder="description" value="{{$clients->remarque}}"></textarea>
+                            <textarea name="remarque" id="" class="border border-gray-200 rounded p-2 w-full h-52" value="{{$fournisseur->remarque}}" placeholder="description"></textarea>
                             @error('remarque')
                             <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror
@@ -82,7 +75,6 @@
             </div>
         </main>
     </div>
-    
     <script>
         const select = document.getElementById('categorier');
         const writeIn = document.getElementById('writeIn');

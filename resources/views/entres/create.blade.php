@@ -1,52 +1,4 @@
 <x-bar-nav>
-    <style>
-        .tabAnim {
-            z-index: 1;
-        }
-
-        #private:checked~div {
-            --tw-translate-x: 0%;
-        }
-
-        #public:checked~div {
-            --tw-translate-x: 100%;
-        }
-
-        .profile-pic {
-            border-radius: 50%;
-            height: 150px;
-            width: 150px;
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: multiply;
-            vertical-align: middle;
-            text-align: center;
-            color: transparent;
-            transition: all .3s ease;
-            text-decoration: none;
-            cursor: pointer;
-            border: solid 1px black;
-        }
-
-        .profile-pic:hover {
-            background-color: rgba(0, 0, 0, .5);
-            z-index: 10000;
-            color: #fff;
-            transition: all .3s ease;
-            text-decoration: none;
-        }
-
-        .profile-pic span {
-            display: inline-block;
-            padding-top: 4.5em;
-            padding-bottom: 4.5em;
-        }
-
-        form input[type="file"] {
-            display: none;
-            cursor: pointer;
-        }
-    </style>
 
     <div class="mb-48 bg-gray-100">
         <main>
@@ -63,7 +15,7 @@
                         <div class="mb-6">
                             <label for="attachement" class="inline-block text-lg mb-2">Attachment</label><br>
                             <input type="File" name="attachments" accept="image/png, image/gif, image/jpeg, image/jpg, application/pdf" id="attachement">
-                            @error('attachement')
+                            @error('attachments')
                                 <p class="text-red-500 test-xs mt-1">{{ $message }}</p>
                             @enderror
                         </div>
