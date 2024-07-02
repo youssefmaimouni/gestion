@@ -59,8 +59,9 @@
                         </h2>
                     </header>
     
-                    <form action="{{ route('marchandises.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('marchandises.update',$marchandise) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="mb-6">
                             <center>
                                 <label for="fileToUpload">
@@ -110,7 +111,6 @@
                                 @foreach ($categorie as $item)
                                 <option value="{{$item->id}}">{{$item->nom}} </option>
                                 @endforeach
-                                <option>Autre </option>
                             </select>
                             <input type="hidden" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="new_cat" placeholder="Nouvelle Catégorie"  />
                             @error('categorie')
