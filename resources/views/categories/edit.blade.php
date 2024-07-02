@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modifier Categorie</title>
-    @vite('resources/css/app.css')
-</head>
-<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+<x-nav-bar>
     <div class="w-full max-w-xl p-5 bg-white rounded-lg shadow">
         <h1 class="text-xl font-semibold text-gray-700 mb-5">Modifier Categorie</h1>
         @if(session('success'))
@@ -25,5 +17,4 @@
             <button type="submit" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Enregistrer les modifications</button>
         </form>
     </div>
-</body>
-</html>
+</x-nav-bar>

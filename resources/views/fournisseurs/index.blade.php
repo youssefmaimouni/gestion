@@ -56,7 +56,6 @@
                         <th scope="col" class="py-3 px-6 ">num_fiscal</th>
                         <th scope="col" class="py-3 px-6 ">cordonnées bancaire</th>
                         <th scope="col" class="py-3 px-6 text-center">remarque</th>
-                        <th scope="col" class="py-3 px-6 text-center">remise</th>
                         <th scope="col" class="py-3 px-6 text-center">action</th>
                     </tr>
                 </thead>
@@ -70,7 +69,6 @@
                         <td class="py-4 px-6 ">{{ $fournisseur->num_fiscal }}</td>
                         <td class="py-4 px-6 ">{{ $fournisseur->compt_bancaire }}</td>
                         <td class="py-4 px-6 ">{{ $fournisseur->remarque }}</td>
-                        <td class="py-4 px-6 ">{{ $fournisseur->remise }}</td>
                         <td class="py-4 px-6 justify-center flex text-center">
                                 <p onclick="warnning({{ $fournisseur->id }})"
                                     class="text-red-600 hover:text-red-900 cursor-pointer">Supprimer</p><a

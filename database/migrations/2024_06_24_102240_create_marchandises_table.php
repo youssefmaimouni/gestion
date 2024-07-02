@@ -17,7 +17,6 @@ return new class extends Migration
             $table->bigInteger('barre_code')->nullable();
             $table->string('description')->nullable();
             $table->integer('quantite')->nullable();
-            $table->string('unite')->nullable();
             $table->string('image')->nullable();
             $table->unsignedBigInteger('id_cat');
             $table->foreign('id_cat')->references('id')->on('categories');

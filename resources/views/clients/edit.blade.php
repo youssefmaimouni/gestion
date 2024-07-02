@@ -37,7 +37,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">email</label>
-                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="email"
+                            <input type="email" class="border border-gray-200 rounded p-2 w-full" name="email"
                             placeholder="title" value="{{$clients->email}}" />
                             @error('email')
                             <p class="text-red-500 test-xs mt-1">{{$message}}</p>
