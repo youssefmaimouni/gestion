@@ -75,7 +75,7 @@ Route::get('/clients', [clientController::class, 'index'])->name('clients.index'
 Route::get('/clients/create', [clientController::class, 'create'])->name('clients.create');
 Route::post('/clients', [clientController::class, 'store'])->name('clients.store');
 Route::put('/clients/{client}', [clientController::class, 'update'])->name('clients.update');
-Route::delete('/clients/{client}', [clientController::class, 'delete'])->name('clients.delete');
+Route::delete('/clients/delete', [clientController::class, 'delete'])->name('clients.delete');
 Route::get('/clients/{clients}/edit', [clientController::class, 'edit'])->name('clients.edit');
 
 

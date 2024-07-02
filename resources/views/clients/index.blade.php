@@ -1,5 +1,5 @@
 <x-nav-bar>
-    <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md " id="deleteGroupModal"
+    <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md  z-50" id="deleteGroupModal"
         style="width: 400px; justify-items: center; align-content: space-evenly ;height: 200px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
         aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
         <div class="grid justify-items-center">
@@ -24,7 +24,7 @@
         <div class="text-sm text-gray-900">
             Êtes-vous sûr de vouloir supprimer ce client?
         </div>
-        <div class="flex w-2/3 justify-around">
+        <div class="flex w-2/3 justify-around z-50">
             <button type="button" class="btn btn-secondary" onclick="hide()"
                 data-bs-dismiss="modal">Annuler</button>
             <form action="/clients/delete" method="POST">
@@ -44,7 +44,7 @@
                     client</a> </p>
         </div>
         @if (count($clients)>0)
-        <div class="overflow-x-auto relative shadow-md w-full sm:rounded-lg mb-10">
+        <div class="overflow-x-auto z-0 relative shadow-md w-full sm:rounded-lg mb-10">
                 
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
