@@ -139,12 +139,9 @@ return view('categories.index', compact('categories'));
     
 
     public function delete(Request $request) {
-        try {
             $categorie=categories::find($request->id);
             $categorie->delete();
             return redirect()->route('categories.index')->with('success', 'Catégorie supprimée avec succès.');
-        } catch (Exception $e) {
-            return redirect()->route('categories.index')->with('error', 'Erreur lors de la suppression de la catégorie.');
-        }
+        
     }
 }

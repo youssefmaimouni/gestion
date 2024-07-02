@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->integer('quantite')->nullable();
             $table->string('image')->nullable();
-            $table->unsignedBigInteger('id_cat');
-            $table->foreign('id_cat')->references('id')->on('categories');
+            $table->unsignedBigInteger('id_cat')->nullable();
+            $table->foreign('id_cat')->references('id')->on('categories')->onDelete('set null');
             $table->timestamps();
         });
     }
