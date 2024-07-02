@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('telephone')->nullable();
             $table->string('email')->nullable();
             $table->bigInteger('num_fiscal')->nullable();
-            $table->bigInteger('compt-bancaire')->nullable();
+            $table->bigInteger('compt_bancaire')->nullable();
             $table->string('remarque')->nullable();
             $table->timestamps();
         });

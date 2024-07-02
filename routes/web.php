@@ -91,7 +91,7 @@ Route::get('/fournisseurs', [fournisseurController::class, 'index'])->name('four
 Route::get('/fournisseurs/create', [fournisseurController::class, 'create'])->name('fournisseurs.create');
 Route::post('/fournisseurs', [fournisseurController::class, 'store'])->name('fournisseurs.store');
 Route::put('/fournisseurs/{fournisseur}', [fournisseurController::class, 'update'])->name('fournisseurs.update');
-Route::delete('/fournisseurs/{fournisseur}', [fournisseurController::class, 'delete'])->name('fournisseurs.delete');
+Route::delete('/fournisseurs/delete', [fournisseurController::class, 'delete'])->name('fournisseurs.delete');
 Route::get('/fournisseurs/{fournisseurs}/edit', [fournisseurController::class, 'edit'])->name('fournisseurs.edit');
 
 Route::get('/sorties', [sortieController::class, 'index'])->name('sorties.index');

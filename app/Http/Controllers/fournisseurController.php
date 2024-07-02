@@ -19,12 +19,12 @@ class fournisseurController extends Controller
     public function store(Request $request) {
         $validatedData = $request->validate([
             'nom' => 'required|min:3|string',
-            'adresse'=>'min:8|string',
-            'telephone'=>'tel|min:10|max:10',
-            'email'=>'mail',
-            'num_fiscal'=>'integer',
-            'compt-bancaire'=>'min:13',
-            'remarque'=>'text',
+            'adresse'=>'nullable|string',
+            'telephone'=>'min:10|max:10|nullable',
+            'email'=>'email|nullable',
+            'num_fiscal'=>'integer|nullable',
+            'compt_bancaire'=>'min:13|nullable',
+            'remarque'=>'string|nullable',
         ]);
         $fournisseur = new fournisseurs(); 
         $fournisseur->nom = $validatedData['nom'];
@@ -45,14 +45,13 @@ class fournisseurController extends Controller
     {
         $validatedData = $request->validate([
             'nom' => 'required|min:3|string',
-            'adresse'=>'min:8|string',
-            'telephone'=>'tel|min:10|max:10',
-            'email'=>'mail',
-            'num_fiscal'=>'integer',
-            'compt-bancaire'=>'min:13',
-            'remarque'=>'text',
+            'adresse'=>'nullable|string',
+            'telephone'=>'min:10|max:10|nullable',
+            'email'=>'email|nullable',
+            'num_fiscal'=>'integer|nullable',
+            'compt_bancaire'=>'min:13|nullable',
+            'remarque'=>'string|nullable',
         ]);
-        $fournisseur = new fournisseurs(); 
         $fournisseur->nom = $validatedData['nom'];
         $fournisseur->adresse = $validatedData['adresse'];
         $fournisseur->telephone = $validatedData['telephone'];
@@ -63,8 +62,9 @@ class fournisseurController extends Controller
         $fournisseur->save();   
         return redirect()->route('fournisseurs.index')->with('success', 'fournisseur modifier avec succès.'); 
     }
-    public function delete(fournisseurs  $fournisseur) {
+    public function delete(Request $request) {
+        $fournisseur = fournisseurs::find($request->id);
         $fournisseur->delete();
-        return view('/');
+        return redirect()->route('fournisseurs.index')->with('success', 'fournisseur modifier avec succès.');
    }
 }
