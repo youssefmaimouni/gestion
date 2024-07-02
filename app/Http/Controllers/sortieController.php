@@ -81,6 +81,6 @@ class sortieController extends Controller
        
                $sortie->delete();
 
-           return view('/');
+               return redirect()->back();
    }
 }
