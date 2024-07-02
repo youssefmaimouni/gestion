@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\acheters;
 use App\Models\categories;
 use App\Models\entres;
 use App\Models\fournisseurs;
@@ -29,40 +30,35 @@ class marchandiseController extends Controller
             'description'=>'string|nullable',
             'quantite'=>'integer|nullable',
             'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-            'categorie'=>'exists:categories,id'
+            'categorie'=>'exists:categories,id',
+            'date_doc' => 'required|date',
+            'id_four' => 'nullable|integer',
         ]);
         $marchandise = new marchandises();
         $marchandise->nom=$valid['nom'];
         $marchandise->barre_code=$valid['barre_code'];
         $marchandise->description=$valid['description'];
         $marchandise->quantite=$valid['quantite'];
-        if ($marchandise->quantite>0){
-            $validatedData = $request->validate([
-                'date_doc' => 'required|date',
-                'attachments' => 'nullable|mimes:png,gif,jpeg,jpg,pdf|max:2048',
-                'description' => 'nullable|string',
-                'id_four' => 'nullable|integer',
-                'id_cat' => 'nullable|integer',
-            ]);
-            $entre = new entres(); 
-            $entre->date_doc = $validatedData['date_doc'];
-            $entre->description = $validatedData['description']; 
-            $entre->id_four = $validatedData['id_four'];
-            $entre->id_cat = $validatedData['id_cat'];
-        
-            if ($request->file('attachments')) {
-                $file = $request->file('attachments');
-                $path = $file->store('uploads', 'public');
-                $entre->attachement = $path; // Save the file path in the database
-            }
-        
-            $entre->save();
-        }
-        if ($request->file('image') != null) {
+         if ($request->file('image') != null) {
             $marchandise->image =  $request->file('image')->store('logos', 'public');
         }
         $marchandise->id_cat=$valid['categorie'];
         $marchandise->save();
+        if ($marchandise->quantite>0){
+            $entre = new entres(); 
+            $entre->date_doc =$valid['date_doc'];
+            $entre->description =$valid['description']; 
+            $entre->id_four =$valid['id_four']?? null;;
+            $entre->id_cat = $valid['categorie'];
+            $entre->save();
+
+            $acheter = new acheters(); 
+        $acheter->id_entre = $entre->id;
+        $acheter->id_mar = $marchandise->id; 
+        $acheter->quantite = $valid['quantite'];
+        $acheter->save();
+        }
+       
         return redirect('/marchandises')->with('success','marchandise ajouter avec success');
     }
     public function edit(marchandises $marchandises) {

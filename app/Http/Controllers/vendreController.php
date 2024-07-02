@@ -19,24 +19,34 @@ class vendreController extends Controller
         return view('vendres.create');
     }
     public function store(Request $request) {
-        
         $validatedData = $request->validate([
             'id_mar' => 'required|exists:marchandises,id',
             'id_sortie' => 'required|exists:sorties,id',
-            'quantite'=>'min:0'
+            'quantite' => 'required|integer|min:0'
         ]);
     
-       
-        $vendre = new vendres(); 
+        $marchandise = Marchandises::find($validatedData['id_mar']);
+    
+        if (!$marchandise) {
+            return redirect()->back()->withErrors('Marchandise not found.');
+        }
+    
+        if ($validatedData['quantite'] > $marchandise->quantite) {
+            return redirect()->back()->withErrors('La quantité demandée dépasse la quantité disponible.');
+        }
+    
+        $vendre = new Vendres();
         $vendre->id_sortie = $validatedData['id_sortie'];
-        $vendre->id_mar = $validatedData['id_mar']; 
-        $vendre->quantite = $validatedData['quantite'];  
+        $vendre->id_mar = $validatedData['id_mar'];
+        $vendre->quantite = $validatedData['quantite'];
         $vendre->save();
     
-       
-       
-        return redirect()->back()->with('success', 'vendre ajouté avec succès.'); 
+        $marchandise->quantite -= $validatedData['quantite'];
+        $marchandise->save();
+    
+        return redirect()->back()->with('success', 'Vendre ajouté avec succès et quantité de marchandise mise à jour.');
     }
+    
     
 
     public function edit(vendres $vendres)
