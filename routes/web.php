@@ -37,7 +37,8 @@ Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.up
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-Route::get('/categories', [categorieController::class, 'index'])->name('categories.index');
+Route::get('/documents', [categorieController::class, 'index'])->name('categories.index');
+Route::get('/categories', [categorieController::class, 'index_cat'])->name('categories.index_cat');
 Route::get('/categories/create', [categorieController::class, 'create'])->name('categories.create');
 Route::post('/categories', [categorieController::class, 'store'])->name('categories.store');
 Route::put('/categories/{categorie}', [categorieController::class, 'update'])->name('categories.update');
@@ -46,6 +47,8 @@ Route::get('/categories/{categories}/edit', [categorieController::class, 'edit']
 Route::get('/categories/{categories}/documents', [categorieController::class, 'entre_sortie'])->name('categories.entre_sortie'); 
 Route::get('/categories/{categories}/documents/entres', [categorieController::class, 'entre'])->name('categories.entre'); 
 Route::get('/categories/{categories}/documents/sorties', [categorieController::class, 'sortie'])->name('categories.sortie'); 
+Route::get('/categories/{categories}', [categorieController::class, 'index_mar'])->name('categories.index_mar');
+
 
 Route::get('/marchandises', [marchandiseController::class, 'index'])->name('marchandises.index');
 Route::get('/marchandises/create', [marchandiseController::class, 'create'])->name('marchandises.create');

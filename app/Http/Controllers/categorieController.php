@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\categories;
 use App\Models\entres;
+use App\Models\marchandises;
 use App\Models\sorties;
 use Exception;
 use Illuminate\Http\Request;
@@ -18,6 +19,16 @@ class CategorieController extends Controller
         return view('categories.index', compact('categories'));
     }
 
+    public function index_cat(){
+        $categories = categories::all();
+        return view('categories.index_cat', compact('categories'));
+    }
+
+    public function index_mar(categories $categories){
+        $marchandise = marchandises::where('id_cat','=',$categories->id)->get();
+       
+        return view('categories.index_mar', ['marchandises'=>$marchandise]);
+    }
     public function create() {
         return view('categories.create');
     }
@@ -31,7 +42,7 @@ class CategorieController extends Controller
         $categorie->nom = $validatedData['nom'];
         $categorie->save();
 
-        return redirect()->route('categories.index')->with('success', 'Catégorie ajoutée avec succès.');
+        return redirect()->route('categories.index_cat')->with('success', 'Catégorie ajoutée avec succès.');
     }
 
     public function edit(categories $categories)
