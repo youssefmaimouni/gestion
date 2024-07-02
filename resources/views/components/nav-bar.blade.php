@@ -25,31 +25,32 @@
         };
     </script>
     <style>
-        .calc{
+        .calc {
             height: 92%;
         }
+
         ::-webkit-scrollbar {
-                width: 7px;
-                height: 7px;
-                border-radius: 10px;
+            width: 7px;
+            height: 7px;
+            border-radius: 10px;
 
-            }
+        }
 
-            /* Track */
-            ::-webkit-scrollbar-track {
-                background-color: #97c5d9;
-                box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
-            }
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background-color: #97c5d9;
+            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+        }
 
-            /* Handle */
-            ::-webkit-scrollbar-thumb {
-                background: #64748b ;
-                border-radius: 10px;
-            }
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #64748b;
+            border-radius: 10px;
+        }
 
-            ::-webkit-scrollbar-corner {
-                display: none;
-            }
+        ::-webkit-scrollbar-corner {
+            display: none;
+        }
     </style>
     <title>Ajouter Site</title>
 </head>
@@ -72,6 +73,35 @@
                     marchandises
                 </p>
             </a>
+            <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full" href="/documents">
+                <svg height='30px' enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512"
+                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Layer_1" />
+                    <g id="Layer_2">
+                        <g>
+                            <path
+                                d="M382.6,82h-39.2c-4.1,0-7.5,3.4-7.5,7.5v14.9c0,3.9-3.2,7.1-7.1,7.1s-7.1-3.2-7.1-7.1V89.5c0-4.1-3.4-7.5-7.5-7.5h-41.4    c-4.1,0-7.5,3.4-7.5,7.5v14.9c0,3.9-3.2,7.1-7.1,7.1h-3.4c-3.9,0-7.1-3.2-7.1-7.1V90.6c0-4.1-3.4-7.5-7.5-7.5h-35.8    c-4.1,0-7.5,3.4-7.5,7.5v13.8c0,3.9-3.2,7.1-7.1,7.1h-4.5c-3.9,0-7.1-3.2-7.1-7.1V90.6c0-4.1-3.4-7.5-7.5-7.5h-41.4    c-4.1,0-7.5,3.4-7.5,7.5v330.9c0,4.1,3.4,7.5,7.5,7.5h41.4c4.1,0,7.5-3.4,7.5-7.5v-13.8c0-3.9,3.2-7.1,7.1-7.1h4.5    c3.9,0,7.1,3.2,7.1,7.1v13.8c0,4.1,3.4,7.5,7.5,7.5h35.8c4.1,0,7.5-3.4,7.5-7.5v-13.8c0-3.9,3.2-7.1,7.1-7.1h3.4    c3.9,0,7.1,3.2,7.1,7.1v14.9c0,4.1,3.4,7.5,7.5,7.5h41.4c4.1,0,7.5-3.4,7.5-7.5v-14.9c0-3.9,3.2-7.1,7.1-7.1s7.1,3.2,7.1,7.1v14.9    c0,4.1,3.4,7.5,7.5,7.5h39.2c4.1,0,7.5-3.4,7.5-7.5V89.5C390.1,85.4,386.7,82,382.6,82z M375.1,415h-24.2v-7.4    c0-12.2-9.9-22.1-22.1-22.1c-12.2,0-22.1,9.9-22.1,22.1v7.4h-26.4v-7.4c0-12.2-9.9-22.1-22.1-22.1h-3.4    c-12.2,0-22.1,9.9-22.1,22.1v6.3H212v-6.3c0-12.2-9.9-22.1-22.1-22.1h-4.5c-12.2,0-22.1,9.9-22.1,22.1v6.3h-26.4V98.1h26.4v6.3    c0,12.2,9.9,22.1,22.1,22.1h4.5c12.2,0,22.1-9.9,22.1-22.1v-6.3h20.8v6.3c0,12.2,9.9,22.1,22.1,22.1h3.4    c12.2,0,22.1-9.9,22.1-22.1V97h26.4v7.4c0,12.2,9.9,22.1,22.1,22.1c12.2,0,22.1-9.9,22.1-22.1V97h24.2V415z" />
+                            <path
+                                d="M282.1,161.5H167.9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h114.3c4.1,0,7.5-3.4,7.5-7.5S286.3,161.5,282.1,161.5z" />
+                            <path
+                                d="M344.1,161.5h-24.6c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h24.6c4.1,0,7.5-3.4,7.5-7.5S348.3,161.5,344.1,161.5z" />
+                            <path
+                                d="M282.1,209.3H167.9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h114.3c4.1,0,7.5-3.4,7.5-7.5S286.3,209.3,282.1,209.3z" />
+                            <path
+                                d="M319.5,224.3h24.6c4.1,0,7.5-3.4,7.5-7.5s-3.4-7.5-7.5-7.5h-24.6c-4.1,0-7.5,3.4-7.5,7.5S315.3,224.3,319.5,224.3z" />
+                            <path
+                                d="M282.1,257.1H167.9c-4.1,0-7.5,3.4-7.5,7.5s3.4,7.5,7.5,7.5h114.3c4.1,0,7.5-3.4,7.5-7.5S286.3,257.1,282.1,257.1z" />
+                            <path
+                                d="M319.5,272.1h24.6c4.1,0,7.5-3.4,7.5-7.5s-3.4-7.5-7.5-7.5h-24.6c-4.1,0-7.5,3.4-7.5,7.5S315.3,272.1,319.5,272.1z" />
+                            <path
+                                d="M333.7,308.3c7.7,0,12.7,2.5,15.5,3.7l3.1-12.2c-3.6-1.7-8.4-3.2-15.6-3.5v-9.5h-10.5V297c-11.5,2.3-18.2,9.7-18.2,19.1    c0,10.4,7.9,15.8,19.4,19.7c8,2.7,11.4,5.3,11.4,9.4c0,4.3-4.2,6.7-10.3,6.7c-7,0-13.3-2.3-17.9-4.7l-3.2,12.6    c4.1,2.4,11.1,4.3,18.3,4.6v10.2h10.5v-11c12.4-2.2,19.1-10.3,19.1-19.9c0-9.7-5.2-15.6-18-20.1c-9.1-3.4-12.9-5.7-12.9-9.2    C324.5,311.3,326.7,308.3,333.7,308.3z" />
+                        </g>
+                    </g>
+                </svg>
+                <p class="ml-4">
+                    documents
+                </p>
+            </a>
             <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full"
                 href="/categories">
                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
@@ -81,7 +111,7 @@
                         stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
                 <p class="ml-4">
-                    Categories
+                    categories
                 </p>
             </a>
             <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full" href="/rapports">
@@ -122,52 +152,71 @@
                 </p>
             </a>
             <div class="h-px  w-full mt-4 bg-gray-600">‎</div>
-            <a href="/entres/create" class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
-                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M23 18C23 18.75 22.79 19.46 22.42 20.06C22.21 20.42 21.94 20.74 21.63 21C20.93 21.63 20.01 22 19 22C17.78 22 16.69 21.45 15.97 20.59C15.95 20.56 15.92 20.54 15.9 20.51C15.78 20.37 15.67 20.22 15.58 20.06C15.21 19.46 15 18.75 15 18C15 16.74 15.58 15.61 16.5 14.88C17.19 14.33 18.06 14 19 14C20 14 20.9 14.36 21.6 14.97C21.72 15.06 21.83 15.17 21.93 15.28C22.59 16 23 16.95 23 18Z"
-                            stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M20.49 17.98H17.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
+            <a href="/entres/create"
+            class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
+            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M23 18C23 18.75 22.79 19.46 22.42 20.06C22.21 20.42 21.94 20.74 21.63 21C20.93 21.63 20.01 22 19 22C17.78 22 16.69 21.45 15.97 20.59C15.95 20.56 15.92 20.54 15.9 20.51C15.78 20.37 15.67 20.22 15.58 20.06C15.21 19.46 15 18.75 15 18C15 16.74 15.58 15.61 16.5 14.88C17.19 14.33 18.06 14 19 14C20 14 20.9 14.36 21.6 14.97C21.72 15.06 21.83 15.17 21.93 15.28C22.59 16 23 16.95 23 18Z"
+                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M20.49 17.98H17.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                        stroke-linecap="round" stroke-linejoin="round" />
                         <path d="M19 16.52V19.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M3.17004 7.43994L12 12.5499L20.7701 7.46991" stroke="#292D32" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M12 21.6099V12.5399" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path
-                            d="M21.61 9.17V14.83C21.61 14.88 21.61 14.92 21.6 14.97C20.9 14.36 20 14 19 14C18.06 14 17.19 14.33 16.5 14.88C15.58 15.61 15 16.74 15 18C15 18.75 15.21 19.46 15.58 20.06C15.67 20.22 15.78 20.37 15.9 20.51L14.07 21.52C12.93 22.16 11.07 22.16 9.93001 21.52L4.59001 18.56C3.38001 17.89 2.39001 16.21 2.39001 14.83V9.17C2.39001 7.79 3.38001 6.11002 4.59001 5.44002L9.93001 2.48C11.07 1.84 12.93 1.84 14.07 2.48L19.41 5.44002C20.62 6.11002 21.61 7.79 21.61 9.17Z"
-                            stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                    <p class="ml-4">
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M3.17004 7.43994L12 12.5499L20.7701 7.46991" stroke="#292D32" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12 21.6099V12.5399" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path
+                        d="M21.61 9.17V14.83C21.61 14.88 21.61 14.92 21.6 14.97C20.9 14.36 20 14 19 14C18.06 14 17.19 14.33 16.5 14.88C15.58 15.61 15 16.74 15 18C15 18.75 15.21 19.46 15.58 20.06C15.67 20.22 15.78 20.37 15.9 20.51L14.07 21.52C12.93 22.16 11.07 22.16 9.93001 21.52L4.59001 18.56C3.38001 17.89 2.39001 16.21 2.39001 14.83V9.17C2.39001 7.79 3.38001 6.11002 4.59001 5.44002L9.93001 2.48C11.07 1.84 12.93 1.84 14.07 2.48L19.41 5.44002C20.62 6.11002 21.61 7.79 21.61 9.17Z"
+                        stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <p class="ml-4">
                     Ajouter entrés
-                    </p>
-                </a>
-                <a href="/sorties/create" class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
-                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M23 18C23 18.75 22.79 19.46 22.42 20.06C22.21 20.42 21.94 20.74 21.63 21C20.93 21.63 20.01 22 19 22C17.78 22 16.69 21.45 15.97 20.59C15.95 20.56 15.92 20.54 15.9 20.51C15.78 20.37 15.67 20.22 15.58 20.06C15.21 19.46 15 18.75 15 18C15 16.74 15.58 15.61 16.5 14.88C17.19 14.33 18.06 14 19 14C20 14 20.9 14.36 21.6 14.97C21.72 15.06 21.83 15.17 21.93 15.28C22.59 16 23 16.95 23 18Z"
-                            stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path d="M20.49 17.98H17.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M3.17004 7.43994L12 12.5499L20.7701 7.46991" stroke="#292D32" stroke-width="1.5"
-                            stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M12 21.6099V12.5399" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <path
-                            d="M21.61 9.17V14.83C21.61 14.88 21.61 14.92 21.6 14.97C20.9 14.36 20 14 19 14C18.06 14 17.19 14.33 16.5 14.88C15.58 15.61 15 16.74 15 18C15 18.75 15.21 19.46 15.58 20.06C15.67 20.22 15.78 20.37 15.9 20.51L14.07 21.52C12.93 22.16 11.07 22.16 9.93001 21.52L4.59001 18.56C3.38001 17.89 2.39001 16.21 2.39001 14.83V9.17C2.39001 7.79 3.38001 6.11002 4.59001 5.44002L9.93001 2.48C11.07 1.84 12.93 1.84 14.07 2.48L19.41 5.44002C20.62 6.11002 21.61 7.79 21.61 9.17Z"
-                            stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </p>
+            </a>
+            <a href="/sorties/create"
+                class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
+                <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                        d="M23 18C23 18.75 22.79 19.46 22.42 20.06C22.21 20.42 21.94 20.74 21.63 21C20.93 21.63 20.01 22 19 22C17.78 22 16.69 21.45 15.97 20.59C15.95 20.56 15.92 20.54 15.9 20.51C15.78 20.37 15.67 20.22 15.58 20.06C15.21 19.46 15 18.75 15 18C15 16.74 15.58 15.61 16.5 14.88C17.19 14.33 18.06 14 19 14C20 14 20.9 14.36 21.6 14.97C21.72 15.06 21.83 15.17 21.93 15.28C22.59 16 23 16.95 23 18Z"
+                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M20.49 17.98H17.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M3.17004 7.43994L12 12.5499L20.7701 7.46991" stroke="#292D32" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12 21.6099V12.5399" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                    <path
+                        d="M21.61 9.17V14.83C21.61 14.88 21.61 14.92 21.6 14.97C20.9 14.36 20 14 19 14C18.06 14 17.19 14.33 16.5 14.88C15.58 15.61 15 16.74 15 18C15 18.75 15.21 19.46 15.58 20.06C15.67 20.22 15.78 20.37 15.9 20.51L14.07 21.52C12.93 22.16 11.07 22.16 9.93001 21.52L4.59001 18.56C3.38001 17.89 2.39001 16.21 2.39001 14.83V9.17C2.39001 7.79 3.38001 6.11002 4.59001 5.44002L9.93001 2.48C11.07 1.84 12.93 1.84 14.07 2.48L19.41 5.44002C20.62 6.11002 21.61 7.79 21.61 9.17Z"
+                        stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <p class="ml-4">
+                    Ajouter sorties
+                </p>
+            </a>
+            <div class="h-px  w-full mt-4 bg-gray-600">‎</div>
+                <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full" href="/clients">
+                    <svg enable-background="new 0 0 91 91" height="30px" id="Layer_1" version="1.1" viewBox="0 0 91 91"
+                        width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g>
+                            <path
+                                d="M23.352,47.335c2.598,2.436,6.07,3.938,9.893,3.938c3.863,0,7.369-1.533,9.977-4.014c2.654,1.574,4.25,3.844,4.25,6.234   v15.814h3.4V53.493c0-3.463-2.045-6.67-5.455-8.863c1.496-2.299,2.375-5.041,2.375-7.986c0-8.068-6.527-14.631-14.547-14.631   s-14.543,6.563-14.543,14.631c0,2.986,0.898,5.766,2.432,8.082c-3.32,2.193-5.311,5.365-5.311,8.768v15.814h3.4V53.493   C19.223,51.147,20.775,48.907,23.352,47.335z M33.244,25.413c6.146,0,11.146,5.037,11.146,11.23c0,6.191-5,11.229-11.146,11.229   c-6.145,0-11.143-5.037-11.143-11.229C22.102,30.45,27.1,25.413,33.244,25.413z" />
+                            <rect height="3.4" width="23.799" x="51.729" y="26.688" />
+                            <rect height="3.4" width="23.799" x="51.729" y="38.87" />
+                            <rect height="3.4" width="20.398" x="55.129" y="51.056" />
+                            <rect height="3.398" width="20.398" x="55.129" y="63.239" />
+                        </g>
                     </svg>
                     <p class="ml-4">
-                    Ajouter sorties
+                        clients
                     </p>
                 </a>
-                <div class="h-px  w-full mt-4 bg-gray-600">‎</div>
-                
+
         </div>
         <main id="item" class="calc w-full p-2 overflow-y-auto">
             {{ $slot }}
