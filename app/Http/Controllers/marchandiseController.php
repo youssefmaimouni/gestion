@@ -31,8 +31,6 @@ class marchandiseController extends Controller
             'quantite'=>'integer|nullable',
             'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
             'categorie'=>'exists:categories,id',
-            'date_doc' => 'required|date',
-            'id_four' => 'nullable|integer',
         ]);
         $marchandise = new marchandises();
         $marchandise->nom=$valid['nom'];
@@ -45,10 +43,14 @@ class marchandiseController extends Controller
         $marchandise->id_cat=$valid['categorie'];
         $marchandise->save();
         if ($marchandise->quantite>0){
+            $validate=$request->validate([
+                'date_doc' => 'required|date',
+                'id_four' => 'nullable|integer',
+            ]);
             $entre = new entres(); 
-            $entre->date_doc =$valid['date_doc'];
+            $entre->date_doc =$validate['date_doc'];
             $entre->description =$valid['description']; 
-            $entre->id_four =$valid['id_four']?? null;;
+            $entre->id_four =$validate['id_four']?? null;
             $entre->id_cat = $valid['categorie'];
             $entre->save();
 

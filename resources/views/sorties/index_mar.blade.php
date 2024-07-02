@@ -1,6 +1,6 @@
 <x-nav-bar>
     <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md z-50" id="deleteGroupModal"
-        style="width: 400px; justify-items: center; align-content: space-evenly ;height: 200px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
+        style="width: 400px; justify-items: center; align-content: space-evenly ;height: 300px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
         aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
         <div class="grid justify-items-center">
             <svg fill="#000" height="60px" width="60px" version="1.1" id="Capa_1"
@@ -20,20 +20,20 @@
                 </g>
             </svg>
             <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">quantite</h5>
+            <form action="{{ route('vendres.store') }}" method="POST" class="space-y-6">
+                @csrf
+                <!-- Hidden fields for ID and ID_CAT -->
+                <input type="hidden" id="id" name="id_mar" value="">
+                <input type="hidden"  name="id_sortie" value="{{$sorties->id}}">
+                
+                <div>
+                    <label for="quantite" class="block text-sm font-medium text-gray-700">Quantité :</label>
+                    <input type="number" id="quantite" name="quantite" value="0" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                </div>
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Ajouter</button>
+            </form>
+            
         </div>
-        <form action="{{ route('vendres.store') }}" method="POST" class="space-y-6">
-            @csrf
-            <!-- Hidden fields for ID and ID_CAT -->
-            <input type="hidden" id="id" name="id_mar" value="">
-            <input type="hidden"  name="id_sortie" value="{{$sorties->id}}">
-        
-            <div>
-                <label for="quantite" class="block text-sm font-medium text-gray-700">Quantité :</label>
-                <input type="number" id="quantite" name="quantite" value="0" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            </div>
-            <button type="submit" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Ajouter</button>
-        </form>
-        
     </div>
     <div id="cont" class="" >
         <div class=" flex">

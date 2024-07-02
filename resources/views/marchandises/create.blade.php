@@ -92,13 +92,6 @@
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="title" class="inline-block text-lg mb-2">Unité</label>
-                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="unite" placeholder="title" />
-                            @error('unite')
-                                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-6">
                             <label for="categorie" class="inline-block text-lg mb-2">Catégorie</label>
                             <select name="categorie" class="border border-gray-200 rounded p-2 w-full" id="categorie">
                                 @foreach ($categorie as $item)
@@ -113,7 +106,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">Quantité</label>
-                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="quantite" placeholder="title" id="quantite" onchange="toggleEntranceFields()" />
+                            <input type="number" class="border border-gray-200 rounded p-2 w-full" value=0 name="quantite" placeholder="title" id="quantite" onchange="toggleEntranceFields()" />
                             @error('quantite')
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
@@ -134,7 +127,6 @@
                                     @foreach ($fournisseurs as $item)
                                         <option value="{{$item->id}}">{{$item->nom}}</option>
                                     @endforeach
-                                    <option>Autre</option>
                                 </select>
                                 @error('id_four')
                                     <p class="text-red-500 text-xs mt-1">{{$message}}</p>
