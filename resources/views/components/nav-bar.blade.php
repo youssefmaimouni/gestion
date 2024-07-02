@@ -151,7 +151,7 @@
                     Rapports
                 </p>
             </a>
-            <div class="h-px  w-full mt-4 bg-gray-600">‎</div>
+            <div class="h-px  w-full my-4 bg-gray-600">‎</div>
             <a href="/entres/create"
                 class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
@@ -198,7 +198,7 @@
                     Ajouter sorties
                 </p>
             </a>
-            <div class="h-px  w-full mt-4 bg-gray-600">‎</div>
+            <div class="h-px  w-full my-4 bg-gray-600">‎</div>
             <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full" href="/clients">
                 <svg enable-background="new 0 0 91 91" height="30px" id="Layer_1" version="1.1"
                     viewBox="0 0 91 91" width="30px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
