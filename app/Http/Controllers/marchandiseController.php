@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\acheters;
 use App\Models\categories;
 use App\Models\entres;
 use App\Models\fournisseurs;
@@ -38,7 +39,11 @@ class marchandiseController extends Controller
         $marchandise->barre_code=$valid['barre_code'];
         $marchandise->description=$valid['description'];
         $marchandise->quantite=$valid['quantite'];
-        
+         if ($request->file('image') != null) {
+            $marchandise->image =  $request->file('image')->store('logos', 'public');
+        }
+        $marchandise->id_cat=$valid['categorie'];
+        $marchandise->save();
         if ($marchandise->quantite>0){
             $entre = new entres(); 
             $entre->date_doc =$valid['date_doc'];
@@ -46,12 +51,14 @@ class marchandiseController extends Controller
             $entre->id_four =$valid['id_four']?? null;;
             $entre->id_cat = $valid['categorie'];
             $entre->save();
+
+            $acheter = new acheters(); 
+        $acheter->id_entre = $entre->id;
+        $acheter->id_mar = $marchandise->id; 
+        $acheter->quantite = $valid['quantite'];
+        $acheter->save();
         }
-        if ($request->file('image') != null) {
-            $marchandise->image =  $request->file('image')->store('logos', 'public');
-        }
-        $marchandise->id_cat=$valid['categorie'];
-        $marchandise->save();
+       
         return redirect('/marchandises')->with('success','marchandise ajouter avec success');
     }
     public function edit(marchandises $marchandises) {

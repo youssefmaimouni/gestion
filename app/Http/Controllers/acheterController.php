@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\acheters;
+use App\Models\marchandises;
 use Illuminate\Http\Request;
 
 class acheterController extends Controller
@@ -30,13 +31,22 @@ class acheterController extends Controller
             'quantite.min' => 'The quantity must not be less than zero.'
         ]);
         
-
+       
+        $marchandise = Marchandises::find($validatedData['id_mar']);
+    
+        if (!$marchandise) {
+            return redirect()->back()->withErrors('Marchandise not found.');
+        }
        
         $acheter = new acheters(); 
         $acheter->id_entre = $validatedData['id_entre'];
         $acheter->id_mar = $validatedData['id_mar']; 
+        
         $acheter->quantite = $validatedData['quantite']; 
         $acheter->save();
+
+        $marchandise->quantite += $validatedData['quantite'];
+        $marchandise->save();
     
        
         return redirect()->back()->with('success', 'acheter ajouté avec succès.'); 
