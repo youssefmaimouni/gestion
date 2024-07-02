@@ -27,10 +27,6 @@ class vendreController extends Controller
     
         $marchandise = Marchandises::find($validatedData['id_mar']);
     
-        if (!$marchandise) {
-            return redirect()->back()->withErrors('Marchandise not found.');
-        }
-    
         if ($validatedData['quantite'] > $marchandise->quantite) {
             return redirect()->back()->withErrors('La quantité demandée dépasse la quantité disponible.');
         }

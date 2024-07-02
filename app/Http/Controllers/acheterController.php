@@ -33,10 +33,6 @@ class acheterController extends Controller
         
        
         $marchandise = Marchandises::find($validatedData['id_mar']);
-    
-        if (!$marchandise) {
-            return redirect()->back()->withErrors('Marchandise not found.');
-        }
        
         $acheter = new acheters(); 
         $acheter->id_entre = $validatedData['id_entre'];

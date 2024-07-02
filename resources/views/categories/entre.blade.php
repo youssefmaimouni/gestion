@@ -15,17 +15,19 @@
         </ul>
         <table class="w-full text-sm text-left text-gray-500 mb-14">
             <tbody>
-                @foreach($entres as $item)
-                    <tr class="bg-white  hover:bg-gray-50">
-                        <td class="py-4 px-6">{{ $item->type }}</td>
-                        <td class="py-4 px-6">{{ $item->date_doc }}</td>
+                @foreach($entres as $entre)
+                    <tr class="bg-white  hover:bg-gray-50"  >
+                        <td class="py-4 px-6">{{ $entre->type }}</td>
+                        <td class="py-4 px-6">{{ $entre->date_doc }}</td>
                         <td class="py-4 px-6">
-                            <form action="{{ route('entres.delete', $item) }}" method="POST" class="inline">
+                            <form action="{{ route('entres.delete', $entre) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:text-red-900">Supprimer</button>
                             </form>
+                            <a href="{{ route('categories.index_mar_a', [ $entre->id]) }}">consulter</a>
                         </td>
+                        
                     </tr>
                 @endforeach
             </tbody>

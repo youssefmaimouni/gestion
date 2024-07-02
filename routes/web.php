@@ -48,6 +48,8 @@ Route::get('/categories/{categories}/documents', [categorieController::class, 'e
 Route::get('/categories/{categories}/documents/entres', [categorieController::class, 'entre'])->name('categories.entre'); 
 Route::get('/categories/{categories}/documents/sorties', [categorieController::class, 'sortie'])->name('categories.sortie'); 
 Route::get('/categories/{categories}', [categorieController::class, 'index_mar'])->name('categories.index_mar');
+Route::get('/categories/{entre}', [categorieController::class, 'index_mar_acheter'])->name('categories.index_mar_a');
+
 
 
 Route::get('/marchandises', [marchandiseController::class, 'index'])->name('marchandises.index');

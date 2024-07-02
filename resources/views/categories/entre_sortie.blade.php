@@ -16,7 +16,7 @@
     <table class="w-full text-sm text-left text-gray-500 mb-14">
         <tbody>
             @foreach($tous as $item)
-                <tr class="bg-white  hover:bg-gray-50">
+                <tr class="bg-white  hover:bg-gray-50" href='categories.index_mar_'>
                     <td class="py-4 px-6">{{ $item->type }}</td>
                     <td class="py-4 px-6">{{ $item->date_doc }}</td>
                     <td class="py-4 px-6">
