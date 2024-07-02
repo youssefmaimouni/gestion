@@ -28,38 +28,25 @@ class marchandiseController extends Controller
             'barre_code'=>'integer|nullable',
             'description'=>'string|nullable',
             'quantite'=>'integer|nullable',
-            'unite'=>'string|nullable',
             'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-            'categorie'=>'exists:categories,id'
+            'categorie'=>'exists:categories,id',
+            'date_doc' => 'required|date',
+            'id_four' => 'nullable|integer',
         ]);
         $marchandise = new marchandises();
         $marchandise->nom=$valid['nom'];
         $marchandise->barre_code=$valid['barre_code'];
         $marchandise->description=$valid['description'];
         $marchandise->quantite=$valid['quantite'];
+        
         if ($marchandise->quantite>0){
-            $validatedData = $request->validate([
-                'date_doc' => 'required|date',
-                'attachments' => 'nullable|mimes:png,gif,jpeg,jpg,pdf|max:2048',
-                'description' => 'nullable|string',
-                'id_four' => 'nullable|integer',
-                'id_cat' => 'nullable|integer',
-            ]);
             $entre = new entres(); 
-            $entre->date_doc = $validatedData['date_doc'];
-            $entre->description = $validatedData['description']; 
-            $entre->id_four = $validatedData['id_four'];
-            $entre->id_cat = $validatedData['id_cat'];
-        
-            if ($request->file('attachments')) {
-                $file = $request->file('attachments');
-                $path = $file->store('uploads', 'public');
-                $entre->attachement = $path; // Save the file path in the database
-            }
-        
+            $entre->date_doc =$valid['date_doc'];
+            $entre->description =$valid['description']; 
+            $entre->id_four =$valid['id_four']?? null;;
+            $entre->id_cat = $valid['categorie'];
             $entre->save();
         }
-        $marchandise->unite=$valid['unite'];
         if ($request->file('image') != null) {
             $marchandise->image =  $request->file('image')->store('logos', 'public');
         }
