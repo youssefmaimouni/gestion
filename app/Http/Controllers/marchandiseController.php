@@ -58,7 +58,6 @@ class marchandiseController extends Controller
         
             $entre->save();
         }
-        $marchandise->unite=$valid['unite'];
         if ($request->file('image') != null) {
             $marchandise->image =  $request->file('image')->store('logos', 'public');
         }
@@ -79,14 +78,15 @@ class marchandiseController extends Controller
         'quantite'=>'integer',
         'unite'=>'string',
         'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-         'id_cat'=>'required|exists:categories,id'
+        'id_cat'=>'required|exists:categories,id'
         ]);
             $marchandise->nom=$valid['nom'];
             $marchandise->barre_code=$valid['barre_code'];
             $marchandise->description=$valid['description'];
             $marchandise->quantite=$valid['quantite'];
-            $marchandise->unite=$valid['unite'];
-            $marchandise->image=$valid['image'];
+            if ($request->file('image') != null) {
+                $marchandise->image =  $request->file('image')->store('logos', 'public');
+            }
             $marchandise->id_cat=$valid['id_cat'];
             $marchandise->save();
         return redirect('/marchandises')->with('success', 'marchandise modifier  avec success');

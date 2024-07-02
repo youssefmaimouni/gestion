@@ -65,14 +65,14 @@
                             <center>
                                 <label for="fileToUpload">
                                     {{-- @dd($site->logo) --}}
-                                        <div class="profile-pic" id="photo" style="background-image: url('{{asset("/storage/".$marchandise->image)}}')">
+                                        <div class="profile-pic" id="photo" style="background-image: url('/logo.jpg')">
                                             <!-- <span class="glyphicon glyphicon-camera"></span> -->
                                             <span>Changer Image</span>
                                         </div>
                                 </label>
                             </center>
                         </div>
-                        <input type="File" name="image" accept="image/png, image/gif, image/jpeg,image/jpg" id="fileToUpload">
+                        <input type="File" name="image" accept="image/png, image/gif, image/jpeg,image/jpg" value="$marchandise->image" id="fileToUpload">
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">Nom du marchandise </label>
                             <input type="text" class="border border-gray-200 rounded p-2 w-full" value="{{ $marchandise->nom }}" name="nom"

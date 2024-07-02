@@ -1,5 +1,5 @@
 <x-nav-bar>
-    <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md " id="deleteGroupModal"
+    <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md z-50" id="deleteGroupModal"
         style="width: 400px; justify-items: center; align-content: space-evenly ;height: 200px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
         aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
         <div class="grid justify-items-center">
@@ -53,7 +53,16 @@
                 <tbody>
                     @foreach ($marchandises as $marchandise)
                         <tr class="bg-white border-b hover:bg-gray-300 hover:text-black "  onclick="warnning({{ $marchandise->id }}, {{ $marchandise->id_cat }})">
-                            <td class="py-4 px-6 ">{{ $marchandise->image }}</td>
+                            <tr class="bg-white border-b hover:bg-gray-300 hover:text-black ">
+                                <td class="py-4 px-6 ">
+                                    @if ($marchandise->image)
+                                        <img class="image w-10 h-10 rounded-full bg-cover" 
+                                            src="{{ asset('/storage/' . $marchandise->image) }}" alt="" />
+                                    @else
+                                        <img class="image w-10 h-10 rounded-full bg-cover" 
+                                            src="{{url('/logo.jpg')}}" alt="" />
+                                    @endif
+                                </td>
                             <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
                             <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
                             <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
