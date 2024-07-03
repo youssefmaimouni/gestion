@@ -156,7 +156,11 @@
 
                                 </td>
                                 <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
-                                <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
+                                @if($marchandise->barre_code)
+                                   <td ><abbr title="{{$marchandise->barre_code}}"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C39') !!}</abbr></td>
+                        @else
+                            <td>Pas de code barre</td>
+                        @endif
                                 <td class="py-4 px-6 ">
                                     @if ($marchandise->categories)
                                         {{ $marchandise->categories->nom }}

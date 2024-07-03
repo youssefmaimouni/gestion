@@ -9,8 +9,15 @@ use App\Models\marchandises;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Milon\Barcode\DNS1D;
+
 class marchandiseController extends Controller
 {
+    public static function generateBarcode($number)
+    {
+        $d = new DNS1D();
+        return $d->getBarcodePNG($number, 'C39');
+    }
     public function index_cat() {
         // Retrieve all categories
         $categories = categories::all();
