@@ -51,6 +51,28 @@
     
     <div class="mb-48 bg-gray-100">
         <main>
+            <div class="container mt-4">
+                @if ($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                        role="alert">
+                        <strong class="font-bold">Oops!</strong>
+                        <span class="block sm:inline">Il y avait quelques problèmes avec vos données
+                            saisies.</span>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if (session('success'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                        role="alert">
+                        <strong class="font-bold">Succès!</strong>
+                        <span class="block sm:inline">{{ session('success') }}</span>
+                    </div>
+                @endif
+            </div>
             <div class="mx-4">
                 <div class="bg-gray-50 border border-gray-200 shadow-md p-10 rounded max-w-lg mx-auto mt-24">
                     <header class="text-center">
@@ -58,7 +80,7 @@
                             Ajouter une Marchandise
                         </h2>
                     </header>
-    
+                    
                     <form action="{{ route('marchandises.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-6">

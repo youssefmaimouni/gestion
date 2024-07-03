@@ -108,7 +108,7 @@
         </div>
         @if (count($marchandises) > 0)
             <div class="overflow-x-auto relative shadow-md w-full sm:rounded-lg mb-10">
-                <div class="container mt-4">
+                <div class="container  w-full">
                     @if ($errors->any())
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
                             role="alert">
