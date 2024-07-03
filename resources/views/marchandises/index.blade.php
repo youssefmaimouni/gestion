@@ -167,17 +167,41 @@
                                 </td>
                                 <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
                                 <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
-                                <td class="py-4 px-6 justify-between flex text-center">
-                                    <p onclick="warnning2({{ $marchandise->id }})"
-                                        class="text-green-400 hover:text-green-700 cursor-pointer">ajout</p>
-                                        
-                                        <p onclick="warnning({{ $marchandise->id }})"
-                                            class="text-red-600 hover:text-red-900 cursor-pointer">Supprimer</p>
-                                            <a
-                                            href="/marchandises/{{ $marchandise->id }}/edit"class="text-blue-600 hover:text-blue-900 ml-4 cursor-pointer">Modifier</a>
-                                            <p onclick="warnning3({{ $marchandise->id }})"
-                                                class="text-green-400 hover:text-green-700 cursor-pointer">sortier</p>
+                                <td class="py-4 px-6 justify-between flex text-center space-x-2">
+                                    <button onclick="warnning2({{ $marchandise->id }})" title="Ajout" aria-label="Ajout"
+                                            class="flex items-center text-green-500 bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <button onclick="warnning3({{ $marchandise->id }})" title="Sortie" aria-label="Sortie"
+                                            class="flex items-center text-yellow-500 bg-yellow-200 hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                                        </svg>
+                                    </button>
+                                
+                                    <button onclick="warnning({{ $marchandise->id }})" title="Supprimer" aria-label="Supprimer"
+                                            class="flex items-center text-red-500 bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                    
+                                    <a href="/marchandises/{{ $marchandise->id }}/edit" title="Modifier" aria-label="Modifier"
+                                       class="flex items-center text-blue-500 bg-blue-200 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.707 7.707a1 1 0 0 0-1.414-1.414L15 8l1 1 1.707-1.707a1 1 0 0 0-1.414-1.414L14.586 8l-1.293-1.293a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0-.293.707V15h3.586a1 1 0 0 0 .707-.293l5-5 1.707 1.707 1.707-1.707a1 1 0 0 0 0-1.414z" />
+                                        </svg>
+                                    </a>
                                 </td>
+                                
+                                
+                                
+                                
+                                
                             </tr>
                         @endforeach
                     </tbody>
