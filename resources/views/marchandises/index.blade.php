@@ -166,7 +166,7 @@
                     </thead>
                     <tbody>
                         @foreach ($marchandises as $marchandise)
-                            <tr class="bg-white border-b hover:bg-gray-300 hover:text-black ">
+                            <tr class="bg-white border-b hover:bg-gray-200 hover:text-black ">
                                 <td class="py-4 px-6">
                                     @if (isset($marchandise->image) && $marchandise->image !== null)
                                         <img class="image w-10 h-10 rounded-full bg-cover"
