@@ -90,7 +90,7 @@ class CategorieController extends Controller
         $categorie->nom = $validatedData['nom'];
         $categorie->save();
 
-        return redirect()->route('categories.index_cat')->with('success', 'Catégorie ajoutée avec succès.');
+        return redirect()->route('marchandises.index_cat')->with('success', 'Catégorie ajoutée avec succès.');
     }
 
     public function edit(categories $categories)

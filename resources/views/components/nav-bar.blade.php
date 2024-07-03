@@ -62,7 +62,7 @@
         <div id="sidebar"
             class=' flex-col items-start justify-start w-72 left-0 h-calc overflow-auto flex pb-6 bg-gray-200 overflow-x-hidden'>
             <a href="/marchandises"
-                class="flex text-laravel font-medium text items-center hover:bg-slate-700 w-full  p-3 {{ request()->is('marchandises/*') ? 'bg-slate-400' : '' }} {{ request()->is('marchandises') ? 'bg-slate-400' : '' }}">
+                class="flex text-laravel font-medium text items-center hover:bg-slate-300 w-full  p-3 {{ request()->is('marchandises/*') ? 'bg-slate-400' : '' }} {{ request()->is('marchandises') ? 'bg-slate-400' : '' }}">
                 <svg width="30px" height="30px" viewBox="0 -0.5 25 25"fill="#1967D2"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -73,7 +73,7 @@
                     marchandises
                 </p>
             </a>
-            <a class="flex text-laravel font-medium text items-center hover:bg-slate-700  p-3 w-full {{ request()->is('categories/*/documents/*') ? 'bg-slate-400' : '' }} {{ request()->is('categories/*/documents') ? 'bg-slate-400' : '' }} {{ request()->is('documents') ? 'bg-slate-400' : '' }}" href="/documents">
+            <a class="flex text-laravel font-medium text items-center hover:bg-slate-300  p-3 w-full {{ request()->is('categories/*/documents/*') ? 'bg-slate-400' : '' }} {{ request()->is('categories/*/documents') ? 'bg-slate-400' : '' }} {{ request()->is('documents') ? 'bg-slate-400' : '' }}" href="/documents">
                 <svg height='30px' enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512"
                     xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g id="Layer_1" />
@@ -114,7 +114,7 @@
                     categories
                 </p>
             </a> --}}
-            <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full" href="/rapports">
+            <a class="flex text-laravel font-medium text items-center hover:bg-slate-300  p-3 w-full" href="/rapports">
                 <svg width="30px" height="30px" viewBox="0 0 48 48" data-name="Layer 1" id="Layer_1"
                     xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -153,7 +153,7 @@
             </a>
             <div class="h-px  w-full my-4 bg-gray-600">‎</div>
             <a href="/entres/create"
-                class="flex text-laravel font-medium text items-center hover:bg-slate-700  p-3 w-full {{ request()->is('entres/create') ? 'bg-slate-400' : '' }}">
+                class="flex text-laravel font-medium text items-center hover:bg-slate-300  p-3 w-full {{ request()->is('entres/create') ? 'bg-slate-400' : '' }}">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
