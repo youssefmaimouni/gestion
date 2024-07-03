@@ -93,12 +93,16 @@
                         </div>
                         <div class="mb-6">
                             <label for="categorie" class="inline-block text-lg mb-2">Catégorie</label>
-                            <select name="categorie" class="border border-gray-200 rounded p-2 w-full" id="categorie">
+                            <select name="categorie" class="border border-gray-200 rounded p-2 w-full" id="selectOption">
                                 @foreach ($categorie as $item)
                                     <option value="{{$item->id}}">{{$item->nom}}</option>
                                 @endforeach
+                                <option value="add">ajouter categorie</option>
                             </select>
-                            <input type="hidden" id="writeIn" class="border border-gray-200 rounded mt-2 p-2 w-full" name="new_cat" placeholder="Nouvelle Catégorie" />
+                            <div id="inputForm" class="hidden">
+                                <label for="newCategorie" class="inline-block text-lg mb-2">Nouvelle catégorie</label>
+                                <input type="text" id="newCategorie" name="new_categorie" class="border border-gray-200 rounded p-2 w-full" placeholder="Nouvelle catégorie">
+                            </div>
                             @error('categorie')
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
@@ -137,7 +141,18 @@
                 reader.readAsDataURL(choosedFile);
             }
         });
-    });
+
+
+        document.getElementById('selectOption').addEventListener('change', function () {
+            const inputForm = document.getElementById('inputForm');
+            if (this.value === 'add') {
+                inputForm.classList.remove('hidden');
+            } else {
+                inputForm.classList.add('hidden');
+            }
+        });
+  
+        
     </script>
 </x-nav-bar>
     
