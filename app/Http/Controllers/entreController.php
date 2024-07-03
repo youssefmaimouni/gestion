@@ -56,11 +56,13 @@ class entreController extends Controller
         
     }
 
-    public function delete(entres  $entre) {
+    public function delete(Request $request) {
 
+        $entre=entres::find($request->id);
+            
             $marchandises=marchandises::find($entre->id_mar);
             $marchandises->quantite=$marchandises->quantite-$entre->quantite;
-        $marchandises->save();
+            $marchandises->save();
                $entre->delete();
 
            return redirect()->back();

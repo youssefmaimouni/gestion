@@ -20,7 +20,7 @@
             <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Confirmation de la suppression</h5>
         </div>
         <div class="text-sm text-gray-900">
-            Êtes-vous sûr de vouloir supprimer cette marchandise?
+            avec la suppression de l'entre on annule la transation de la quantité
         </div>
         <div class="flex w-2/3 justify-around">
             <button type="button" class="btn btn-secondary" onclick="hide()" data-bs-dismiss="modal">Annuler</button>

@@ -63,8 +63,9 @@ class sortieController extends Controller
     return redirect()->back()->with('success');
     }
 
-    public function delete(sorties  $sortie) {
+    public function delete(Request $request) {
        
+        $sortie = sorties::find($request->id);
         $marchandises=marchandises::find($sortie->id_mar);
             $marchandises->quantite=$marchandises->quantite+$sortie->quantite;
             $marchandises->save();
