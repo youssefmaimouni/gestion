@@ -1,6 +1,6 @@
 <x-nav-bar>
     <div class="container mt-4">
-        @if($errors->any())
+        @if ($errors->any())
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                 <strong class="font-bold">Oops!</strong>
                 <span class="block sm:inline">Il y avait quelques problèmes avec vos données saisies.</span>
@@ -147,14 +147,18 @@
                     <tbody>
                         @foreach ($marchandises as $marchandise)
                             <tr class="bg-white border-b hover:bg-gray-300 hover:text-black ">
-                                <td class="py-4 px-6 ">
-                                    @if ($marchandise->image)
+                                <td class="py-4 px-6">
+                                    @if (isset($marchandise->image) && $marchandise->image !== null)
                                         <img class="image w-10 h-10 rounded-full bg-cover"
-                                            src="{{ asset('/storage/' . $marchandise->image) }}" alt="" />
+                                            src="{{ asset('/storage/' . $marchandise->image) }}"
+                                            alt="" />
+                                        
                                     @else
-                                        <img class="image w-10 h-10 rounded-full bg-cover"
-                                            src="{{ url('/logo.jpg') }}" alt="" />
+                                    <img class="image w-10 h-10 rounded-full bg-cover"
+                                    src="{{ asset('/logo.jpg') }}"
+                                    alt="" />
                                     @endif
+
                                 </td>
                                 <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
                                 <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
