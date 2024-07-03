@@ -28,11 +28,55 @@
             @csrf
             @method('DELETE')
             <input type="hidden" name="id" id="deleteGroupId" value="">
-            <button type="submit" class="bg-red-500 text-white p-2 rounded-sm hover:scale-110 hover:bg-red-400">confirmer</button>
+            <button type="submit" class="bg-red-500 text-white p-2 rounded-sm hover:scale-110 hover:bg-red-400">annuler</button>
         </form>
     </div>
 </div>
 <div class="text-sm font-medium text-center text-gray-500  border-gray-200 dark:text-gray-400 dark:border-gray-700" id='cont'>
+    <div class="container  w-full">
+        <!-- Error Message -->
+        @if (session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                role="alert">
+                <strong class="font-bold">Erreur!</strong>
+                <span class="block sm:inline">{{ session('error') }}</span>
+            </div>
+        @endif
+
+        <!-- Warning Message -->
+        @if (session('warning'))
+            <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative"
+                role="alert">
+                <strong class="font-bold">Attention!</strong>
+                <span class="block sm:inline">{{ session('warning') }}</span>
+            </div>
+        @endif
+
+        <!-- Success Message -->
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                role="alert">
+                <strong class="font-bold">Succès!</strong>
+                <span class="block sm:inline">{{ session('success') }}</span>
+            </div>
+        @endif
+
+        <!-- General Validation Errors -->
+        @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                role="alert">
+                <strong class="font-bold">Oops!</strong>
+                <span class="block sm:inline">Il y avait quelques problèmes avec vos données
+                    saisies.</span>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+    </div>
     <ul class="flex flex-wrap -mb-px">
        
         <li class="me-2">
@@ -75,7 +119,6 @@
             document.getElementById('deleteGroupModal').classList.remove('hidden');
             document.getElementById('deleteGroupId').value = id;
             document.getElementById('deleteForm').action = type === 'entre' ? '/entres/delete' : '/sorties/delete';
-            document.getElementById('message').action = type === 'entre' ? 'retirer' : 'rajouter';
             document.getElementById('cont').classList.add('blur-sm');
             document.getElementById('cont').classList.add('pointer-events-none');
         }
