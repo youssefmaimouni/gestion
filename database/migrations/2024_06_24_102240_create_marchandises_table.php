@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->bigInteger('barre_code')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->integer('quantite')->nullable();
             $table->string('image')->nullable();
             $table->unsignedBigInteger('id_cat')->nullable();

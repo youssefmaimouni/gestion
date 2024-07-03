@@ -92,7 +92,7 @@
                         </div>
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">description</label>
-                            <textarea name="description" id="" class="border border-gray-200 rounded p-2 w-full h-52" value="{{ $marchandise->description }}" placeholder="description"></textarea>
+                            <textarea name="description" id="" class="border border-gray-200 rounded p-2 w-full h-52"  placeholder="description">{{ $marchandise->description }}</textarea>
                             @error('description')
                             <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror

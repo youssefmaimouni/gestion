@@ -191,7 +191,7 @@
                                     @endif
                                 </td>
                                 <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
-                                <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
+                                <td class="py-4 px-6 "><p class="overflow-hidden max-h-10">{{ $marchandise->description }}</p></td>
                                 <td class="py-4 px-6 justify-between flex text-center space-x-2">
                                     <button onclick="warnning2({{ $marchandise->id }})" title="Ajout"
                                         aria-label="Ajout"
