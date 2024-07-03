@@ -62,8 +62,13 @@ class entreController extends Controller
     public function delete(Request $request) {
 
         $entre=entres::find($request->id);
-            
+            if(empty($entre)){
+                return redirect()->back()->with('error', 'Entrée  introuvable.');
+            }
             $marchandises=marchandises::find($entre->id_mar);
+            if ($marchandises->quantite-$entre->quantite) {
+                return redirect()->back()->with('error', 'votre stock n\'est pas suffisant');
+            }
             $marchandises->quantite=$marchandises->quantite-$entre->quantite;
             $marchandises->save();
                $entre->delete();

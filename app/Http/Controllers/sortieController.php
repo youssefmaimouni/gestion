@@ -68,6 +68,9 @@ class sortieController extends Controller
     public function delete(Request $request) {
        
         $sortie = sorties::find($request->id);
+        if(empty($sortie)){
+            return redirect()->back()->with('error', 'Sortier  introuvable.');
+        }
         $marchandises=marchandises::find($sortie->id_mar);
             $marchandises->quantite=$marchandises->quantite+$sortie->quantite;
             $marchandises->save();
