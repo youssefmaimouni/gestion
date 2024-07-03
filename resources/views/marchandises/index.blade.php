@@ -52,7 +52,7 @@
 
                 <div>
                     <label for="quantite" class="block text-sm font-medium text-gray-700">Quantité :</label>
-                    <input type="number" id="quantite" name="quantite" value=0 required
+                    <input type="number" id="quantite" name="quantite"  required
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     @error('quantite')
                         <script>
@@ -76,7 +76,7 @@
                 viewBox="0 0 27.963 27.963" xml:space="preserve">
                 <!-- SVG content omitted for brevity -->
             </svg>
-            <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Quantité Sortié</h5>
+            <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Quantité Sortie</h5>
             <form action="{{ route('sorties.store') }}" method="POST" class="space-y-6">
                 @csrf
                 <!-- Hidden fields for ID and ID_CAT -->
@@ -84,7 +84,7 @@
 
                 <div>
                     <label for="quantite" class="block text-sm font-medium text-gray-700">Quantité :</label>
-                    <input type="number" id="quantite" name="quantite" value=0 required
+                    <input type="number" id="quantite" name="quantite"  required
                         class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     @error('quantite')
                         <script>
@@ -105,9 +105,7 @@
             <p class="text-xl w-1/3  m-3 pl-6"><a href="/marchandises/create"
                     class="text-blue-600 hover:text-blue-900">Ajouter
                     Marchendise</a> </p>
-        </div>
-        @if (count($marchandises) > 0)
-            <div class="overflow-x-auto relative shadow-md w-full sm:rounded-lg mb-10">
+                </div>
                 <div class="container  w-full">
                     <!-- Error Message -->
                     @if (session('error'))
@@ -117,7 +115,7 @@
                             <span class="block sm:inline">{{ session('error') }}</span>
                         </div>
                     @endif
-
+        
                     <!-- Warning Message -->
                     @if (session('warning'))
                         <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative"
@@ -126,7 +124,7 @@
                             <span class="block sm:inline">{{ session('warning') }}</span>
                         </div>
                     @endif
-
+        
                     <!-- Success Message -->
                     @if (session('success'))
                         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
@@ -135,7 +133,7 @@
                             <span class="block sm:inline">{{ session('success') }}</span>
                         </div>
                     @endif
-
+        
                     <!-- General Validation Errors -->
                     @if ($errors->any())
                         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
@@ -150,8 +148,10 @@
                             </ul>
                         </div>
                     @endif
-
+        
                 </div>
+        @if (count($marchandises) > 0)
+            <div class="overflow-x-auto relative shadow-md w-full sm:rounded-lg mb-10">
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                         <tr>

@@ -98,14 +98,6 @@
                             @enderror
                         </div>
                         <div class="mb-6">
-                            <label for="title" class="inline-block text-lg mb-2">quantite</label>
-                            <input type="number" class="border border-gray-200 rounded p-2 w-full" value="{{ $marchandise->quantite }}" name="quantite"
-                            placeholder="title"  />
-                            @error('quantite')
-                            <p class="text-red-500 test-xs mt-1">{{$message}}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-6">
                             <label for="categorie" class="inline-block text-lg mb-2">Catégorie</label>
                             <select name="categorie" class="border border-gray-200 rounded p-2 w-full"    id="selectOption">
                                 @foreach ($categorie as $item)

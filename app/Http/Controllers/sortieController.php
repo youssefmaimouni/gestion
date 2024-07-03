@@ -24,7 +24,9 @@ class sortieController extends Controller
                 'id_mar'=>'exists:marchandises,id'
         ]);
         $marchandises = Marchandises::find($validatedData['id_mar']);
-    
+        if ($validatedData['quantite']<0) {
+            return redirect()->back()->with('error', 'la quantite doit être positive.');
+        }
         if ($validatedData['quantite'] > $marchandises->quantite) {
             return redirect()->back()->with('error','La quantité demandée dépasse la quantité disponible.');
         }

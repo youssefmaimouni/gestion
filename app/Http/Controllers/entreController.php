@@ -18,6 +18,9 @@ class entreController extends Controller
                 'quantite'=>'integer',
                 'id_mar'=>'exists:marchandises,id'
         ]);
+        if ($validatedData['quantite']<0) {
+            return redirect()->back()->with('error', 'la quantite doit être positive.');
+        }
         $entre = new entres(); 
        $entre->quantite=$validatedData['quantite'];
        $entre->id_mar=$validatedData['id_mar'];
