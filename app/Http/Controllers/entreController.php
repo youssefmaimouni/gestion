@@ -27,7 +27,7 @@ class entreController extends Controller
         $entre->save();
 
     
-        return redirect()->back()->with('success', 'Entry created successfully.');
+        return redirect()->back()->with('success', 'Entrée  crée avec success.');
     }
     
     

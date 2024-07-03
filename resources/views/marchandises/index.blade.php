@@ -1,17 +1,4 @@
 <x-nav-bar>
-    <div class="container mt-4">
-        @if ($errors->any())
-            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                <strong class="font-bold">Oops!</strong>
-                <span class="block sm:inline">Il y avait quelques problèmes avec vos données saisies.</span>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-    </div>
     <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md z-50" id="deleteGroupModal"
         style="width: 400px; justify-items: center; align-content: space-evenly ;height: 200px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
         aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
@@ -57,7 +44,7 @@
                 viewBox="0 0 27.963 27.963" xml:space="preserve">
                 <!-- SVG content omitted for brevity -->
             </svg>
-            <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Quantité</h5>
+            <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Quantité Entrés</h5>
             <form action="{{ route('entres.store') }}" method="POST" class="space-y-6">
                 @csrf
                 <!-- Hidden fields for ID and ID_CAT -->
@@ -75,6 +62,8 @@
                 </div>
                 <button type="submit"
                     class="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Ajouter</button>
+                <button type="button" class="btn btn-secondary" onclick="hide2()"
+                    data-bs-dismiss="modal">Annuler</button>
             </form>
         </div>
     </div>
@@ -87,7 +76,7 @@
                 viewBox="0 0 27.963 27.963" xml:space="preserve">
                 <!-- SVG content omitted for brevity -->
             </svg>
-            <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Quantité</h5>
+            <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Quantité Sortié</h5>
             <form action="{{ route('sorties.store') }}" method="POST" class="space-y-6">
                 @csrf
                 <!-- Hidden fields for ID and ID_CAT -->
@@ -105,6 +94,8 @@
                 </div>
                 <button type="submit"
                     class="px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Ajouter</button>
+                <button type="button" class="btn btn-secondary" onclick="hide3()"
+                    data-bs-dismiss="modal">Annuler</button>
             </form>
         </div>
     </div>
@@ -117,21 +108,28 @@
         </div>
         @if (count($marchandises) > 0)
             <div class="overflow-x-auto relative shadow-md w-full sm:rounded-lg mb-10">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
+                <div class="container mt-4">
+                    @if ($errors->any())
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                            role="alert">
+                            <strong class="font-bold">Oops!</strong>
+                            <span class="block sm:inline">Il y avait quelques problèmes avec vos données
+                                saisies.</span>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if (session('success'))
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                            role="alert">
+                            <strong class="font-bold">Succès!</strong>
+                            <span class="block sm:inline">{{ session('success') }}</span>
+                        </div>
+                    @endif
+                </div>
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                         <tr>
@@ -150,13 +148,10 @@
                                 <td class="py-4 px-6">
                                     @if (isset($marchandise->image) && $marchandise->image !== null)
                                         <img class="image w-10 h-10 rounded-full bg-cover"
-                                            src="{{ asset('/storage/' . $marchandise->image) }}"
-                                            alt="" />
-                                        
+                                            src="{{ asset('/storage/' . $marchandise->image) }}" alt="" />
                                     @else
-                                    <img class="image w-10 h-10 rounded-full bg-cover"
-                                    src="{{ asset('/logo.jpg') }}"
-                                    alt="" />
+                                        <img class="image w-10 h-10 rounded-full bg-cover"
+                                            src="{{ asset('/logo.jpg') }}" alt="" />
                                     @endif
 
                                 </td>
@@ -172,40 +167,53 @@
                                 <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
                                 <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
                                 <td class="py-4 px-6 justify-between flex text-center space-x-2">
-                                    <button onclick="warnning2({{ $marchandise->id }})" title="Ajout" aria-label="Ajout"
-                                            class="flex items-center text-green-500 bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                    <button onclick="warnning2({{ $marchandise->id }})" title="Ajout"
+                                        aria-label="Ajout"
+                                        class="flex items-center text-green-500 bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 4v16m8-8H4" />
                                         </svg>
                                     </button>
-                                    
-                                    <button onclick="warnning3({{ $marchandise->id }})" title="Sortie" aria-label="Sortie"
-                                            class="flex items-center text-yellow-500 bg-yellow-200 hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+
+                                    <button onclick="warnning3({{ $marchandise->id }})" title="Sortie"
+                                        aria-label="Sortie"
+                                        class="flex items-center text-yellow-500 bg-yellow-200 hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M20 12H4" />
                                         </svg>
                                     </button>
-                                
-                                    <button onclick="warnning({{ $marchandise->id }})" title="Supprimer" aria-label="Supprimer"
-                                            class="flex items-center text-red-500 bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+
+                                    <button onclick="warnning({{ $marchandise->id }})" title="Supprimer"
+                                        aria-label="Supprimer"
+                                        class="flex items-center text-red-500 bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M6 18L18 6M6 6l12 12" />
                                         </svg>
                                     </button>
-                                    
-                                    <a href="/marchandises/{{ $marchandise->id }}/edit" title="Modifier" aria-label="Modifier"
-                                       class="flex items-center text-blue-500 bg-blue-200 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-5 h-5">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.707 7.707a1 1 0 0 0-1.414-1.414L15 8l1 1 1.707-1.707a1 1 0 0 0-1.414-1.414L14.586 8l-1.293-1.293a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0-.293.707V15h3.586a1 1 0 0 0 .707-.293l5-5 1.707 1.707 1.707-1.707a1 1 0 0 0 0-1.414z" />
+
+                                    <a href="/marchandises/{{ $marchandise->id }}/edit" title="Modifier"
+                                        aria-label="Modifier"
+                                        class="flex items-center text-blue-500 bg-blue-200 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 20h9" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M16.707 7.707a1 1 0 0 0-1.414-1.414L15 8l1 1 1.707-1.707a1 1 0 0 0-1.414-1.414L14.586 8l-1.293-1.293a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0-.293.707V15h3.586a1 1 0 0 0 .707-.293l5-5 1.707 1.707 1.707-1.707a1 1 0 0 0 0-1.414z" />
                                         </svg>
                                     </a>
                                 </td>
-                                
-                                
-                                
-                                
-                                
+
+
+
+
+
                             </tr>
                         @endforeach
                     </tbody>
