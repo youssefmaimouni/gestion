@@ -17,23 +17,21 @@
                     </g>
                 </g>
             </svg>
-            <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Confirmation de la suppression</h5>
+            <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Confirmation </h5>
         </div>
-        <div class="text-sm text-gray-900">
-            avec la suppression de l'entre on annule la transation de la quantité
-        </div>
+    
         <div class="flex w-2/3 justify-around">
             <button type="button" class="btn btn-secondary" onclick="hide()" data-bs-dismiss="modal">Annuler</button>
             <form action="/entres/delete" method="POST">
                 @csrf
                 @method('DELETE')
                 <input type="hidden" name="id" id="deleteGroupId" value="">
-                <button type="submit" class="bg-red-500 text-white p-2 rounded-sm hover:scale-110 hover:bg-red-400">Supprimer</button>
+                <button type="submit" class="bg-red-500 text-white p-2 rounded-sm hover:scale-110 hover:bg-red-400">retirer</button>
             </form>
         </div>
     </div>
     
-    <div class="text-sm font-medium text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700">
+    <div class="text-sm font-medium text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700" id='cont'>
         <ul class="flex flex-wrap -mb-px">
             <li class="me-2">
                 <a href="{{ route('categories.entre_sortie', $categories) }}" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Tous</a>
@@ -52,8 +50,9 @@
                     <tr class="bg-white hover:bg-gray-50">
                         <td class="py-4 px-6">{{ $entre->type }}</td>
                         <td class="py-4 px-6">{{ $entre->created_at }}</td>
+                        <td class="py-4 px-6">{{ $entre->nom }}</td>
                         <td class="py-4 px-6 justify-center space-x-4 flex">
-                                <button  onclick="warnning({{ $entre->id }})" class="text-red-600 hover:text-red-900">Supprimer</button>
+                                <button  onclick="warnning({{ $entre->id }})" class="text-red-600 hover:text-red-900">retirer</button>
                          
                             <a href="{{ route('categories.index_mar_a', $entre) }}">consulter</a>
                         </td>

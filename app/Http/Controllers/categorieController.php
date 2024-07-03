@@ -110,14 +110,14 @@ class CategorieController extends Controller
 
     public function entre_sortie(categories $categories) {
         // Récupérer les entres en ajoutant une colonne 'type' avec la valeur 'entre'
-        $entres = entres::select('entres.*', DB::raw('"entre" as type'))
+        $entres = entres::select('entres.*','marchandises.nom as nom', DB::raw('"entre" as type'))
             ->join('marchandises','entres.id_mar','=','marchandises.id')
             ->where('marchandises.id_cat','=',$categories->id)
             ->orderBy('entres.created_at', 'desc')                  
             ->get();
     
         // Récupérer les sorties en ajoutant une colonne 'type' avec la valeur 'sortie'
-        $sorties = sorties::select('sorties.*', DB::raw('"sortie" as type'))
+        $sorties = sorties::select('sorties.*', 'marchandises.nom as nom',DB::raw('"sortie" as type'))
             ->join('marchandises','sorties.id_mar','=','marchandises.id')
             ->where('marchandises.id_cat','=',$categories->id)
             ->orderBy('sorties.created_at', 'desc')                  
