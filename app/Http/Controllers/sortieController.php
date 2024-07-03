@@ -35,7 +35,7 @@ class sortieController extends Controller
        $marchandises->save();
         $sortie->save();
     
-        return redirect()->back()->with('success', 'Entry created successfully.');
+        return redirect()->back()->with('success', 'sortie crée avec success.');
     }
 
     public function vendre(sorties $sorties, categories $categories ){
