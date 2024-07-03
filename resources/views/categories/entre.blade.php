@@ -19,7 +19,9 @@
             </svg>
             <h5 class="font-semibold text-lg" id="deleteGroupModalLabel">Confirmation </h5>
         </div>
-    
+        <div class="text-sm text-gray-900">
+            Êtes-vous sûr de vouloir supprimer cette opération?
+        </div>
         <div class="flex w-2/3 justify-around">
             <button type="button" class="btn btn-secondary" onclick="hide()" data-bs-dismiss="modal">Annuler</button>
             <form action="/entres/delete" method="POST">
@@ -32,6 +34,50 @@
     </div>
     
     <div class="text-sm font-medium text-center text-gray-500 border-gray-200 dark:text-gray-400 dark:border-gray-700" id='cont'>
+        <div class="container  w-full">
+            <!-- Error Message -->
+            @if (session('error'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                    role="alert">
+                    <strong class="font-bold">Erreur!</strong>
+                    <span class="block sm:inline">{{ session('error') }}</span>
+                </div>
+            @endif
+
+            <!-- Warning Message -->
+            @if (session('warning'))
+                <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative"
+                    role="alert">
+                    <strong class="font-bold">Attention!</strong>
+                    <span class="block sm:inline">{{ session('warning') }}</span>
+                </div>
+            @endif
+
+            <!-- Success Message -->
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                    role="alert">
+                    <strong class="font-bold">Succès!</strong>
+                    <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+            @endif
+
+            <!-- General Validation Errors -->
+            @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                    role="alert">
+                    <strong class="font-bold">Oops!</strong>
+                    <span class="block sm:inline">Il y avait quelques problèmes avec vos données
+                        saisies.</span>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+        </div>
         <ul class="flex flex-wrap -mb-px">
             <li class="me-2">
                 <a href="{{ route('categories.entre_sortie', $categories) }}" class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Tous</a>
