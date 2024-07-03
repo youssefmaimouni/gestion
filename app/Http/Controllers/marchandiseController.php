@@ -97,23 +97,36 @@ class marchandiseController extends Controller
     public function update(Request $request,marchandises $marchandise )
     {
         $valid = $request->validate([
-            'nom'=>'required|min:3|string',
-            'barre_code'=>'integer|nullable',
-            'description'=>'string|nullable',
-            'quantite'=>'integer|nullable',
-            'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-            'categorie'=>'nullable|exists:categories,id',
+            'nom' => 'required|min:3|string',
+            'barre_code' => 'integer|nullable',
+            'description' => 'string|nullable',
+            'quantite' => 'integer|nullable',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
+            'categorie' => 'nullable',
+            'new_categorie' => 'nullable|string|min:3' 
         ]);
-            $marchandise->nom=$valid['nom'];
-            $marchandise->barre_code=$valid['barre_code'];
-            $marchandise->description=$valid['description'];
-            $marchandise->quantite=$valid['quantite'];
-            if ($request->file('image') != null) {
-                $marchandise->image =  $request->file('image')->store('logos', 'public');
-            }
-            $marchandise->id_cat=$valid['categorie']??null;
-            $marchandise->save();
-        return redirect('/marchandises')->with('success', 'marchandise modifier  avec success');
+    
+        
+        if (!empty($valid['new_categorie'])) {
+            $categorie = new Categories();
+            $categorie->nom = $valid['new_categorie'];
+            $categorie->save();
+            $valid['categorie'] = $categorie->id; 
+        }else{
+            $categorie=$valid['categorie'] ;
+        }
+        $marchandise->nom = $valid['nom'];
+        $marchandise->barre_code = $valid['barre_code'];
+        $marchandise->description = $valid['description'];
+        $marchandise->quantite = $valid['quantite'];
+    
+        if ($request->file('image') != null) {
+            $marchandise->image = $request->file('image')->store('logos', 'public');
+        }
+    
+        $marchandise->id_cat = $valid['categorie'] ?? null;
+        $marchandise->save();
+        return redirect()->route('marchandises.index',$categorie)->with('success', 'marchandise modifier  avec success');
     }
 
     public function delete(Request $request) {
