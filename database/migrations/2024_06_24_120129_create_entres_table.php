@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->integer('quantite');
             $table->unsignedBigInteger('id_mar')->nullable();
-            $table->foreign('id_mar')->references('id')->on('marchandises')->onDelete('set null');
+            $table->foreign('id_mar')->references('id')->on('marchandises')->onDelete('cascade');
             $table->timestamps();
 
         });
