@@ -18,7 +18,7 @@
             @foreach($tous as $item)
                 <tr class="bg-white  hover:bg-gray-50" href='categories.index_mar_'>
                     <td class="py-4 px-6">{{ $item->type }}</td>
-                    <td class="py-4 px-6">{{ $item->date_doc }}</td>
+                    <td class="py-4 px-6">{{ $item->created_at }}</td>
                     <td class="py-4 px-6">
                         {{-- <form action="{{ route('entres.delete', $item) }}" method="POST" class="inline">
                             @csrf

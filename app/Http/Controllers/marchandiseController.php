@@ -64,6 +64,8 @@ class marchandiseController extends Controller
         $categorie->nom = $valid['new_categorie'];
         $categorie->save();
         $valid['categorie'] = $categorie->id; 
+    }else{
+        $categorie=$valid['categorie'] ;
     }
 
    
@@ -79,9 +81,7 @@ class marchandiseController extends Controller
 
     $marchandise->id_cat = $valid['categorie'] ?? null;
     $marchandise->save();
-
-
-    return redirect()->route('marchandises.index')->with('success', 'Marchandise ajoutée avec succès.');
+    return redirect()->route('marchandises.index',$categorie)->with('success', 'Marchandise ajoutée avec succès.');
 }
     public function edit(marchandises $marchandises) {
         return View('marchandises.edit',['marchandise'=>$marchandises,'categorie'=>categories::all()]);

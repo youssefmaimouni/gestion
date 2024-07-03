@@ -53,9 +53,9 @@ class CategorieController extends Controller
 
     public function index_mar_acheter( entres $entre)
     {
-        $mar_e = marchandises::select('marchandises.*', DB::raw('"entre" as type'), DB::raw('marchandises.quantite-acheters.quantite as qte'))
-            ->join('acheters', 'acheters.id_mar', '=', 'marchandises.id')
-            ->where('acheters.id_entre', $entre->id)
+        $mar_e = marchandises::select('marchandises.*', DB::raw('"entre" as type'))
+            ->join('entres', 'entres.id_mar', '=', 'marchandises.id')
+            ->where('entres.id', $entre->id)
             ->get();
             
         return view('categories.index_mar', ['marchandises' => $mar_e]);
@@ -68,8 +68,8 @@ class CategorieController extends Controller
   
 
         $mar_s =  marchandises::select('marchandises.*', DB::raw('"sortie" as type'))
-        ->join('vendres','vendres.id_mar','=','marchandises.id')
-        ->where('vendres.id_sortie', $sorties->id)
+        ->join('sorties','sorties.id_mar','=','marchandises.id')
+        ->where('sorties.id', $sorties->id)
         ->get();
 
         
@@ -111,14 +111,16 @@ class CategorieController extends Controller
     public function entre_sortie(categories $categories) {
         // Récupérer les entres en ajoutant une colonne 'type' avec la valeur 'entre'
         $entres = entres::select('entres.*', DB::raw('"entre" as type'))
-            ->where('entres.id_cat', $categories->id)
-            ->orderBy('entres.date_doc', 'desc')                  
+            ->join('marchandises','entres.id_mar','=','marchandises.id')
+            ->where('marchandises.id_cat','=',$categories->id)
+            ->orderBy('entres.created_at', 'desc')                  
             ->get();
     
         // Récupérer les sorties en ajoutant une colonne 'type' avec la valeur 'sortie'
         $sorties = sorties::select('sorties.*', DB::raw('"sortie" as type'))
-            ->where('sorties.id_cat', $categories->id)
-            ->orderBy('sorties.date_doc', 'desc')                  
+            ->join('marchandises','sorties.id_mar','=','marchandises.id')
+            ->where('marchandises.id_cat','=',$categories->id)
+            ->orderBy('sorties.created_at', 'desc')                  
             ->get();
     
         // Fusionner les collections d'entres et de sorties
@@ -126,7 +128,7 @@ class CategorieController extends Controller
     
         // Trier toutes les données ensemble par date de document en ordre décroissant
         $tous = $tous->sort(function ($a, $b) {
-            $comp = strcmp($b->date_doc, $a->date_doc); // Tri décroissant par 'date_doc'
+            $comp = strcmp($b->created_at, $a->created_at); // Tri décroissant par 'created_at'
             if ($comp === 0) {
                 return strcmp($b->created_at, $a->created_at); // Si égaux, tri décroissant par 'created_at'
             }
@@ -145,18 +147,20 @@ class CategorieController extends Controller
     public function entre(categories $categories ){
 
         $entres = entres::select('entres.*', DB::raw('"entre" as type'))
-        ->where('entres.id_cat', $categories->id)
-        ->orderBy('entres.date_doc', 'desc')                  
-        ->get();
-  
-
+            ->join('marchandises','entres.id_mar','=','marchandises.id')
+            ->where('marchandises.id_cat','=',$categories->id)
+            ->orderBy('entres.created_at', 'desc')                  
+            ->get();
+    
+        // Récupérer les sorties en ajoutant une colonne 'type' avec la valeur 'sortie'
         $sorties = sorties::select('sorties.*', DB::raw('"sortie" as type'))
-        ->where('sorties.id_cat', $categories->id)
-        ->orderBy('sorties.date_doc', 'desc')                  
-        ->get();
+            ->join('marchandises','sorties.id_mar','=','marchandises.id')
+            ->where('marchandises.id_cat','=',$categories->id)
+            ->orderBy('sorties.created_at', 'desc')                  
+            ->get();
 
         $tous = $entres->merge($sorties);
-        $tous = $tous->sortByDesc('date_doc');
+        $tous = $tous->sortByDesc('created_at');
 
         return view('categories.entre', ['categories'=>$categories,'tous' => $tous,'entres'=>$entres , 'sorties'=>$sorties]);
 
@@ -165,17 +169,19 @@ class CategorieController extends Controller
     public function sortie(categories $categories ){
 
         $entres = entres::select('entres.*', DB::raw('"entre" as type'))
-        ->where('entres.id_cat', $categories->id)
-        ->orderBy('entres.date_doc', 'desc')                  
-        ->get();
-
+            ->join('marchandises','entres.id_mar','=','marchandises.id')
+            ->where('marchandises.id_cat','=',$categories->id)
+            ->orderBy('entres.created_at', 'desc')                  
+            ->get();
+    
+        // Récupérer les sorties en ajoutant une colonne 'type' avec la valeur 'sortie'
         $sorties = sorties::select('sorties.*', DB::raw('"sortie" as type'))
-        ->where('sorties.id_cat', $categories->id)
-        ->orderBy('sorties.date_doc', 'desc')                  
-        ->get();
-
+            ->join('marchandises','sorties.id_mar','=','marchandises.id')
+            ->where('marchandises.id_cat','=',$categories->id)
+            ->orderBy('sorties.created_at', 'desc')                  
+            ->get();
         $tous = $entres->merge($sorties);
-        $tous = $tous->sortByDesc('date_doc');
+        $tous = $tous->sortByDesc('created_at');
 
         return view('categories.sortie', ['categories'=>$categories,'tous' => $tous,'entres'=>$entres , 'sorties'=>$sorties]);
     }
