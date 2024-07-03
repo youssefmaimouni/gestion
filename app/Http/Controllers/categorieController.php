@@ -53,7 +53,7 @@ class CategorieController extends Controller
 
     public function index_mar_acheter( entres $entre)
     {
-        $mar_e = marchandises::select('marchandises.*', DB::raw('"entre" as type'))
+        $mar_e = marchandises::select('marchandises.*', DB::raw('"entre" as type'), DB::raw('entres.quantite as qte '))
             ->join('entres', 'entres.id_mar', '=', 'marchandises.id')
             ->where('entres.id', $entre->id)
             ->get();
@@ -67,7 +67,7 @@ class CategorieController extends Controller
         
   
 
-        $mar_s =  marchandises::select('marchandises.*', DB::raw('"sortie" as type'))
+        $mar_s =  marchandises::select('marchandises.*', DB::raw('"sortie" as type'), DB::raw('sorties.quantite as qte '))
         ->join('sorties','sorties.id_mar','=','marchandises.id')
         ->where('sorties.id', $sorties->id)
         ->get();
