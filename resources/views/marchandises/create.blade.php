@@ -1,7 +1,8 @@
 <x-nav-bar>
     <style>
+        
         .tabAnim {
-            z-index: 1;
+        z-index: 1;
         }
     
         #private:checked~div {
@@ -11,7 +12,6 @@
         #public:checked~div {
             --tw-translate-x: 100%;
         }
-        
         .profile-pic {
             border-radius: 50%;
             height: 150px;
@@ -38,6 +38,7 @@
     
         .profile-pic span {
             display: inline-block;
+            /* color: black; */
             padding-top: 4.5em;
             padding-bottom: 4.5em;
         }
@@ -63,13 +64,15 @@
                         <div class="mb-6">
                             <center>
                                 <label for="fileToUpload">
-                                    <div class="profile-pic" id="photo" style="background-image: url('/logo.jpg')">
-                                        <span>Add Image</span>
-                                    </div>
+                                    {{-- @dd($site->logo) --}}
+                                        <div class="profile-pic" id="photo" style="background-image: url('/logo.jpg')">
+                                            <!-- <span class="glyphicon glyphicon-camera"></span> -->
+                                            <span>Changer Image</span>
+                                        </div>
                                 </label>
                             </center>
                         </div>
-                        <input type="file" name="image" accept="image/png, image/gif, image/jpeg,image/jpg" id="fileToUpload">
+                        <input type="File" name="image" accept="image/png, image/gif, image/jpeg,image/jpg" value=""  id="fileToUpload">
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">Nom du marchandise</label>
                             <input type="text" class="border border-gray-200 rounded p-2 w-full" name="nom" placeholder="title"  />
@@ -121,23 +124,24 @@
         </main>
     </div>
     <script>
-   
         const img = document.querySelector('#photo');
         const file = document.querySelector('#fileToUpload');
         file.addEventListener('change', function () {
             const choosedFile = this.files[0];
     
             if (choosedFile) {
+    
                 const reader = new FileReader();
     
                 reader.addEventListener('load', function () {
-                    img.style.backgroundImage = "url('" + reader.result + "')";
+                    img.setAttribute('src', reader.result);
+                    img.setAttribute('style', "background-image: url('" + reader.result + "')");
                 });
     
                 reader.readAsDataURL(choosedFile);
+    
             }
         });
-    });
     </script>
 </x-nav-bar>
     

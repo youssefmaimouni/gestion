@@ -7,17 +7,44 @@ use App\Models\categories;
 use App\Models\entres;
 use App\Models\marchandises;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class marchandiseController extends Controller
 {
-    public function index(){
-        $marchandise = marchandises::all();
+    public function index_cat() {
+        // Retrieve all categories
+        $categories = categories::all();
+    
+        // Fetch total 'entres' (purchases) grouped by category ID
+        $entres = marchandises::select('categories.id', DB::raw('COALESCE(SUM(marchandises.quantite), 0) as total_achetes'))
+                                ->join('categories', 'categories.id', '=', 'marchandises.id_cat')
+                                ->groupBy('categories.id')
+                                ->pluck('total_achetes', 'categories.id');
+    
+        // Fetch total 'sorties' (sales) grouped by category ID
+        $sorties = marchandises::select('categories.id', DB::raw('COALESCE(SUM(sorties.quantite), 0) as total_vendus'))
+                                ->leftJoin('sorties', 'sorties.id_mar', '=', 'marchandises.id')
+                                ->join('categories', 'categories.id', '=', 'marchandises.id_cat')
+                                ->groupBy('categories.id')
+                                ->pluck('total_vendus', 'categories.id');
+    
+        // Combine 'entres' and 'sorties' with categories
+        foreach ($categories as $category) {
+            $category->total_achetes = $entres[$category->id] ?? 0;
+            $category->total_vendus = $sorties[$category->id] ?? 0;
+        }
+    
+        // Return the view with the categories data
+        return view('marchandises.index_cat', compact('categories'));
+    }
+    public function index(categories $categories){
+        $marchandise = marchandises::where('id_cat','=',$categories->id)->get();
         return view('marchandises.index', ['marchandises'=>$marchandise]);
     }
 
    
     public function create() {
-        return View('marchandises.create',['categorie'=>categories::all()]);
+        return view('marchandises.create',['categorie'=>categories::all()]);
     }
     public function store(Request $request){
         $valid = $request->validate([
@@ -76,6 +103,6 @@ class marchandiseController extends Controller
     public function delete(Request $request) {
                 $marchandise = marchandises::find($request->id);
                $marchandise->delete();
-        return redirect('/marchandises')->with('success','marchandise supprimer  avec success');
+        return redirect()->back()->with('success','marchandise supprimer  avec success');
    }
 }

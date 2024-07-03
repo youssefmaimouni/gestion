@@ -48,7 +48,8 @@ Route::get('/categories/sortie/{sorties}', [categorieController::class, 'index_m
 
 
 
-Route::get('/marchandises', [marchandiseController::class, 'index'])->name('marchandises.index');
+Route::get('/marchandises', [marchandiseController::class, 'index_cat'])->name('marchandises.index_cat');
+Route::get('/marchandises/categories/{categories}', [marchandiseController::class, 'index'])->name('marchandises.index');
 Route::get('/marchandises/create', [marchandiseController::class, 'create'])->name('marchandises.create');
 Route::post('/marchandises', [marchandiseController::class, 'store'])->name('marchandises.store');
 Route::put('/marchandises/{marchandise}', [marchandiseController::class, 'update'])->name('marchandises.update');
