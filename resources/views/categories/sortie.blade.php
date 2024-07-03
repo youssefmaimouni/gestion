@@ -63,6 +63,7 @@
         function warnning(id) {
             document.getElementById('deleteGroupModal').classList.remove('hidden');
             const deleteGroupIdInput = document.getElementById('deleteGroupId');
+            // Set the hidden input field's value to the retrieved group ID
             deleteGroupIdInput.value = id;
             document.getElementById('cont').classList.add('blur-sm');
             document.getElementById('cont').classList.add('pointer-events-none');
