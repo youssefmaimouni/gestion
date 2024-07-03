@@ -53,11 +53,11 @@ class CategorieController extends Controller
 
     public function index_mar_acheter( entres $entre)
     {
-        $mar_e = marchandises::select('marchandises.*', DB::raw('"entre" as type'))
+        $mar_e = marchandises::select('marchandises.*', DB::raw('"entre" as type'), DB::raw('marchandises.quantite-acheters.quantite as qte'))
             ->join('acheters', 'acheters.id_mar', '=', 'marchandises.id')
             ->where('acheters.id_entre', $entre->id)
             ->get();
-    
+            
         return view('categories.index_mar', ['marchandises' => $mar_e]);
     }
     

@@ -46,34 +46,43 @@ class marchandiseController extends Controller
     public function create() {
         return view('marchandises.create',['categorie'=>categories::all()]);
     }
-    public function store(Request $request){
-        $valid = $request->validate([
-            'nom'=>'required|min:3|string',
-            'barre_code'=>'integer|nullable',
-            'description'=>'string|nullable',
-            'quantite'=>'integer|nullable',
-            'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-            'categorie'=>'nullable|exists:categories,id',
-        ]);
-        $marchandise = new marchandises();
-        $marchandise->nom=$valid['nom'];
-        $marchandise->barre_code=$valid['barre_code'];
-        $marchandise->description=$valid['description'];
-        $marchandise->quantite=$valid['quantite'];
-         if ($request->file('image') != null) {
-            $marchandise->image =  $request->file('image')->store('logos', 'public');
-        }
-        $marchandise->id_cat=$valid['categorie']??null;
-        $marchandise->save();
-        if ($marchandise->quantite>0){
-            $entre = new entres(); 
-            $entre->quantite=$valid['quantite'];
-            $entre->id_mar=$marchandise->id;
-            $entre->save();
-        }
-       
-        return redirect('/marchandises')->with('success','marchandise ajouter avec success');
+   public function store(Request $request) {
+    // Valider les données d'entrée
+    $valid = $request->validate([
+        'nom' => 'required|min:3|string',
+        'barre_code' => 'integer|nullable',
+        'description' => 'string|nullable',
+        'quantite' => 'integer|nullable',
+        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
+        'categorie' => 'nullable',
+        'new_categorie' => 'nullable|string|min:3' 
+    ]);
+
+    
+    if (!empty($valid['new_categorie'])) {
+        $categorie = new Categories();
+        $categorie->nom = $valid['new_categorie'];
+        $categorie->save();
+        $valid['categorie'] = $categorie->id; 
     }
+
+   
+    $marchandise = new marchandises();
+    $marchandise->nom = $valid['nom'];
+    $marchandise->barre_code = $valid['barre_code'];
+    $marchandise->description = $valid['description'];
+    $marchandise->quantite = $valid['quantite'];
+
+    if ($request->file('image') != null) {
+        $marchandise->image = $request->file('image')->store('logos', 'public');
+    }
+
+    $marchandise->id_cat = $valid['categorie'] ?? null;
+    $marchandise->save();
+
+
+    return redirect()->route('marchandises.index')->with('success', 'Marchandise ajoutée avec succès.');
+}
     public function edit(marchandises $marchandises) {
         return View('marchandises.edit',['marchandise'=>$marchandises,'categorie'=>categories::all()]);
     }

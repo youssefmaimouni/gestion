@@ -52,7 +52,7 @@
             display: none;
         }
     </style>
-    <title>Ajouter Site</title>
+    <title>gestion de stock</title>
 </head>
 
 <body style="height: 100%; background-color: #f5f5f5 " class="overflow-hidden">
@@ -102,7 +102,7 @@
                     documents
                 </p>
             </a>
-            <a class="flex text-laravel font-medium text items-center hover:bg-slate-700  p-3 w-full {{ request()->is('categories') ? 'bg-slate-400' : '' }}"
+            <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full"
                 href="/categories">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
@@ -114,7 +114,7 @@
                     categories
                 </p>
             </a>
-            <a class="flex text-laravel font-medium text items-center hover:bg-slate-700  p-3 w-full {{ request()->is('rapports') ? 'bg-slate-400' : '' }}" href="/rapports">
+            <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full" href="/rapports">
                 <svg width="30px" height="30px" viewBox="0 0 48 48" data-name="Layer 1" id="Layer_1"
                     xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -177,7 +177,7 @@
                 </p>
             </a>
             <a href="/sorties/create"
-                class="flex text-laravel font-medium text items-center hover:bg-slate-700  p-3 w-full">
+                class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path

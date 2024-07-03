@@ -57,7 +57,7 @@ Route::delete('/marchandises/delete', [marchandiseController::class, 'delete'])-
 Route::get('/marchandises/{marchandises}/edit', [marchandiseController::class, 'edit'])->name('marchandises.edit');
 
 
-Route::get('/entres/create', [entreController::class, 'create'])->name('entres.create');
+Route::get('/entres/create', [marchandiseController::class, 'create'])->name('entres.create');
 Route::post('/entres', [entreController::class, 'store'])->name('entres.store');
 Route::put('/entres/{entre}', [entreController::class, 'update'])->name('entres.update');
 Route::delete('/entres/{entre}', [entreController::class, 'delete'])->name('entres.delete');

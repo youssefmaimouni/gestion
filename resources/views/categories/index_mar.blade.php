@@ -53,8 +53,12 @@
                         <th scope="col" class="py-3 px-6 ">barre code</th>
                         <th scope="col" class="py-3 px-6 ">categorie</th>
                         <th scope="col" class="py-3 px-6 ">quantite</th>
+                        @if(isset($marchandise->qte))
+                        <th scope="col" class="py-3 px-6 ">quantite traité</th>
+                        @endif
                         <th scope="col" class="py-3 px-6 ">description</th>
                         <th scope="col" class="py-3 px-6 text-center">action</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -73,6 +77,9 @@
                         <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
                         <td class="py-4 px-6 ">{{ $marchandise->categories->nom }}</td>
                         <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
+                        @if(isset($marchandise->qte))
+                        <td class="py-4 px-6">{{ $marchandise->qte }}</td>
+                        @endif
                         <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
                         <td class="py-4 px-6 justify-center flex text-center">
                                 <p onclick="warnning({{ $marchandise->id }})"
