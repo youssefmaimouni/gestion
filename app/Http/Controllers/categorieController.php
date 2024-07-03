@@ -46,23 +46,21 @@ return view('categories.index', compact('categories'));
     }
     
 
-    public function index_mar_vendre(categories $categories,sorties $sorties){
+    public function index_mar_vendre(sorties $sorties){
     
         
   
 
         $mar_s =  marchandises::select('marchandises.*', DB::raw('"sortie" as type'))
-        ->join('vendres','vendres.id_mar','=','marchandise.id')
-        ->where('marchandises.id_cat', $categories->id)
-        ->where('vendres.id_entre', $sorties->id)
+        ->join('vendres','vendres.id_mar','=','marchandises.id')
+        ->where('vendres.id_sortie', $sorties->id)
         ->get();
 
         
-
         return view('categories.index_mar',['marchandises'=>$mar_s]);
         
     }
-    
+
     public function create() {
         return view('categories.create');
     }

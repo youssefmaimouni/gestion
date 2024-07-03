@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\categories;
-use App\Models\clients;
 use App\Models\marchandises;
 use App\Models\sorties;
 use Illuminate\Http\Request;
@@ -17,32 +16,26 @@ class sortieController extends Controller
     }
 
     public function create() {
-        return view('sorties.create',['clients'=>clients::all(),'categories'=>categories::all()]);
+        return view('sorties.create',['categories'=>categories::all()]);
     }
     public function store(Request $request) {
         $validatedData = $request->validate([
-           'date_doc' => 'date|required',
-            'description' => 'string|nullable',
-            'id_client' => 'integer|nullable',
-            'id_cat' => 'integer|nullable',
-            'remise'=>'integer|nullable',
-            'attachement' => 'nullable|mimes:png,gif,jpeg,jpg,pdf|max:2048',
+                'quantite'=>'integer',
+                'id_mar'=>'exists:marchandises,id'
         ]);
+        $marchandises = Marchandises::find($validatedData['id_mar']);
     
-        $sortie = new sorties(); 
-        $sortie->date_doc = $validatedData['date_doc'];
-        $sortie->description = $validatedData['description']; 
-        $sortie->remise = $validatedData['remise']; 
-        $sortie->id_client = $validatedData['id_client'];
-        $sortie->id_cat = $validatedData['id_cat'];
-        if ($request->file('attachement')) {
-            $file = $request->file('attachement');
-            $path = $file->store('uploads', 'public');
-            $sortie->attachement = $path; 
+        if ($validatedData['quantite'] > $marchandises->quantite) {
+            return redirect()->back()->with('error','La quantité demandée dépasse la quantité disponible.');
         }
-
+        $sortie = new sorties(); 
+       $sortie->quantite=$validatedData['quantite'];
+       $sortie->id_mar=$validatedData['id_mar'];
+       $marchandises->quantite=$marchandises->quantite-$validatedData['quantite'];
+       $marchandises->save();
         $sortie->save();
-        return redirect('/sorties/'.$sortie->id.'/'.$sortie->id_cat.'/mar')->with('success');
+    
+        return redirect()->back()->with('success', 'Entry created successfully.');
     }
 
     public function vendre(sorties $sorties, categories $categories ){
@@ -59,22 +52,15 @@ class sortieController extends Controller
     public function update(Request $request,sorties $sortie )
     {
         $validatedData = $request->validate([
-            'date_doc' => 'date|required',
-             'description' => 'string|nullable',
-             'id_client' => 'integer|nullable',
-             'id_cat' => 'integer'
-         ]);
-     
-        
-         $sortie->date_doc = $validatedData['date_doc'];
-         $sortie->description = $validatedData['description']; 
-         $sortie->id_client = $validatedData['id_clt'];
-         $sortie->id_cat = $validatedData['id_cat'];
-         $sortie->save();
+            'quantite'=>'integer',
+            'id_mar'=>'exists:marchandises,id'
+    ]);
+    $sortie = new sorties(); 
+   $sortie->quantite=$validatedData['quantite'];
+   $sortie->id_mar=$validatedData['id_mar'];
+    $sortie->save();
 
-         return redirect('/sorties/'.$sortie->id.'/'.$sortie->id_cat.'/mar')->with('success');
-       
-        
+    return redirect()->back()->with('success');
     }
 
     public function delete(sorties  $sortie) {

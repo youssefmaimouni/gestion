@@ -8,21 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class sorties extends Model
 {
     protected $fillable =[
-        'date_doc',
-        'attachement',
-        'remise',
-        'description'
+        'quantite'
     ];
-    
-    public function client()
+    public function marchandise()
     {
-        return $this->belongsTo(clients::class, 'id_clt');
+        return $this->belongsTo(marchandises::class, 'id_mar');
     }
-
-    public function categorie()
-    {
-        return $this->belongsTo(categories::class, 'id_cat');
-    }
-   
     use HasFactory;
 }

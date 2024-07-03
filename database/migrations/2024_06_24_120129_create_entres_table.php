@@ -14,17 +14,9 @@ return new class extends Migration
         Schema::create('entres', function (Blueprint $table) {
             $table->id();
 
-            $table->date('date_doc');
-
-            $table->unsignedBigInteger('id_four')->nullable();
-            $table->foreign('id_four')->references('id')->on('fournisseurs')->onDelete('set null');
-
-            $table->unsignedBigInteger('id_cat')->nullable();
-            $table->foreign('id_cat')->references('id')->on('categories')->onDelete('set null');
-
-            $table->string('attachement')->nullable();
-
-            $table->text('description')->nullable();
+            $table->integer('quantite');
+            $table->unsignedBigInteger('id_mar')->nullable();
+            $table->foreign('id_mar')->references('id')->on('marchandises')->onDelete('set null');
             $table->timestamps();
 
         });

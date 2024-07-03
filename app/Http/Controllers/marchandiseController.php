@@ -3,13 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\acheters;
 use App\Models\categories;
 use App\Models\entres;
-use App\Models\fournisseurs;
 use App\Models\marchandises;
-use Exception;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class marchandiseController extends Controller
@@ -21,7 +17,7 @@ class marchandiseController extends Controller
 
    
     public function create() {
-        return View('marchandises.create',['categorie'=>categories::all(),'fournisseurs'=>fournisseurs::all()]);
+        return View('marchandises.create',['categorie'=>categories::all()]);
     }
     public function store(Request $request){
         $valid = $request->validate([
@@ -43,22 +39,10 @@ class marchandiseController extends Controller
         $marchandise->id_cat=$valid['categorie']??null;
         $marchandise->save();
         if ($marchandise->quantite>0){
-            $validate=$request->validate([
-                'date_doc' => 'required|date',
-                'id_four' => 'nullable|integer',
-            ]);
             $entre = new entres(); 
-            $entre->date_doc =$validate['date_doc'];
-            $entre->description =$valid['description']; 
-            $entre->id_four =$validate['id_four']?? null;
-            $entre->id_cat = $valid['categorie']??null;
+            $entre->quantite=$valid['quantite'];
+            $entre->id_mar=$marchandise->id;
             $entre->save();
-
-            $acheter = new acheters(); 
-        $acheter->id_entre = $entre->id;
-        $acheter->id_mar = $marchandise->id; 
-        $acheter->quantite = $valid['quantite'];
-        $acheter->save();
         }
        
         return redirect('/marchandises')->with('success','marchandise ajouter avec success');
