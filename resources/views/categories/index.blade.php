@@ -4,15 +4,15 @@
         <p class="text-xl w-1/3  m-3 pl-6"><a href="{{ route('categories.create') }}" class="text-blue-600 hover:text-blue-900">Ajouter categorie</a> </p>
     </div>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto  ">
           
 
-            <div class=" overflow-hidden gap-3 grid grid-cols-3 justify-items-center">
+            <div class=" gap-3 grid grid-cols-3 justify-items-center ml-1">
             @foreach($categories as $categorie)
-               <a href="{{ route('categories.entre_sortie', $categorie) }}" class="h-52 w-full bg-slate-400 m-3 flex items-center flex-col   text-center justify-center">
-                {{ $categorie->nom }} <br>
-                entré:{{ $categorie->total_achetes }} <br>
-                sortié:{{ $categorie->total_vendus }} 
+               <a href="{{ route('categories.entre_sortie', $categorie) }}" class="h-52 w-full bg-white shadow-md hover:bg-gray-50 rounded border   flex items-center flex-col   text-center justify-center">
+                <p class="text-center font-bold text-black text-2xl underline">{{ $categorie->nom }}</p><br>
+                <div class="justify-between gap-1 flex min-w-1/3"><p>entré:{{ $categorie->total_achetes }}</p>  
+                <p>sortié:{{ $categorie->total_vendus }} </p></div>
                </a>
                
                @endforeach
