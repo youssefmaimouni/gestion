@@ -9,7 +9,7 @@
 
             <div class=" overflow-hidden gap-3 grid grid-cols-3 justify-items-center">
             @foreach($categories as $categorie)
-               <a href="{{ route('marchandises.index', $categorie) }}" class="h-52 w-full bg-slate-400 m-3 flex items-center flex-col   text-center justify-center ">
+               <a href="{{ route('marchandises.index', $categorie) }}" class="h-52 w-full bg-slate-400 m-3 flex items-center flex-col rounded hover:border-2 hover:border-gray-100   text-center justify-center ">
                 <p class="text-center font-bold text-black text-2xl underline">{{ $categorie->nom }}</p> <br>
                 entré:{{ $categorie->total_achetes }} <br>
                 sortié:{{ $categorie->total_vendus }} 
