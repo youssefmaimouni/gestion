@@ -119,6 +119,7 @@
             document.getElementById('deleteGroupModal').classList.remove('hidden');
             document.getElementById('deleteGroupId').value = id;
             document.getElementById('deleteForm').action = type === 'entre' ? '/entres/delete' : '/sorties/delete';
+            
             document.getElementById('cont').classList.add('blur-sm');
             document.getElementById('cont').classList.add('pointer-events-none');
         }
