@@ -54,32 +54,30 @@
                         <th scope="col" class="py-3 px-6 ">categorie</th>
                         <th scope="col" class="py-3 px-6 ">quantite</th>
                         <th scope="col" class="py-3 px-6 ">description</th>
-                        <th scope="col" class="py-3 px-6 text-center">action</th>
                         
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($marchandises as $marchandise)
-                    <tr class="bg-white border-b hover:bg-gray-300 hover:text-black ">
-                        <td class="py-4 px-6 ">
-                                <img
-                                class="image w-10 h-10 rounded-full bg-cover"
-                                {{-- src="{{$listing->logo ? asset('storage/'.$listing->logo):asset('/images/no-image.png')}}" --}}
-                                src="{{asset("/storage/".$marchandise->image )}}"
-                                alt=""
-                                
-                            />
+                    <td class="py-4 px-6">
+                        @if (isset($marchandise->image) && $marchandise->image !== null)
+                            <img class="image w-10 h-10 rounded-full bg-cover"
+                                src="{{ asset('/storage/' . $marchandise->image) }}" alt="" />
+                        @else
+                            <img class="image w-10 h-10 rounded-full bg-cover"
+                                src="{{ asset('/logo.jpg') }}" alt="" />
+                        @endif
+
                     </td>
                         <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
-                        <td class="py-4 px-6 ">{{ $marchandise->barre_code }}</td>
+                        @if($marchandise->barre_code)
+                                   <td ><abbr title="{{$marchandise->barre_code}}"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C39') !!}</abbr></td>
+                        @else
+                            <td>Pas de code barre</td>
+                        @endif
                         <td class="py-4 px-6 ">{{ $marchandise->categories->nom }}</td>
                         <td class="py-4 px-6 ">{{ $marchandise->qte }}</td>
                         <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
-                        <td class="py-4 px-6 justify-center flex text-center">
-                                <p onclick="warnning({{ $marchandise->id }})"
-                                    class="text-red-600 hover:text-red-900 cursor-pointer">Supprimer</p><a
-                                    href="/marchandises/{{ $marchandise->id }}/edit"class="text-blue-600 hover:text-blue-900 ml-4 cursor-pointer">Modifier</a>
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>

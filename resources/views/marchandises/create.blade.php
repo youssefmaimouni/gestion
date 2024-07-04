@@ -49,32 +49,10 @@
         }
     </style>
     
-    <div class="mb-48 bg-gray-100">
+    <div class="bg-gray-100">
         <main>
-            <div class="container mt-4">
-                @if ($errors->any())
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-                        role="alert">
-                        <strong class="font-bold">Oops!</strong>
-                        <span class="block sm:inline">Il y avait quelques problèmes avec vos données
-                            saisies.</span>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if (session('success'))
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
-                        role="alert">
-                        <strong class="font-bold">Succès!</strong>
-                        <span class="block sm:inline">{{ session('success') }}</span>
-                    </div>
-                @endif
-            </div>
             <div class="mx-4">
-                <div class="bg-gray-50 border border-gray-200 shadow-md p-10 rounded max-w-lg mx-auto mt-24">
+                <div class="bg-gray-50 border border-gray-200 shadow-md p-10 rounded max-w-lg mx-auto mt-4">
                     <header class="text-center">
                         <h2 class="text-3xl font-bold uppercase mb-1">
                             Ajouter une Marchandise
@@ -97,14 +75,14 @@
                         <input type="File" name="image" accept="image/png, image/gif, image/jpeg,image/jpg" value=""  id="fileToUpload">
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">Nom du marchandise</label>
-                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="nom" placeholder="title"  />
+                            <input type="text" class="border border-gray-200 rounded p-2 w-full" name="nom" placeholder="nom"  />
                             @error('nom')
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
                         </div>
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">Code barre</label>
-                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="barre_code" placeholder="title" />
+                            <input type="number" class="border border-gray-200 rounded p-2 w-full" name="barre_code" placeholder="Code barre" />
                             @error('barre_code')
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror
@@ -124,10 +102,17 @@
                                 @endforeach
                                 <option value="add">ajouter categorie</option>
                             </select>
+                            @if (count($categorie) > 0)
                             <div id="inputForm" class="hidden">
                                 <label for="newCategorie" class="inline-block text-lg mb-2">Nouvelle catégorie</label>
                                 <input type="text" id="newCategorie" name="new_categorie" class="border border-gray-200 rounded p-2 w-full" placeholder="Nouvelle catégorie">
                             </div>
+                            @else
+                            <div >
+                                <label for="newCategorie" class="inline-block text-lg mb-2">Nouvelle catégorie</label>
+                                <input type="text" id="newCategorie" name="new_categorie" class="border border-gray-200 rounded p-2 w-full" placeholder="Nouvelle catégorie">
+                            </div>
+                            @endif
                             @error('categorie')
                                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                             @enderror

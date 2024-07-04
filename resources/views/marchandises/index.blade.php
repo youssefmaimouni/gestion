@@ -1,4 +1,14 @@
 <x-nav-bar>
+    <style>
+        .line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+    </style>
     <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md z-50" id="deleteGroupModal"
         style="width: 400px; justify-items: center; align-content: space-evenly ;height: 200px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
         aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
@@ -191,7 +201,10 @@
                                     @endif
                                 </td>
                                 <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
-                                <td class="py-4 px-6 "><p class="overflow-hidden max-h-10">{{ $marchandise->description }}</p></td>
+                                <td class="py-4 px-6">
+                                    <p class="overflow-hidden max-h-10 line-clamp-2">{{ $marchandise->description }}</p>
+                                  </td>
+                                  
                                 <td class="py-4 px-6 justify-between flex text-center space-x-2">
                                     <button onclick="warnning2({{ $marchandise->id }})" title="Ajout"
                                         aria-label="Ajout"

@@ -73,7 +73,7 @@
                     marchandises
                 </p>
             </a>
-            <a class="flex text-laravel font-medium text items-center hover:bg-slate-300  p-3 w-full {{ request()->is('categories/*/documents/*') ? 'bg-slate-400' : '' }} {{ request()->is('categories/*/documents') ? 'bg-slate-400' : '' }} {{ request()->is('documents') ? 'bg-slate-400' : '' }}" href="/documents">
+            <a class="flex text-laravel font-medium text items-center hover:bg-slate-300  p-3 w-full {{ request()->is('categories/entre/*') ? 'bg-slate-400' : '' }} {{ request()->is('categories/sortie/*') ? 'bg-slate-400' : '' }} {{ request()->is('categories/*/documents/*') ? 'bg-slate-400' : '' }} {{ request()->is('categories/*/documents') ? 'bg-slate-400' : '' }} {{ request()->is('documents') ? 'bg-slate-400' : '' }}" href="/documents">
                 <svg height='30px' enable-background="new 0 0 512 512" version="1.1" viewBox="0 0 512 512"
                     xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g id="Layer_1" />

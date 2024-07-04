@@ -49,10 +49,10 @@
         }
     </style>
     
-    <div class="mb-48 bg-gray-100">
+    <div class=" bg-gray-100">
         <main>
             <div class="mx-4">
-                <div class="bg-gray-50 border border-gray-200 shadow-md p-10 rounded max-w-lg mx-auto mt-24">
+                <div class="bg-gray-50 border border-gray-200 shadow-md p-10 rounded max-w-lg mx-auto mt-4">
                     <header class="text-center">
                         <h2 class="text-3xl font-bold uppercase mb-1">
                             Ajouter une Marchendise
@@ -85,7 +85,7 @@
                         <div class="mb-6">
                             <label for="title" class="inline-block text-lg mb-2">Code barre</label>
                             <input type="number" class="border border-gray-200 rounded p-2 w-full" value="{{ $marchandise->barre_code }}" name="barre_code"
-                            placeholder="title"  />
+                            placeholder="Code barre"  />
                             @error('barre_code')
                             <p class="text-red-500 test-xs mt-1">{{$message}}</p>
                             @enderror
