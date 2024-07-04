@@ -118,7 +118,6 @@ class marchandiseController extends Controller
         $marchandise->nom = $valid['nom'];
         $marchandise->barre_code = $valid['barre_code'];
         $marchandise->description = $valid['description'];
-        $marchandise->quantite = $valid['quantite'];
     
         if ($request->file('image') != null) {
             $marchandise->image = $request->file('image')->store('logos', 'public');
