@@ -4,6 +4,7 @@ use App\Http\Controllers\categorieController;
 use App\Http\Controllers\entreController;
 use App\Http\Controllers\marchandiseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\rapportController;
 use App\Http\Controllers\sortieController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,8 @@ Route::post('/sorties', [sortieController::class, 'store'])->name('sorties.store
 Route::put('/sorties/{sortie}', [sortieController::class, 'update'])->name('sorties.update');
 Route::delete('/sorties/{sortie}', [sortieController::class, 'delete'])->name('sorties.delete');
 Route::get('/sorties/{sorties}/edit', [sortieController::class, 'edit'])->name('sorties.edit');
+
+Route::get('/rapports', [rapportController::class, 'index'])->name('rapports.index');
 
 });
 

@@ -2,53 +2,10 @@
    
    
     <div id="cont" class="">
-        <div class=" flex">
+        <div class=" flex-1">
+            <div class="flex-1 w-full">
             <p class="text-2xl w-2/3 m-3 pl-6 underline underline-offset-4">Rapport</p>
-          
-                <div class="container  w-full">
-                    <!-- Error Message -->
-                    @if (session('error'))
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-                            role="alert">
-                            <strong class="font-bold">Erreur!</strong>
-                            <span class="block sm:inline">{{ session('error') }}</span>
-                        </div>
-                    @endif
-        
-                    <!-- Warning Message -->
-                    @if (session('warning'))
-                        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative"
-                            role="alert">
-                            <strong class="font-bold">Attention!</strong>
-                            <span class="block sm:inline">{{ session('warning') }}</span>
-                        </div>
-                    @endif
-        
-                    <!-- Success Message -->
-                    @if (session('success'))
-                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
-                            role="alert">
-                            <strong class="font-bold">Succès!</strong>
-                            <span class="block sm:inline">{{ session('success') }}</span>
-                        </div>
-                    @endif
-        
-                    <!-- General Validation Errors -->
-                    @if ($errors->any())
-                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-                            role="alert">
-                            <strong class="font-bold">Oops!</strong>
-                            <span class="block sm:inline">Il y avait quelques problèmes avec vos données
-                                saisies.</span>
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-        
-                </div>
+            </div>
         @if (count($marchandises) > 0)
             <div class="overflow-x-auto relative shadow-md w-full sm:rounded-lg mb-10">
                 <table class="w-full text-sm text-left text-gray-500">
@@ -90,10 +47,10 @@
                                     @endif
                                 </td>
                                 <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
-                                <td class="py-4 px-6 justify-between flex text-center space-x-2">
+                                <td class="py-4 px-6 ">
                                    {{$marchandise->entre}}
                                 </td>
-                                <td class="py-4 px-6 justify-between flex text-center space-x-2">
+                                <td class="py-4 px-6 ">
                                     {{$marchandise->sortie}}
                                  </td>
                             </tr>
