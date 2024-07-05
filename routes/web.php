@@ -73,6 +73,7 @@ Route::post('/sorties', [sortieController::class, 'store'])->name('sorties.store
 Route::put('/sorties/{sortie}', [sortieController::class, 'update'])->name('sorties.update');
 Route::delete('/sorties/{sortie}', [sortieController::class, 'delete'])->name('sorties.delete');
 Route::get('/sorties/{sorties}/edit', [sortieController::class, 'edit'])->name('sorties.edit');
+Route::post('/rapports/export', [rapportController::class, 'downloadExcel'])->name('rapports.excel');
 
 
 Route::get('/rapports', [RapportController::class, 'index'])->name('rapports.index');
