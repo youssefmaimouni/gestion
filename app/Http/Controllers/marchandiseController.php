@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\categories;
 use App\Models\entres;
 use App\Models\marchandises;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -55,40 +56,58 @@ class marchandiseController extends Controller
     }
    public function store(Request $request) {
     // Valider les données d'entrée
-    $valid = $request->validate([
-        'nom' => 'required|min:3|string',
-        'barre_code' => 'integer|nullable',
-        'description' => 'string|nullable',
-        'quantite' => 'integer|nullable',
-        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-        'categorie' => 'nullable',
-        'new_categorie' => 'nullable|string|min:3' 
-    ]);
-
     
-    if (!empty($valid['new_categorie'])) {
-        $categorie = new Categories();
-        $categorie->nom = $valid['new_categorie'];
-        $categorie->save();
-        $valid['categorie'] = $categorie->id; 
-    }else{
-        $categorie=$valid['categorie'] ;
+    $valid = $request->validate([
+            'nom' => 'required|min:3|string',
+            'barre_code' => 'integer|nullable',
+            'description' => 'string|nullable',
+            'quantite' => 'integer|nullable',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
+            'categorie' => 'required',
+            
+        ]);
+        
+        
+        if (strstr($valid['categorie'],'add')) {
+            $valid2 = $request->validate([
+                'new_categorie' => 'required|string|min:3' 
+            ]);
+            $categorie = new Categories();
+            $categorie->nom = $valid2['new_categorie'];
+            $categorie->save();
+            $valid['categorie'] = $categorie->id; 
+        }else{
+            $categorie=$valid['categorie'] ;
+        }
+        
+        
+        $marchandise = new marchandises();
+        $marchandise->nom = $valid['nom'];
+        $marchandise->barre_code = $valid['barre_code'];
+        $marchandise->description = $valid['description'];
+        
+        if ($valid['quantite']<0) {
+            return redirect()->back()->with('error', 'la quantite doit être positive.');
+        }
+        $marchandise->quantite = $valid['quantite'];
+        
+        if ($request->file('image') != null) {
+            $marchandise->image = $request->file('image')->store('logos', 'public');
+        }
+        
+        $marchandise->id_cat = $valid['categorie'] ?? null;
+        try{
+        $marchandise->save();
+        if ($valid['quantite']>0) {
+            $entre = new entres(); 
+            $entre->quantite=$valid['quantite'];
+            $entre->id_mar=$marchandise->id;
+            $entre->save();
+        }
+        return redirect()->route('marchandises.index',$categorie)->with('success', 'Marchandise ajoutée avec succès.');
+    } catch (Exception $e) {
+        return redirect()->back()->with('error', $e->getMessage());
     }
-
-   
-    $marchandise = new marchandises();
-    $marchandise->nom = $valid['nom'];
-    $marchandise->barre_code = $valid['barre_code'];
-    $marchandise->description = $valid['description'];
-    $marchandise->quantite = $valid['quantite'];
-
-    if ($request->file('image') != null) {
-        $marchandise->image = $request->file('image')->store('logos', 'public');
-    }
-
-    $marchandise->id_cat = $valid['categorie'] ?? null;
-    $marchandise->save();
-    return redirect()->route('marchandises.index',$categorie)->with('success', 'Marchandise ajoutée avec succès.');
 }
     public function edit(marchandises $marchandises) {
         return View('marchandises.edit',['marchandise'=>$marchandises,'categorie'=>categories::all()]);
@@ -102,14 +121,18 @@ class marchandiseController extends Controller
             'description' => 'string|nullable',
             'quantite' => 'integer|nullable',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-            'categorie' => 'nullable',
-            'new_categorie' => 'nullable|string|min:3' 
+            'categorie' => 'required'
         ]);
     
         
-        if (!empty($valid['new_categorie'])) {
+         
+        
+        if (strstr($valid['categorie'],'add')) {
+            $valid2 = $request->validate([
+                'new_categorie' => 'required|string|min:3' 
+            ]);
             $categorie = new Categories();
-            $categorie->nom = $valid['new_categorie'];
+            $categorie->nom = $valid2['new_categorie'];
             $categorie->save();
             $valid['categorie'] = $categorie->id; 
         }else{
@@ -118,7 +141,6 @@ class marchandiseController extends Controller
         $marchandise->nom = $valid['nom'];
         $marchandise->barre_code = $valid['barre_code'];
         $marchandise->description = $valid['description'];
-        $marchandise->quantite = $valid['quantite'];
     
         if ($request->file('image') != null) {
             $marchandise->image = $request->file('image')->store('logos', 'public');
