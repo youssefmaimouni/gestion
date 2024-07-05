@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MarchendiseDataExport;
 use App\Http\Controllers\Controller;
 
 
@@ -15,6 +16,8 @@ use App\Models\sorties;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use Maatwebsite\Excel\Facades\Excel;
+
 class RapportController extends Controller
 {
 
@@ -22,12 +25,31 @@ class RapportController extends Controller
     public function downloadPdf() 
     {
         // Fetch the data to be passed to the view
-        $marchandises = Marchandises::all();
+        $marchandises = marchandises::all();
+        $entres = entres::select('marchandises.id',DB::raw('COALESCE(SUM(entres.quantite), 0) as entre'))
+                        ->leftJoin('marchandises', 'entres.id_mar', '=', 'marchandises.id')
+                        ->groupBy('marchandises.id')
+                        ->pluck('entre', 'marchandises.id');
+        $sorties = sorties::select('marchandises.id', DB::raw('COALESCE(SUM(sorties.quantite), 0) as sortie'))
+                        ->leftJoin('marchandises', 'sorties.id_mar', '=', 'marchandises.id')
+                        ->groupBy('marchandises.id')
+                        ->pluck('sortie', 'marchandises.id');
+     
+     foreach ($marchandises as $marchandise) {
+                                    $marchandise->entres = $entres[$marchandise->id] ?? 0;
+                                    $marchandise->sorties = $sorties[$marchandise->id] ?? 0;
+                                    $marchandise->solde = $marchandise->entres - $marchandise->sorties;
+                }            
         $data = ['title' => 'Rapport PDF', 'marchandises' => $marchandises];
     
         // Generate the PDF
         $pdf = Pdf::loadView('rapports.pdf', $data);
         return $pdf->download('rapport.pdf');
+    }
+
+    public function downloadExcel()
+    {
+        return Excel::download(new MarchendiseDataExport, 'marchendise.xlsx');
     }
 
     public function index(){

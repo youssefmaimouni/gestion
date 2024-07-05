@@ -7,14 +7,12 @@
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
             color: #333;
-            margin: 0;
-            padding: 20px;
         }
 
         h1 {
             text-align: center;
             color: #4a4a4a;
-            font-size: 20px; /* Réduire la taille de la police pour économiser de l'espace */
+            font-size: 20px; 
         }
 
         .table-container {
@@ -29,7 +27,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 5px 5px; /* Réduire la marge autour de la table */
+            margin: 5px ; /* Réduire la marge autour de la table */
         }
 
         th, td {
@@ -92,9 +90,9 @@
                             <td>
                                 {{ $marchandise->categories->nom ?? $marchandise->categories }}
                             </td>
-                            <td>{{ $marchandise->quantite }}</td>
-                            <td>{{ $marchandise->entre }}</td>
-                            <td>{{ $marchandise->sortie }}</td>
+                            <td>{{ $marchandise->solde  }}</td>
+                            <td>{{ $marchandise->entres }}</td>
+                            <td>{{  $marchandise->sorties  }}</td>
                         </tr>
                     @endforeach
                 </tbody>
