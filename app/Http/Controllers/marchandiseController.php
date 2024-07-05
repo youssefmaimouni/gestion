@@ -63,14 +63,17 @@ class marchandiseController extends Controller
             'description' => 'string|nullable',
             'quantite' => 'integer|nullable',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-            'categorie' => 'nullable',
-            'new_categorie' => 'nullable|string|min:3' 
+            'categorie' => 'required',
+            
         ]);
         
         
-        if (!empty($valid['new_categorie'])) {
+        if (strstr($valid['categorie'],'add')) {
+            $valid2 = $request->validate([
+                'new_categorie' => 'required|string|min:3' 
+            ]);
             $categorie = new Categories();
-            $categorie->nom = $valid['new_categorie'];
+            $categorie->nom = $valid2['new_categorie'];
             $categorie->save();
             $valid['categorie'] = $categorie->id; 
         }else{
@@ -118,14 +121,18 @@ class marchandiseController extends Controller
             'description' => 'string|nullable',
             'quantite' => 'integer|nullable',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
-            'categorie' => 'nullable',
-            'new_categorie' => 'nullable|string|min:3' 
+            'categorie' => 'required'
         ]);
     
         
-        if (!empty($valid['new_categorie'])) {
+         
+        
+        if (strstr($valid['categorie'],'add')) {
+            $valid2 = $request->validate([
+                'new_categorie' => 'required|string|min:3' 
+            ]);
             $categorie = new Categories();
-            $categorie->nom = $valid['new_categorie'];
+            $categorie->nom = $valid2['new_categorie'];
             $categorie->save();
             $valid['categorie'] = $categorie->id; 
         }else{

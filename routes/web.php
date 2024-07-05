@@ -5,7 +5,6 @@ use App\Http\Controllers\entreController;
 use App\Http\Controllers\marchandiseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\rapportController;
-use App\Http\Controllers\rapportController;
 use App\Http\Controllers\sortieController;
 use Illuminate\Support\Facades\Route;
 
@@ -74,7 +73,7 @@ Route::put('/sorties/{sortie}', [sortieController::class, 'update'])->name('sort
 Route::delete('/sorties/{sortie}', [sortieController::class, 'delete'])->name('sorties.delete');
 Route::get('/sorties/{sorties}/edit', [sortieController::class, 'edit'])->name('sorties.edit');
 
-Route::get('/search', [rapportController::class, 'search'])->name('rapport.search');
+Route::get('/rapports/search', [rapportController::class, 'search'])->name('rapport.search');
 Route::get('/rapports', [rapportController::class, 'index'])->name('rapports.index');
 
 });
