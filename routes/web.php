@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\categorieController;
+use App\Http\Controllers\courbeController;
 use App\Http\Controllers\entreController;
 use App\Http\Controllers\marchandiseController;
 use App\Http\Controllers\ProfileController;
@@ -77,9 +78,8 @@ Route::post('/rapports/export', [rapportController::class, 'downloadExcel'])->na
 
 Route::get('/rapports', [RapportController::class, 'index'])->name('rapports.index');
 Route::post('/rapports/download-pdf', [RapportController::class, 'downloadPdf'])->name('rapports.pdf');
-
 Route::get('/rapports/search', [rapportController::class, 'search'])->name('rapport.search');
-
+Route::get('/rapports/courbe', [courbeController::class, 'courbe'])->name('rapports.courbe');
 
 });
 
