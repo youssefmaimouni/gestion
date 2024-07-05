@@ -73,13 +73,12 @@ Route::put('/sorties/{sortie}', [sortieController::class, 'update'])->name('sort
 Route::delete('/sorties/{sortie}', [sortieController::class, 'delete'])->name('sorties.delete');
 Route::get('/sorties/{sorties}/edit', [sortieController::class, 'edit'])->name('sorties.edit');
 
-<<<<<<< HEAD
+
 Route::get('/rapports', [RapportController::class, 'index'])->name('rapports.index');
 Route::post('/rapports/download-pdf', [RapportController::class, 'downloadPdf'])->name('rapports.pdf');
-=======
+
 Route::get('/rapports/search', [rapportController::class, 'search'])->name('rapport.search');
-Route::get('/rapports', [rapportController::class, 'index'])->name('rapports.index');
->>>>>>> 3627a7c7c29f261a64197ba2989087bb5390edbf
+
 
 });
 

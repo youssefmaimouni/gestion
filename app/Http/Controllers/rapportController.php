@@ -3,26 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
-use App\Models\Marchandises; // Ensure this matches the correct model namespace
+
+
 use Barryvdh\DomPDF\Facade\Pdf;
-=======
+
 use App\Models\categories;
 use App\Models\entres;
 use App\Models\marchandises;
 use App\Models\sorties;
->>>>>>> 3627a7c7c29f261a64197ba2989087bb5390edbf
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class RapportController extends Controller
 {
-<<<<<<< HEAD
-    public function index()
-    {
-        $marchandises = Marchandises::all();
-        return view('rapports.index', compact('marchandises'));
-    }
+
 
     public function downloadPdf() 
     {
@@ -34,7 +29,6 @@ class RapportController extends Controller
         $pdf = Pdf::loadView('rapports.pdf', $data);
         return $pdf->download('rapport.pdf');
     }
-=======
 
     public function index(){
         $marchandises = marchandises::all();
@@ -98,7 +92,5 @@ class RapportController extends Controller
     
         return view('rapports.index', ['marchandises' => $marchandises, 'search' => $search, 'start' => $start, 'end' => $end]);
     }
-    
 
->>>>>>> 3627a7c7c29f261a64197ba2989087bb5390edbf
 }
