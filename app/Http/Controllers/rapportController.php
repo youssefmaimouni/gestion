@@ -3,15 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+
+
+use Barryvdh\DomPDF\Facade\Pdf;
+
 use App\Models\categories;
 use App\Models\entres;
 use App\Models\marchandises;
 use App\Models\sorties;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class rapportController extends Controller
+class RapportController extends Controller
 {
+
+
+    public function downloadPdf() 
+    {
+        // Fetch the data to be passed to the view
+        $marchandises = Marchandises::all();
+        $data = ['title' => 'Rapport PDF', 'marchandises' => $marchandises];
+    
+        // Generate the PDF
+        $pdf = Pdf::loadView('rapports.pdf', $data);
+        return $pdf->download('rapport.pdf');
+    }
 
     public function index(){
         $marchandises = marchandises::all();
@@ -98,6 +115,5 @@ class rapportController extends Controller
     
         return view('rapports.index', ['marchandises' => $marchandises, 'search' => $search, 'start' => $start, 'end' => $end]);
     }
-    
 
 }
