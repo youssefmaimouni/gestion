@@ -8,13 +8,10 @@
                 <a href="{{ route('rapports.courbe') }}" title="courbe"
                     aria-label="Modifier"
                     class="flex items-center text-blue-500 bg-blue-200 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 20h9" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M16.707 7.707a1 1 0 0 0-1.414-1.414L15 8l1 1 1.707-1.707a1 1 0 0 0-1.414-1.414L14.586 8l-1.293-1.293a1 1 0 0 0-1.414 0l-5 5a1 1 0 0 0-.293.707V15h3.586a1 1 0 0 0 .707-.293l5-5 1.707 1.707 1.707-1.707a1 1 0 0 0 0-1.414z" />
-                    </svg>
+                    <svg fill="#000000" width="80px" height="40px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <title>chart3</title>
+                        <path d="M3.987 4h-0.987v24h26v-0.963l-24.996-0.050-0.017-22.987zM17 5c0-0.553-0.448-1-1-1h-3c-0.553 0-1 0.447-1 1v20h5v-20zM11 11c0-0.552-0.448-1-1-1h-3c-0.553 0-1 0.448-1 1v14h5v-14zM23 17c0-0.553-0.448-1-1-1h-3c-0.553 0-1 0.447-1 1v8h5v-8zM28 22h-3c-0.553 0-1 0.447-1 1v2h5v-2c0-0.553-0.448-1-1-1z"></path>
+                        </svg>
                 </a>
 
                  <form action="{{ route('rapports.pdf') }}" method="POST">
