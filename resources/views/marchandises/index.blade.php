@@ -165,19 +165,19 @@
                 <table class="w-full text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                         <tr>
-                            <th scope="col" class="py-3 px-6 ">image</th>
-                            <th scope="col" class="py-3 px-6 ">nom</th>
-                            <th scope="col" class="py-3 px-6 ">barre code</th>
-                            <th scope="col" class="py-3 px-6 ">categorie</th>
-                            <th scope="col" class="py-3 px-6 ">quantite</th>
-                            <th scope="col" class="py-3 px-6 ">description</th>
-                            <th scope="col" class="py-3 px-6 text-center">action</th>
+                            <th scope="col" class="py-3 px-1 text-center">image</th>
+                            <th scope="col" class="py-3 px-1 text-center">nom</th>
+                            <th scope="col" class="py-3 px-1 text-center">barre code</th>
+                            <th scope="col" class="py-3 px-1 text-center">categorie</th>
+                            <th scope="col" class="py-3 px-1 text-center">quantite</th>
+                            <th scope="col" class="py-3 px-1 text-center">description</th>
+                            <th scope="col" class="py-3 px-1 text-center">action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($marchandises as $marchandise)
                             <tr class="bg-white border-b hover:bg-gray-200 hover:text-black ">
-                                <td class="py-4 px-6">
+                                <td class="py-4 px-1 text-center">
                                     @if (isset($marchandise->image) && $marchandise->image !== null)
                                         <img class="image w-10 h-10 rounded-full bg-cover"
                                             src="{{ asset('/storage/' . $marchandise->image) }}" alt="" />
@@ -187,21 +187,21 @@
                                     @endif
 
                                 </td>
-                                <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
+                                <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                                 @if($marchandise->barre_code)
                                    <td ><abbr title="{{$marchandise->barre_code}}"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C39') !!}</abbr></td>
                         @else
                             <td>Pas de code barre</td>
                         @endif
-                                <td class="py-4 px-6 ">
+                                <td class="py-4 px-1 text-center ">
                                     @if ($marchandise->categories)
                                         {{ $marchandise->categories->nom }}
                                     @else
                                         {{ $marchandise->categories }}
                                     @endif
                                 </td>
-                                <td class="py-4 px-6 ">{{ $marchandise->quantite }}</td>
-                                <td class="py-4 px-6">
+                                <td class="py-4 px-1 text-center ">{{ $marchandise->quantite }}</td>
+                                <td class="py-4 px-1 text-center">
                                     <p class="overflow-hidden max-h-10 line-clamp-2">{{ $marchandise->description }}</p>
                                   </td>
                                   
