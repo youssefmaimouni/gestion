@@ -12,10 +12,10 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "laraveldaily/laravel-charts": "*",
         "maatwebsite/excel": "^3.1",
+        "milon/barcode": "^11.0",
         "psr/simple-cache": "2.0"
-        "laraveldaily/laravel-charts": "^0.2.3",
-        "milon/barcode": "^11.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
