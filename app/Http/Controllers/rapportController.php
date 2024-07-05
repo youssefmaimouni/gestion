@@ -40,7 +40,7 @@ class RapportController extends Controller
                         ->leftJoin('marchandises', 'sorties.id_mar', '=', 'marchandises.id')
                         ->groupBy('marchandises.id')
                         ->pluck('sortie', 'marchandises.id');
-     
+       
      foreach ($marchandises as $marchandise) {
                                     $marchandise->entres = $entres[$marchandise->id] ?? 0;
                                     $marchandise->sorties = $sorties[$marchandise->id] ?? 0;
