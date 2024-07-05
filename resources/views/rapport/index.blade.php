@@ -1,9 +1,15 @@
 <x-nav-bar>
    
-   
+   <form action="/search" method="get">
+    <div class="">
+        <input type="text" name="search" id="">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+    </form>
     <div id="cont" class="">
         <div class=" flex">
             <p class="text-2xl w-2/3 m-3 pl-6 underline underline-offset-4">Rapport</p>
+            <input type="text" name="search" id="search">
           
                 <div class="container  w-full">
                     <!-- Error Message -->

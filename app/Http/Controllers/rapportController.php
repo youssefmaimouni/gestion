@@ -15,4 +15,11 @@ class rapportController extends Controller
         return view('rapports.index', compact('marchandises'));
     }
 
+    public function search(Request $request)  {
+        $search=$request->search;
+        $marchandises = marchandises::where('nom', 'LIKE',$search);
+        return view('rapports.index', compact('marchandises'));
+
+    }
+
 }
