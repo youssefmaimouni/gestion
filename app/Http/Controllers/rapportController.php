@@ -10,8 +10,9 @@ use Illuminate\Http\Request;
 class rapportController extends Controller
 {
 
-    public function index_cat(){
+    public function index(){
         $marchandises = marchandises::all();
+        
         return view('rapports.index', compact('marchandises'));
     }
 
