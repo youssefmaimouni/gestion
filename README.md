@@ -70,3 +70,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  composer require milon/barcode
  composer require barryvdh/laravel-dompdf
  php artisan vendor:publish --provider="Barryvdh\DomPDF\ServiceProvider"
+ composer require laraveldaily/laravel-charts  kjjj
