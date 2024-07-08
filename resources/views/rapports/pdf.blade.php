@@ -5,7 +5,6 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
             color: #333;
         }
 
@@ -18,7 +17,6 @@
         .table-container {
             overflow-x: auto;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 5px 10px; /* Ajuster la marge pour centrer la table */
             border-radius: 8px;
             background-color: #fff;
             width: 100%; /* Utiliser la largeur maximale pour le contenu PDF */
@@ -69,6 +67,11 @@
 </head>
 <body>
     <h1>{{ $title }}</h1>
+    @if (isset($start)&& isset($end))
+        <div>   
+            <p>De {{ $start }} à {{ $end }}</p>
+        </div>
+    @endif
     @if (count($marchandises) > 0)
         <div class="table-container">
             <table>
@@ -77,6 +80,7 @@
                       
                         <th>Nom</th>
                         <th>Categorie</th>
+                        <th>bare code</th>
                         <th>Quantite</th>
                         <th class="text-center">Entre</th>
                         <th class="text-center">Sortie</th>
@@ -86,6 +90,12 @@
                     @foreach ($marchandises as $marchandise)
                         <tr>
                             <td>{{ $marchandise->nom }}</td>
+                            @if ($marchandise->barre_code)
+                                        <td class="w-fit">{!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C39', 1, 20) !!}
+                                        </td>
+                                    @else
+                                        <td>Pas de code barre</td>
+                                    @endif
                            
                             <td>
                                 {{ $marchandise->categories->nom ?? $marchandise->categories }}

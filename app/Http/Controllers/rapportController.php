@@ -102,7 +102,7 @@ class RapportController extends Controller
                                         $marchandise->solde = $marchandise->entres - $marchandise->sorties;
                     }                           
         }           
-        $data = ['title' => 'Rapport PDF', 'marchandises' => $marchandises];
+        $data = ['title' => 'Rapport PDF', 'marchandises' => $marchandises,'start'=>$start,'end'=>$end];
     
         // Generate the PDF
         $pdf = Pdf::loadView('rapports.pdf', $data);
