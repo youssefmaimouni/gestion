@@ -246,12 +246,12 @@
                                     </td>
                                     <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                                     @if ($marchandise->barre_code)
-                                        <td class="w-fit "><abbr title="{{ $marchandise->barre_code }}">
-                                            {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C39', 1, 30) !!}
-                                        </abbr>
+                                    <td class="py-4 px-1 text-center flex justify-center items-center"><abbr title="{{ $marchandise->barre_code }}">
+                                                {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C39', 1, 30) !!}
+                                            </abbr>
                                         </td>
                                     @else
-                                        <td>Pas de code barre</td>
+                                    <td class="py-4 px-1 text-center flex justify-center items-center">Pas de code barre</td>
                                     @endif
                                     <td class="py-4 px-1 text-center ">
                                         @if ($marchandise->categories)
@@ -331,6 +331,16 @@
                 });
 
                 document.getElementById('end').addEventListener('change', function() {
+                    var endDate = this.value;
+                    document.getElementById('start').setAttribute('max', endDate);
+                });
+
+                document.getElementById('start').addEventListener('input', function() {
+                    var startDate = this.value;
+                    document.getElementById('end').setAttribute('min', startDate);
+                });
+
+                document.getElementById('end').addEventListener('input', function() {
                     var endDate = this.value;
                     document.getElementById('start').setAttribute('max', endDate);
                 });

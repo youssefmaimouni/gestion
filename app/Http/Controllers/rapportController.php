@@ -65,16 +65,21 @@ class RapportController extends Controller
             // Initialize the 'entres' and 'sorties' queries
             $entresQuery = entres::select('marchandises.id', DB::raw('COALESCE(SUM(entres.quantite), 0) as entre'))
                 ->leftJoin('marchandises', 'entres.id_mar', '=', 'marchandises.id')
-                ->whereBetween('entres.created_at', [$start, $end])
                 ->groupBy('marchandises.id');
             
             $sortiesQuery = sorties::select('marchandises.id', DB::raw('COALESCE(SUM(sorties.quantite), 0) as sortie'))
                 ->leftJoin('marchandises', 'sorties.id_mar', '=', 'marchandises.id')
-                ->whereBetween('sorties.created_at', [$start, $end])
                 ->groupBy('marchandises.id');
 
-                // $entresQuery->whereBetween('entres.created_at', [$start, $end]);
-                // $sortiesQuery->whereBetween('sorties.created_at', [$start, $end]);
+                if ($start == $end) {
+                    // If start and end dates are the same, use a single date comparison
+                    $entresQuery->whereDate('entres.created_at', $start);
+                    $sortiesQuery->whereDate('sorties.created_at', $start);
+                } else {
+                    // Otherwise, use the range comparison
+                    $entresQuery->whereBetween('entres.created_at', [$start, $end]);
+                    $sortiesQuery->whereBetween('sorties.created_at', [$start, $end]);
+                }
             
         
             $entres = $entresQuery->pluck('entre', 'marchandises.id');
@@ -190,8 +195,18 @@ class RapportController extends Controller
                 ->groupBy('marchandises.id');
         
             if (isset($start) && isset($end)) {
-                $entresQuery->whereBetween('entres.created_at', [$start, $end]);
-                $sortiesQuery->whereBetween('sorties.created_at', [$start, $end]);
+                if ($start > $end) {
+                    return redirect()->back()->with('error', 'La première date doit être avant la dernière date.');
+                }                
+                if ($start == $end) {
+                    // If start and end dates are the same, use a single date comparison
+                    $entresQuery->whereDate('entres.created_at', $start);
+                    $sortiesQuery->whereDate('sorties.created_at', $start);
+                } else {
+                    // Otherwise, use the range comparison
+                    $entresQuery->whereBetween('entres.created_at', [$start, $end]);
+                    $sortiesQuery->whereBetween('sorties.created_at', [$start, $end]);
+                }
             }
         
             $entres = $entresQuery->pluck('entre', 'marchandises.id');

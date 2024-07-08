@@ -3,66 +3,47 @@
 <head>
     <title>{{ $title }}</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            color: #333;
-        }
+h2{
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    padding: 30px 0;
+}
 
-        h1 {
-            text-align: center;
-            color: #4a4a4a;
-            font-size: 20px; 
-        }
+/* Table Styles */
 
-        .table-container {
-            overflow-x: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            background-color: #fff;
-            width: 100%; /* Utiliser la largeur maximale pour le contenu PDF */
-        }
+.fl-table {
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 5px ; /* Réduire la marge autour de la table */
-        }
+.fl-table td, .fl-table th {
+    text-align: center;
+    padding: 8px;
+}
 
-        th, td {
-            padding: 8px 12px; /* Réduire le padding pour compacter les cellules */
-            border: 1px solid #ddd;
-            text-align: left;
-            font-size: 14px; /* Réduire la taille de la police pour économiser de l'espace */
-        }
+.fl-table td {
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
 
-        th {
-            background-color: #f4f4f4;
-            color: #333;
-            text-transform: uppercase;
-        }
+.fl-table thead th {
+    color: #ffffff;
+    background: #324960;
+}
 
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
 
-        tr:hover {
-            background-color: #f1f1f1;
-            color: #333;
-        }
 
-        img {
-            width: 30px; /* Réduire la taille de l'image pour économiser de l'espace */
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
 
-        .empty-message {
-            text-align: center;
-            color: #aaa;
-            font-size: 17px; /* Réduire la taille de la police pour économiser de l'espace */
-            margin-top: 30px; /* Réduire l'espace entre le titre et le message vide */
-        }
+.fl-table tr:nth-child(even) {
+    background: #F8F8F8;
+}
     </style>
 </head>
 <body>
@@ -73,15 +54,15 @@
         </div>
     @endif
     @if (count($marchandises) > 0)
-        <div class="table-container">
-            <table>
+    <div class="table-wrapper">
+        <table class="fl-table">
                 <thead>
                     <tr>
                       
-                        <th>Nom</th>
-                        <th>Categorie</th>
-                        <th>bare code</th>
-                        <th>Quantite</th>
+                        <th class="text-center">Nom</th>
+                        <th class="text-center">bare code</th>
+                        <th class="text-center">Categorie</th>
+                        <th class="text-center">Quantite</th>
                         <th class="text-center">Entre</th>
                         <th class="text-center">Sortie</th>
                     </tr>
@@ -107,7 +88,7 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
+            </div>
     @else
         <h2 class="empty-message">Aucune marchandise</h2>
     @endif

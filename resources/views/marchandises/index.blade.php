@@ -177,7 +177,7 @@
                     <tbody>
                         @foreach ($marchandises as $marchandise)
                             <tr class="bg-white border-b hover:bg-gray-200 hover:text-black ">
-                                <td class="py-4 px-1 text-center">
+                                <td class="py-4 px-1 text-center flex justify-center items-center">
                                     @if (isset($marchandise->image) && $marchandise->image !== null)
                                         <img class="image w-10 h-10 rounded-full bg-cover"
                                             src="{{ asset('/storage/' . $marchandise->image) }}" alt="" />
@@ -189,7 +189,7 @@
                                 </td>
                                 <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                                 @if($marchandise->barre_code)
-                                   <td ><abbr title="{{$marchandise->barre_code}}"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C39', 1, 30) !!}</abbr></td>
+                                <td class="py-4 px-1 text-center flex justify-center items-center"><abbr title="{{$marchandise->barre_code}}"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C39', 1, 30) !!}</abbr></td>
                         @else
                             <td>Pas de code barre</td>
                         @endif
@@ -205,7 +205,7 @@
                                     <p class="overflow-hidden max-h-10 line-clamp-2">{{ $marchandise->description }}</p>
                                   </td>
                                   
-                                <td class="py-4 px-6 justify-between flex text-center space-x-2">
+                                <td class="py-4 px-6 justify-between flex text-center space-x-2 max-w-32">
                                     <button onclick="warnning2({{ $marchandise->id }})" title="Ajout"
                                         aria-label="Ajout"
                                         class="flex items-center text-green-500 bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
