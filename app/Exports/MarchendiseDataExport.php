@@ -18,9 +18,69 @@ class MarchendiseDataExport implements FromView, ShouldAutoSize
 
     private $marchandises;
 
-    public function __construct()
+    public function __construct($filters = [])
     {
-        $marchandises = marchandises::all();
+        $search=$filters['search'];
+        $start=$filters['start'];
+        $end=$filters['end'];
+        if ($search!==null && (empty($start) && empty($end))) {
+            $marchandises = marchandises::join('categories', 'marchandises.id_cat', '=', 'categories.id')
+                                        ->where('marchandises.nom', 'LIKE', '%' . $search . '%')
+                                        ->orWhere('categories.nom', 'LIKE', '%' . $search . '%')
+                                        ->select('marchandises.*')
+                                        ->get();
+            $entres = entres::select('marchandises.id', DB::raw('COALESCE(SUM(entres.quantite), 0) as entre'))
+                                        ->leftJoin('marchandises', 'entres.id_mar', '=', 'marchandises.id')
+                                        ->groupBy('marchandises.id')
+                                        ->pluck('entre', 'marchandises.id');
+                                    
+            $sorties = sorties::select('marchandises.id', DB::raw('COALESCE(SUM(sorties.quantite), 0) as sortie'))
+                                        ->leftJoin('marchandises', 'sorties.id_mar', '=', 'marchandises.id')
+                                        ->groupBy('marchandises.id')
+                                        ->pluck('sortie', 'marchandises.id');
+             foreach ($marchandises as $marchandise) {
+                                            $marchandise->entres = $entres[$marchandise->id] ?? 0;
+                                            $marchandise->sorties = $sorties[$marchandise->id] ?? 0;
+                                            $marchandise->solde = $marchandise->entres - $marchandise->sorties;
+                                        }                           
+            } elseif (!empty($start) && !empty($end)) {
+            $query = marchandises::join('categories', 'marchandises.id_cat', '=', 'categories.id')
+                ->select('marchandises.*');
+        
+            if (isset($search)) {
+                $query->where(function($q) use ($search) {
+                    $q->where('marchandises.nom', 'LIKE', '%' . $search . '%')
+                      ->orWhere('categories.nom', 'LIKE', '%' . $search . '%');
+                });
+            }
+        
+            $marchandises = $query->get();
+        
+            // Initialize the 'entres' and 'sorties' queries
+            $entresQuery = entres::select('marchandises.id', DB::raw('COALESCE(SUM(entres.quantite), 0) as entre'))
+                ->leftJoin('marchandises', 'entres.id_mar', '=', 'marchandises.id')
+                ->whereBetween('entres.created_at', [$start, $end])
+                ->groupBy('marchandises.id');
+            
+            $sortiesQuery = sorties::select('marchandises.id', DB::raw('COALESCE(SUM(sorties.quantite), 0) as sortie'))
+                ->leftJoin('marchandises', 'sorties.id_mar', '=', 'marchandises.id')
+                ->whereBetween('sorties.created_at', [$start, $end])
+                ->groupBy('marchandises.id');
+
+                // $entresQuery->whereBetween('entres.created_at', [$start, $end]);
+                // $sortiesQuery->whereBetween('sorties.created_at', [$start, $end]);
+            
+        
+            $entres = $entresQuery->pluck('entre', 'marchandises.id');
+            $sorties = $sortiesQuery->pluck('sortie', 'marchandises.id');
+        
+            foreach ($marchandises as $marchandise) {
+                $marchandise->entres = $entres[$marchandise->id] ?? 0;
+                $marchandise->sorties = $sorties[$marchandise->id] ?? 0;
+                $marchandise->solde = $marchandise->entres - $marchandise->sorties;
+            }
+        }else{
+            $marchandises = marchandises::all();
         $entres = entres::select('marchandises.id',DB::raw('COALESCE(SUM(entres.quantite), 0) as entre'))
                         ->leftJoin('marchandises', 'entres.id_mar', '=', 'marchandises.id')
                         ->groupBy('marchandises.id')
@@ -29,12 +89,7 @@ class MarchendiseDataExport implements FromView, ShouldAutoSize
                         ->leftJoin('marchandises', 'sorties.id_mar', '=', 'marchandises.id')
                         ->groupBy('marchandises.id')
                         ->pluck('sortie', 'marchandises.id');
-     
-     foreach ($marchandises as $marchandise) {
-                                    $marchandise->entres = $entres[$marchandise->id] ?? 0;
-                                    $marchandise->sorties = $sorties[$marchandise->id] ?? 0;
-                                    $marchandise->solde = $marchandise->entres - $marchandise->sorties;
-                }
+        }
         $this->marchandises = $marchandises;
     }
 

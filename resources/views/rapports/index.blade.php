@@ -86,6 +86,21 @@
 
                     <form action="{{ route('rapports.excel') }}" method="POST">
                         @csrf
+                        @if (isset($search))
+                            <input type="search" name="search" id="default-search" value={{ $search }}
+                                class="hidden" />
+                        @else
+                            <input type="search" name="search" id="default-search" class="hidden" />
+                        @endif
+                        @if (isset($start) && isset($end))
+                            <input id="start" name="start" type="date" class="hidden"
+                                value={{ $start }}>
+                            <input id="end" name="end" type="date" class="hidden"
+                                value={{ $end }}>
+                        @else
+                            <input id="start" name="start" type="date" class="hidden">
+                            <input id="end" name="end" type="date" class="hidden">
+                        @endif
                         <div class="mr-5 mb-10">
                             <button type='submit'aria-label="pdf"
                                 class="flex items-center text-green-500 bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">

@@ -29,7 +29,6 @@ class RapportController extends Controller
         $search=$request->input('search');
         $start = $request->input('start');
         $end = $request->input('end');
-        $action = $request->input('action');
         if ($search!==null && (empty($start) && empty($end))) {
             $marchandises = marchandises::join('categories', 'marchandises.id_cat', '=', 'categories.id')
                                         ->where('marchandises.nom', 'LIKE', '%' . $search . '%')
@@ -104,9 +103,10 @@ class RapportController extends Controller
         return $pdf->download('rapport.pdf');
     }
 
-    public function downloadExcel()
+    public function downloadExcel(Request $request)
     {
-        return Excel::download(new MarchendiseDataExport, 'marchendise.xlsx');
+        $filters = $request->only(['search','start','end']);
+        return Excel::download(new MarchendiseDataExport($filters), 'marchendise.xlsx');
     }
 
     public function index(){
