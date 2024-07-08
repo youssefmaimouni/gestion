@@ -257,6 +257,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                
             </div>
         @else
             <h2 class="text-gray-300 text-8xl select-none text-center mt-32">aucune marchendise</h2>
@@ -310,5 +311,8 @@
                 document.getElementById('cont').classList.remove('pointer-events-none');
             }
         </script>
+        <div class="col-span-full mt-6 p-4 pl-4">
+            {{ $marchandises->links() }}
+        </div>
     </div>
 </x-nav-bar>

@@ -46,7 +46,7 @@ class marchandiseController extends Controller
         return view('marchandises.index_cat', compact('categories'));
     }
     public function index(categories $categories){
-        $marchandise = marchandises::where('id_cat','=',$categories->id)->get();
+        $marchandise = marchandises::where('id_cat','=',$categories->id)->paginate(10)->withQueryString();
         return view('marchandises.index', ['marchandises'=>$marchandise]);
     }
 
