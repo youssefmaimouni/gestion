@@ -95,13 +95,13 @@
 
         </div>
         <main>
-            <div>
-                <select>
-                    <option>par jour</option>
-                    <option>par mois</option>
-                    <option>par année</option>
+            <form action="{{ route('rapports.courbe') }}" method="GET">
+                <select name="periode" onchange="this.form.submit()">
+                    <option value="day" {{ request('periode') == 'day' ? 'selected' : '' }}>Jour</option>
+                    <option value="month" {{ request('periode') == 'month' ? 'selected' : '' }}>Mois</option>
+                    <option value="year" {{ request('periode') == 'year' ? 'selected' : '' }}>Année</option>
                 </select>
-            </div>
+            </form>
             <div class="mx-4">
                 
                {!!$chart1->renderHtml()!!}
