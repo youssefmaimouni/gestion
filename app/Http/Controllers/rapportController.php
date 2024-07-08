@@ -86,15 +86,21 @@ class RapportController extends Controller
                 $marchandise->solde = $marchandise->entres - $marchandise->sorties;
             }
         }else{
-            $marchandises = marchandises::all();
-        $entres = entres::select('marchandises.id',DB::raw('COALESCE(SUM(entres.quantite), 0) as entre'))
-                        ->leftJoin('marchandises', 'entres.id_mar', '=', 'marchandises.id')
-                        ->groupBy('marchandises.id')
-                        ->pluck('entre', 'marchandises.id');
-        $sorties = sorties::select('marchandises.id', DB::raw('COALESCE(SUM(sorties.quantite), 0) as sortie'))
-                        ->leftJoin('marchandises', 'sorties.id_mar', '=', 'marchandises.id')
-                        ->groupBy('marchandises.id')
-                        ->pluck('sortie', 'marchandises.id');
+            $marchandises = marchandises::paginate(10);
+            $entres = entres::select('marchandises.id',DB::raw('COALESCE(SUM(entres.quantite), 0) as entre'))
+                            ->leftJoin('marchandises', 'entres.id_mar', '=', 'marchandises.id')
+                            ->groupBy('marchandises.id')
+                            ->pluck('entre', 'marchandises.id');
+            $sorties = sorties::select('marchandises.id', DB::raw('COALESCE(SUM(sorties.quantite), 0) as sortie'))
+                            ->leftJoin('marchandises', 'sorties.id_mar', '=', 'marchandises.id')
+                            ->groupBy('marchandises.id')
+                            ->pluck('sortie', 'marchandises.id');
+           
+         foreach ($marchandises as $marchandise) {
+                                        $marchandise->entres = $entres[$marchandise->id] ?? 0;
+                                        $marchandise->sorties = $sorties[$marchandise->id] ?? 0;
+                                        $marchandise->solde = $marchandise->entres - $marchandise->sorties;
+                    }                           
         }           
         $data = ['title' => 'Rapport PDF', 'marchandises' => $marchandises];
     
