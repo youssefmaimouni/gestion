@@ -49,20 +49,21 @@
         </div>
         <div class="">
             <div class="w-full">
+                <div class=" flex justify-end mr-5 mb-10"> 
                 <p class="text-2xl w-full m-3 pl-6 underline underline-offset-4">Rapport</p>
-              <div class=" flex justify-end mr-5 mb-10"> 
+                <div class="mr-5 mb-10">
                 <a href="{{ route('rapports.courbe') }}" title="courbe"
                     aria-label="Modifier"
-                    class="flex items-center text-blue-500 bg-blue-200 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
-                    <svg fill="#000000" width="80px" height="40px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    class="flex items-center text-red-500 bg-red-300 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                    <svg fill="#000000" width="50px" height="30px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
                         <title>chart3</title>
                         <path d="M3.987 4h-0.987v24h26v-0.963l-24.996-0.050-0.017-22.987zM17 5c0-0.553-0.448-1-1-1h-3c-0.553 0-1 0.447-1 1v20h5v-20zM11 11c0-0.552-0.448-1-1-1h-3c-0.553 0-1 0.448-1 1v14h5v-14zM23 17c0-0.553-0.448-1-1-1h-3c-0.553 0-1 0.447-1 1v8h5v-8zM28 22h-3c-0.553 0-1 0.447-1 1v2h5v-2c0-0.553-0.448-1-1-1z"></path>
                         </svg>
                 </a>
-
+                </div>
                 
                     
-                    <form action="{{ route('rapports.pdf') }}" method="POST" target="__blank">
+                    <form action="{{ route('rapports.pdf') }}" method="POST" >
                         @csrf
                         @if (isset($search))
                             <input type="search" name="search" id="default-search" value={{ $search }}
