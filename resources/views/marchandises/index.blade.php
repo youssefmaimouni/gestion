@@ -112,9 +112,8 @@
     <div id="cont" class="">
         <div class=" flex">
             <p class="text-2xl w-2/3 m-3 pl-6 underline underline-offset-4">marchandises</p>
-            <p class="text-xl w-1/3  m-3 pl-6"><a href="/marchandises/create"
-                    class="text-blue-600 hover:text-blue-900">Ajouter
-                    Marchendise</a> </p>
+            <p class="text-xl w-1/3  m-3 pl-6"><a href="/marchandises/create/{{$categories->id}}"
+                    class="text-blue-600 hover:text-blue-900">Ajouter Marchendise</a></p>
                 </div>
                 <div class="container  w-full">
                     <!-- Error Message -->
@@ -189,7 +188,7 @@
                                 </td>
                                 <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                                 @if($marchandise->barre_code)
-                                   <td ><abbr title="{{$marchandise->barre_code}}"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C39', 1, 30) !!}</abbr></td>
+                                   <td ><abbr title="{{$marchandise->barre_code}}"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C128', 1, 30) !!}</abbr></td>
                         @else
                             <td>Pas de code barre</td>
                         @endif

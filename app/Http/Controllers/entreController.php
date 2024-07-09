@@ -8,6 +8,8 @@ use App\Models\categories;
 use App\Models\entres;
 use App\Models\fournisseurs;
 use App\Models\marchandises;
+use App\Models\rapport;
+use DateTime;
 use Illuminate\Http\Request;
 
 class entreController extends Controller
@@ -28,6 +30,26 @@ class entreController extends Controller
        $marchandises->quantite=$marchandises->quantite+$validatedData['quantite'];
        $marchandises->save();
         $entre->save();
+        $rapports=rapport::all();
+        $found = false; 
+        foreach ($rapports as $rapport) {
+            $rapportDate = (new DateTime($rapport->date))->format('Y-m-d');
+                $entreDate = (new DateTime($entre->created_at))->format('Y-m-d');
+
+                if ($rapportDate == $entreDate) {
+                    $rapport->quantite += $entre->quantite;
+                    $rapport->save();
+                    $found = true;
+                    break;
+            }
+        }
+
+        if (!$found) {
+            $rapport = new Rapport();
+            $rapport->date = $entre->created_at;
+            $rapport->quantite = $entre->quantite;
+            $rapport->save();
+        }
 
     
         return redirect()->back()->with('success', 'Entrée  crée avec success.');
@@ -71,7 +93,19 @@ class entreController extends Controller
             }
             $marchandises->quantite=$marchandises->quantite-$entre->quantite;
             $marchandises->save();
+            $rapports=rapport::all();
+            foreach ($rapports as $rapport) {
+                $rapportDate = (new DateTime($rapport->date))->format('Y-m-d');
+                    $entreDate = (new DateTime($entre->created_at))->format('Y-m-d');
+    
+                    if ($rapportDate == $entreDate) {
+                        $rapport->quantite -= $entre->quantite;
+                        $rapport->save();
+                        break;
+                }
+            }
                $entre->delete();
+            
 
            return redirect()->back();
    }

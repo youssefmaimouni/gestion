@@ -17,7 +17,7 @@
             theme: {
                 extend: {
                     colors: {
-                        laravel: "#1967D2",
+                        laravel: "#000000",
                     },
                 },
             },
@@ -152,29 +152,66 @@
             </a>
             <div class="h-px  w-full my-4 bg-gray-600">‎</div>
             <a href="/entres/create"
-                class="flex text-laravel font-medium text items-center hover:bg-slate-300  p-3 w-full {{ request()->is('entres/create') ? 'bg-slate-400' : '' }}">
-                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M23 18C23 18.75 22.79 19.46 22.42 20.06C22.21 20.42 21.94 20.74 21.63 21C20.93 21.63 20.01 22 19 22C17.78 22 16.69 21.45 15.97 20.59C15.95 20.56 15.92 20.54 15.9 20.51C15.78 20.37 15.67 20.22 15.58 20.06C15.21 19.46 15 18.75 15 18C15 16.74 15.58 15.61 16.5 14.88C17.19 14.33 18.06 14 19 14C20 14 20.9 14.36 21.6 14.97C21.72 15.06 21.83 15.17 21.93 15.28C22.59 16 23 16.95 23 18Z"
-                        stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path d="M20.49 17.98H17.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M19 16.52V19.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M3.17004 7.43994L12 12.5499L20.7701 7.46991" stroke="#292D32" stroke-width="1.5"
-                        stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M12 21.6099V12.5399" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                    <path
-                        d="M21.61 9.17V14.83C21.61 14.88 21.61 14.92 21.6 14.97C20.9 14.36 20 14 19 14C18.06 14 17.19 14.33 16.5 14.88C15.58 15.61 15 16.74 15 18C15 18.75 15.21 19.46 15.58 20.06C15.67 20.22 15.78 20.37 15.9 20.51L14.07 21.52C12.93 22.16 11.07 22.16 9.93001 21.52L4.59001 18.56C3.38001 17.89 2.39001 16.21 2.39001 14.83V9.17C2.39001 7.79 3.38001 6.11002 4.59001 5.44002L9.93001 2.48C11.07 1.84 12.93 1.84 14.07 2.48L19.41 5.44002C20.62 6.11002 21.61 7.79 21.61 9.17Z"
-                        stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                <p class="ml-4">
-                    Ajouter entrés
-                </p>
-            </a>
+            class="flex text-laravel font-medium text items-center hover:bg-slate-300  p-3 w-full {{ request()->is('entres/create') ? 'bg-slate-400' : '' }}">
+            <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+            d="M23 18C23 18.75 22.79 19.46 22.42 20.06C22.21 20.42 21.94 20.74 21.63 21C20.93 21.63 20.01 22 19 22C17.78 22 16.69 21.45 15.97 20.59C15.95 20.56 15.92 20.54 15.9 20.51C15.78 20.37 15.67 20.22 15.58 20.06C15.21 19.46 15 18.75 15 18C15 16.74 15.58 15.61 16.5 14.88C17.19 14.33 18.06 14 19 14C20 14 20.9 14.36 21.6 14.97C21.72 15.06 21.83 15.17 21.93 15.28C22.59 16 23 16.95 23 18Z"
+            stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"
+            stroke-linejoin="round" />
+            <path d="M20.49 17.98H17.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+            stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M19 16.52V19.51" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"
+            stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M3.17004 7.43994L12 12.5499L20.7701 7.46991" stroke="#292D32" stroke-width="1.5"
+            stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M12 21.6099V12.5399" stroke="#292D32" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round" />
+            <path
+            d="M21.61 9.17V14.83C21.61 14.88 21.61 14.92 21.6 14.97C20.9 14.36 20 14 19 14C18.06 14 17.19 14.33 16.5 14.88C15.58 15.61 15 16.74 15 18C15 18.75 15.21 19.46 15.58 20.06C15.67 20.22 15.78 20.37 15.9 20.51L14.07 21.52C12.93 22.16 11.07 22.16 9.93001 21.52L4.59001 18.56C3.38001 17.89 2.39001 16.21 2.39001 14.83V9.17C2.39001 7.79 3.38001 6.11002 4.59001 5.44002L9.93001 2.48C11.07 1.84 12.93 1.84 14.07 2.48L19.41 5.44002C20.62 6.11002 21.61 7.79 21.61 9.17Z"
+            stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <p class="ml-4">
+            Ajouter entrés
+        </p>
+    </a>
+    <div class="h-px  w-full my-4 bg-gray-600">‎</div>
+    {{-- @if (auth()->user()->role=='S') --}}
+            
+                <a href="/register" class="flex text-laravel font-medium text items-center pl-4 mt-6">
+                    <svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                        viewBox="0 0 328 328" xml:space="preserve">
+                    <g id="XMLID_455_">
+                        <path id="XMLID_458_" d="M15,286.75h125.596c19.246,24.348,49.031,40,82.404,40c57.897,0,105-47.103,105-105s-47.103-105-105-105
+                            c-34.488,0-65.145,16.716-84.298,42.47c-7.763-1.628-15.694-2.47-23.702-2.47c-63.411,0-115,51.589-115,115
+                            C0,280.034,6.716,286.75,15,286.75z M223,146.75c41.355,0,75,33.645,75,75s-33.645,75-75,75s-75-33.645-75-75
+                            S181.645,146.75,223,146.75z"/>
+                        <path id="XMLID_461_" d="M115,1.25c-34.602,0-62.751,28.15-62.751,62.751S80.398,126.75,115,126.75
+                            c34.601,0,62.75-28.148,62.75-62.749S149.601,1.25,115,1.25z"/>
+                        <path id="XMLID_462_" d="M193,236.75h15v15c0,8.284,6.716,15,15,15s15-6.716,15-15v-15h15c8.284,0,15-6.716,15-15s-6.716-15-15-15
+                            h-15v-15c0-8.284-6.716-15-15-15s-15,6.716-15,15v15h-15c-8.284,0-15,6.716-15,15S184.716,236.75,193,236.75z"/>
+                    </g>
+                    </svg>
+                    <p class="ml-4">
+                        Ajouter un admin
+                    </p>
+                </a>
+                <a href="/admin/list" class="flex text-laravel font-medium text items-center pl-4 mt-6">
+                    <svg width="20px" height="20px" viewBox="0 -1.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Dribbble-Light-Preview" transform="translate(-100.000000, -2122.000000)" fill="#000000">
+                                <g id="icons" transform="translate(56.000000, 160.000000)">
+                                    <path d="M63.9996063,1963 C63.9996063,1963.552 63.5516063,1964 62.9996063,1964 L56.9996063,1964 C56.4476063,1964 55.9996063,1963.552 55.9996063,1963 C55.9996063,1962.448 56.4476063,1962 56.9996063,1962 L62.9996063,1962 C63.5516063,1962 63.9996063,1962.448 63.9996063,1963 M51.9726063,1970.902 C51.9586063,1970.902 51.9446063,1970.9 51.9306063,1970.9 C51.9156063,1970.9 51.9026063,1970.902 51.8876063,1970.902 C50.8046063,1970.879 49.9306063,1969.995 49.9306063,1968.906 C49.9306063,1967.803 50.8276063,1966.906 51.9306063,1966.906 C53.0326063,1966.906 53.9306063,1967.803 53.9306063,1968.906 C53.9306063,1969.995 53.0556063,1970.879 51.9726063,1970.902 M54.9556063,1971.495 C55.7856063,1970.527 56.1856063,1969.18 55.7546063,1967.724 C55.3576063,1966.38 54.2276063,1965.32 52.8616063,1965.011 C50.2476063,1964.422 47.9306063,1966.393 47.9306063,1968.906 C47.9306063,1969.899 48.3056063,1970.796 48.9036063,1971.495 C46.3206063,1972.55 44.4126063,1974.997 44.0096063,1977.867 C43.9256063,1978.466 44.4036063,1979 45.0086063,1979 C45.5026063,1979 45.9206063,1978.637 45.9906063,1978.147 C46.4026063,1975.24 48.8866063,1972.923 51.8876063,1972.902 C51.9026063,1972.902 51.9156063,1972.906 51.9306063,1972.906 C51.9446063,1972.906 51.9576063,1972.902 51.9726063,1972.902 C54.9736063,1972.923 57.4576063,1975.24 57.8696063,1978.148 C57.9396063,1978.637 58.3576063,1979 58.8526063,1979 C59.4566063,1979 59.9346063,1978.466 59.8506063,1977.867 C59.4476063,1974.997 57.5396063,1972.551 54.9556063,1971.495" id="profile_minus-[#1353]">
+                                    </path>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                    <p class="ml-4">
+                        Gérer les admin
+                    </p>
+                </a>
+            {{-- @endif --}}
             {{-- <a href="/sorties/create"
                 class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"

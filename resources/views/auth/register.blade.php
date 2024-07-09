@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="/register">
         @csrf
 
         <!-- Name -->
@@ -38,12 +38,23 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-
+        <div class="mb-6">
+            <div class="flex w-full m-auto items-center">
+                <p class="w-full inline-block text-lg">Rôle:</p>
+                <div class="w-full">
+                    <label for="A">Admin</label>
+                    <input type="radio" id='A' class="border border-gray-200 rounded p-2" name="role" value="A" />
+                </div>
+                <div class="w-full">
+                    <label for="S">Super Admin</label>
+                    <input type="radio" id='S' class="border border-gray-200 rounded p-2" name="role" value="S" />
+                </div>
+            </div>
+            @error('role')
+                <p class="text-red-500 text-xs w-80 mt-1">{{$message}} </p>
+            @enderror 
+        </div>
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
             <x-primary-button class="ms-4">
                 {{ __('Register') }}
             </x-primary-button>

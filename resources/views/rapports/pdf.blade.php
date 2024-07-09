@@ -72,7 +72,7 @@ h2{
                         <tr>
                             <td>{{ $marchandise->nom }}</td>
                             @if ($marchandise->barre_code)
-                                        <td class="w-fit">{!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C39', 1, 20) !!}
+                                        <td class="w-fit"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C128', 1, 30) !!}
                                         </td>
                                     @else
                                         <td>Pas de code barre</td>

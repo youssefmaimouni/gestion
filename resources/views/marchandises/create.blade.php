@@ -142,7 +142,15 @@
                             <label for="categorie" class="inline-block text-lg mb-2">Catégorie</label>
                             <select name="categorie" class="border border-gray-200 rounded p-2 w-full" id="selectOption">
                                 @foreach ($categorie as $item)
-                                    <option value="{{$item->id}}">{{$item->nom}}</option>
+                                  @if(isset($category))
+                                  @if ($category->id==$item->id)
+                                  <option value="{{$item->id}}" selected>{{$item->nom}}</option>
+                                  @else
+                                  <option value="{{$item->id}}">{{$item->nom}}</option>
+                                  @endif
+                                  @else
+                                  <option value="{{$item->id}}">{{$item->nom}}</option>
+                                  @endif
                                 @endforeach
                                 <option value="add">ajouter categorie</option>
                             </select>

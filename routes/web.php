@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\categorieController;
 use App\Http\Controllers\courbeController;
 use App\Http\Controllers\entreController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\marchandiseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\rapportController;
 use App\Http\Controllers\sortieController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +55,7 @@ Route::get('/categories/sortie/{sorties}', [categorieController::class, 'index_m
 Route::get('/marchandises', [marchandiseController::class, 'index_cat'])->name('marchandises.index_cat');
 Route::get('/marchandises/categories/{categories}', [marchandiseController::class, 'index'])->name('marchandises.index');
 Route::get('/marchandises/create', [marchandiseController::class, 'create'])->name('marchandises.create');
+Route::get('/marchandises/create/{categories}', [marchandiseController::class, 'create_cat'])->name('marchandises.create.cat');
 Route::post('/marchandises', [marchandiseController::class, 'store'])->name('marchandises.store');
 Route::put('/marchandises/{marchandise}', [marchandiseController::class, 'update'])->name('marchandises.update');
 Route::delete('/marchandises/delete', [marchandiseController::class, 'delete'])->name('marchandises.delete');
@@ -81,6 +84,13 @@ Route::post('/rapports/download-pdf', [RapportController::class, 'downloadPdf'])
 Route::get('/rapports/search', [rapportController::class, 'search'])->name('rapport.search');
 Route::get('/rapports/courbe', [courbeController::class, 'courbe'])->name('rapports.courbe');
 
+Route::get('register', [UserController::class, 'register'])
+->name('register');
+
+Route::post('register', [UserController::class, 'store']);
+
+Route::get('/admin/list', [UserController::class, 'modif']);
+Route::delete('/admin/delete', [UserController::class, 'delete']);
 });
 
 require __DIR__.'/auth.php';

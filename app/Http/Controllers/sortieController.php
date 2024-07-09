@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\categories;
 use App\Models\marchandises;
+use App\Models\rapport;
 use App\Models\sorties;
+use DateTime;
 use Illuminate\Http\Request;
 
 class sortieController extends Controller
@@ -36,6 +38,26 @@ class sortieController extends Controller
        $marchandises->quantite=$marchandises->quantite-$validatedData['quantite'];
        $marchandises->save();
         $sortie->save();
+        $rapports=rapport::all();
+        $found = false; 
+        foreach ($rapports as $rapport) {
+            $rapportDate = (new DateTime($rapport->date))->format('Y-m-d');
+                $sortieDate = (new DateTime($sortie->created_at))->format('Y-m-d');
+
+                if ($rapportDate == $sortieDate) {
+                $rapport->quantite -= $sortie->quantite;
+                $rapport->save();
+                $found = true;
+                break;
+            }
+        }
+
+        if (!$found) {
+            $rapport = new Rapport();
+            $rapport->date = $sortie->created_at;
+            $rapport->quantite -= $sortie->quantite;
+            $rapport->save();
+        }
     
         return redirect()->back()->with('success', 'sortie crée avec success.');
     }
@@ -74,6 +96,18 @@ class sortieController extends Controller
         $marchandises=marchandises::find($sortie->id_mar);
             $marchandises->quantite=$marchandises->quantite+$sortie->quantite;
             $marchandises->save();
+            $rapports=rapport::all(); 
+        foreach ($rapports as $rapport) {
+            $rapportDate = (new DateTime($rapport->date))->format('Y-m-d');
+                $sortieDate = (new DateTime($sortie->created_at))->format('Y-m-d');
+
+                if ($rapportDate == $sortieDate) {
+                $rapport->quantite += $sortie->quantite;
+                $rapport->save();
+                $found = true;
+                break;
+            }
+        }
                $sortie->delete();
 
                return redirect()->back();
