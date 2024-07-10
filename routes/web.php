@@ -83,6 +83,7 @@ Route::get('/rapports', [RapportController::class, 'index'])->name('rapports.ind
 Route::post('/rapports/download-pdf', [RapportController::class, 'downloadPdf'])->name('rapports.pdf');
 Route::get('/rapports/search', [rapportController::class, 'search'])->name('rapport.search');
 Route::get('/rapports/courbe', [courbeController::class, 'courbe'])->name('rapports.courbe');
+Route::get('/rapports/courbe/{categories}', [courbeController::class, 'getItemsByCategory'])->name('repports.mar');
 
 Route::get('register', [UserController::class, 'register'])
 ->name('register');
