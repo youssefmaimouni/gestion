@@ -13,41 +13,39 @@ use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 class courbeController extends Controller
 {
     public function courbe(Request $request)
-{
-    $periode = $request->get('periode', 'day');
-    $chart_options = [
-        'chart_title' => 'Evolution de la quantité de stock de marchandises',
-        'report_type' => 'group_by_date',
-        'model' => 'App\Models\rapport',
-        'group_by_field' => 'created_at',
-        'group_by_period' => $periode,
-        'aggregate_function' => 'sum',
-        'aggregate_field' => 'quantite',
-        'chart_type' => 'bar',
-    ];
-    $chart1 = new LaravelChart($chart_options);
-
-    $dateFormat = match($periode) {
-        'month' => '%Y-%m',
-        'year' => '%Y',
-        default => '%Y-%m-%d'
-    };
-    $currentDate = date('Y-m-d');
-    $startDate = match($periode) {
-        'month' => date('Y-m-01'), 
-        'year' => date('Y-01-01'), 
-        default => $currentDate
-    };
-  
-    $stockData = DB::table('rapports')
-    ->select(
-        DB::raw("SUM(quantite) as total_quantite"),
-        DB::raw("DATE_FORMAT(date, '$dateFormat') as formatted_date")
-    )
-    ->groupBy('formatted_date')
-    ->orderBy('formatted_date')
-    ->get();
-    Log::debug('Chart Data:', $stockData->toArray());
-    return view('rapports.chart', compact('chart1', 'stockData'));
-}  
+    {
+        $periode = $request->get('periode', 'day'); 
+    
+        // Determine the date format based on the selected period
+        $dateFormat = match($periode) {
+            'month' => '%Y-%m',
+            'year' => '%Y',
+            default => '%Y-%m-%d'
+        };
+    
+        // Get the current date to limit the query
+        $currentDate = date('Y-m-d');
+    
+        // Fetch the data from the database
+        $data = DB::table('rapports')
+            ->select(DB::raw("SUM(quantite) as total_quantite, DATE_FORMAT(created_at, '$dateFormat') as formatted_date"))
+            ->groupBy('formatted_date')
+            ->orderBy('formatted_date')
+            ->get();
+    
+        // Calculate cumulative total
+        $cumulativeTotal = 0;
+        $chartData = [];
+        foreach ($data as $entry) {
+            $cumulativeTotal += $entry->total_quantite;
+            $chartData[] = [
+                'date' => $entry->formatted_date,
+                'quantite' => $cumulativeTotal
+            ];
+        }
+    
+        // Pass the prepared data to the view
+        return view('rapports.chart', ['chartData' => $chartData, 'periode' => $periode]);
+    }
+       
 }

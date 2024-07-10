@@ -82,7 +82,9 @@ class entreController extends Controller
     }
 
     public function delete(Request $request) {
-
+        if (auth()->user()->role != 'S') {
+            return abort(403, 'you are not a super admin');
+        }
         $entre=entres::find($request->id);
             if(empty($entre)){
                 return redirect()->back()->with('error', 'Entrée  introuvable.');

@@ -176,7 +176,7 @@
         </p>
     </a>
     <div class="h-px  w-full my-4 bg-gray-600">‎</div>
-    {{-- @if (auth()->user()->role=='S') --}}
+    @if (auth()->user()->role=='S')
             
                 <a href="/register" class="flex text-laravel font-medium text items-center pl-4 mt-6">
                     <svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -211,7 +211,7 @@
                         Gérer les admin
                     </p>
                 </a>
-            {{-- @endif --}}
+            @endif
             {{-- <a href="/sorties/create"
                 class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none"
