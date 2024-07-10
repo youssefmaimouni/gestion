@@ -14,7 +14,7 @@ class courbeController extends Controller
 {
     public function courbe(Request $request)
 {
-    $periode = $request->get('periode', 'day'); // Mettez une valeur fixe pour tester
+    $periode = $request->get('periode', 'day');
     $chart_options = [
         'chart_title' => 'Evolution de la quantité de stock de marchandises',
         'report_type' => 'group_by_date',
@@ -34,11 +34,11 @@ class courbeController extends Controller
     };
     $currentDate = date('Y-m-d');
     $startDate = match($periode) {
-        'month' => date('Y-m-01'), // Premier jour du mois courant
-        'year' => date('Y-01-01'), // Premier jour de l'année courante
+        'month' => date('Y-m-01'), 
+        'year' => date('Y-01-01'), 
         default => $currentDate
     };
-    // Requête pour obtenir la quantité totale de stock chaque jour
+  
     $stockData = DB::table('rapports')
     ->select(
         DB::raw("SUM(quantite) as total_quantite"),
