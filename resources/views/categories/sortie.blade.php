@@ -1,5 +1,5 @@
 <x-nav-bar>
-    <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md z-50" id="deleteGroupModal"
+    {{-- <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md z-50" id="deleteGroupModal"
          style="width: 400px; justify-items: center; align-content: space-evenly; height: 200px; left: 50%; top:50%; transform: translate(-50%, -50%);" tabindex="-1"
          aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
         <div class="grid justify-items-center">
@@ -29,6 +29,39 @@
                 @method('DELETE')
                 <input type="hidden" name="id" id="deleteGroupId" value="">
                 <button type="submit" class="bg-red-500 text-white p-2 rounded-sm hover:scale-110 hover:bg-red-400">rajouter</button>
+            </form>
+        </div>
+    </div> --}}
+    <div class="fixed font-mon bg-white grid hidden rounded-md shadow-md z-50" id="deleteGroupModal"
+        style="width: 800px; justify-items: center; align-content: space-evenly ;height: 250px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
+        aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
+        <div class="grid justify-items-center w-full">
+            <form action="/sorties/delete" method="POST" class="p-6 w-full">
+                @csrf
+                @method('delete')
+
+                <h2 class="text-lg font-medium text-gray-900">
+                    {{ __('Confirmation de la suppression') }}
+                </h2>
+
+                <p class="mt-1 text-sm text-gray-600">
+                    {{ __('Êtes-vous sûr de vouloir supprimer cette marchendise?') }}
+                </p>
+
+                <div class="mt-6">
+                    <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+                    <x-text-input  name="current_password" type="password" class="mt-1 block w-3/4"
+                        placeholder="{{ __('Password') }}" />
+                    <x-input-error :messages="$errors->userDeletion->get('password')" class="mt-2" id="err" />
+                </div>
+                <input type="hidden" name="id" id="deleteGroupId" value="">
+                <div class="mt-6 flex justify-end">
+                    <x-secondary-button onclick="hide()">
+                        {{ __('Cancel') }}
+                    </x-secondary-button>
+
+                    <button type="submit" class=' ms-3 inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition ease-in-out duration-150'id="sub">rajouter</button>
+                </div>
             </form>
         </div>
     </div>
@@ -75,6 +108,19 @@
                     </ul>
                 </div>
             @endif
+
+            @if ($errors->userDeletion->get('current_password'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-1 rounded relative" role="alert">
+                <strong class="font-bold">Oops!</strong>
+                <span class="block sm:inline">Il y avait quelques problèmes avec vos données
+                    saisies.</span>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         </div>
         <ul class="flex flex-wrap -mb-px">

@@ -28,7 +28,7 @@ class courbeController extends Controller
     
         // Fetch the data from the database
         $data = DB::table('rapports')
-            ->select(DB::raw("SUM(quantite) as total_quantite, DATE_FORMAT(created_at, '$dateFormat') as formatted_date"))
+            ->select(DB::raw("SUM(quantite) as total_quantite, DATE_FORMAT(date, '$dateFormat') as formatted_date"))
             ->groupBy('formatted_date')
             ->orderBy('formatted_date')
             ->get();

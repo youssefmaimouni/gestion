@@ -12,17 +12,6 @@
     <link href="{{ asset('img/logo.png') }}" rel="icon">
     {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        laravel: "#000000",
-                    },
-                },
-            },
-        };
-    </script>
     <style>
         .calc {
             height: 92%;
@@ -69,7 +58,7 @@
                         fill="#000000" />
                 </svg>
                 <p class="ml-4">
-                    marchandises
+                    Marchandises
                 </p>
             </a>
             <a class="flex text-laravel font-medium text items-center hover:bg-slate-300  p-3 w-full {{ request()->is('categories/entre/*') ? 'bg-slate-400' : '' }} {{ request()->is('categories/sortie/*') ? 'bg-slate-400' : '' }} {{ request()->is('categories/*/documents/*') ? 'bg-slate-400' : '' }} {{ request()->is('categories/*/documents') ? 'bg-slate-400' : '' }} {{ request()->is('documents') ? 'bg-slate-400' : '' }}" href="/documents">
@@ -98,7 +87,7 @@
                     </g>
                 </svg>
                 <p class="ml-4">
-                    documents
+                    Documents
                 </p>
             </a>
             {{-- <a class="flex text-laravel font-medium text items-center hover:bg-slate-400  p-3 w-full"
@@ -172,13 +161,13 @@
             stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
         <p class="ml-4">
-            Ajouter entrés
+            Ajouter Marchandises
         </p>
     </a>
     <div class="h-px  w-full my-4 bg-gray-600">‎</div>
     @if (auth()->user()->role=='S')
             
-                <a href="/register" class="flex text-laravel font-medium text items-center pl-4 mt-6">
+                <a href="/register" class="flex text-laravel font-medium text items-center hover:bg-slate-300  p-3 w-full {{ request()->is('register') ? 'bg-slate-400' : '' }}">
                     <svg fill="#000000" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                         viewBox="0 0 328 328" xml:space="preserve">
                     <g id="XMLID_455_">
@@ -196,18 +185,11 @@
                         Ajouter un admin
                     </p>
                 </a>
-                <a href="/admin/list" class="flex text-laravel font-medium text items-center pl-4 mt-6">
-                    <svg width="20px" height="20px" viewBox="0 -1.5 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <g id="Dribbble-Light-Preview" transform="translate(-100.000000, -2122.000000)" fill="#000000">
-                                <g id="icons" transform="translate(56.000000, 160.000000)">
-                                    <path d="M63.9996063,1963 C63.9996063,1963.552 63.5516063,1964 62.9996063,1964 L56.9996063,1964 C56.4476063,1964 55.9996063,1963.552 55.9996063,1963 C55.9996063,1962.448 56.4476063,1962 56.9996063,1962 L62.9996063,1962 C63.5516063,1962 63.9996063,1962.448 63.9996063,1963 M51.9726063,1970.902 C51.9586063,1970.902 51.9446063,1970.9 51.9306063,1970.9 C51.9156063,1970.9 51.9026063,1970.902 51.8876063,1970.902 C50.8046063,1970.879 49.9306063,1969.995 49.9306063,1968.906 C49.9306063,1967.803 50.8276063,1966.906 51.9306063,1966.906 C53.0326063,1966.906 53.9306063,1967.803 53.9306063,1968.906 C53.9306063,1969.995 53.0556063,1970.879 51.9726063,1970.902 M54.9556063,1971.495 C55.7856063,1970.527 56.1856063,1969.18 55.7546063,1967.724 C55.3576063,1966.38 54.2276063,1965.32 52.8616063,1965.011 C50.2476063,1964.422 47.9306063,1966.393 47.9306063,1968.906 C47.9306063,1969.899 48.3056063,1970.796 48.9036063,1971.495 C46.3206063,1972.55 44.4126063,1974.997 44.0096063,1977.867 C43.9256063,1978.466 44.4036063,1979 45.0086063,1979 C45.5026063,1979 45.9206063,1978.637 45.9906063,1978.147 C46.4026063,1975.24 48.8866063,1972.923 51.8876063,1972.902 C51.9026063,1972.902 51.9156063,1972.906 51.9306063,1972.906 C51.9446063,1972.906 51.9576063,1972.902 51.9726063,1972.902 C54.9736063,1972.923 57.4576063,1975.24 57.8696063,1978.148 C57.9396063,1978.637 58.3576063,1979 58.8526063,1979 C59.4566063,1979 59.9346063,1978.466 59.8506063,1977.867 C59.4476063,1974.997 57.5396063,1972.551 54.9556063,1971.495" id="profile_minus-[#1353]">
-                                    </path>
-                                </g>
-                            </g>
-                        </g>
-                    </svg>
-                    <p class="ml-4">
+                <a href="/admin/list" class="flex text-laravel font-medium text items-center hover:bg-slate-300  p-3 w-full {{ request()->is('admin/*') ? 'bg-slate-400' : '' }}">
+                    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 21C5 17.134 8.13401 14 12 14C15.866 14 19 17.134 19 21M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#000000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="ml-4">
                         Gérer les admin
                     </p>
                 </a>

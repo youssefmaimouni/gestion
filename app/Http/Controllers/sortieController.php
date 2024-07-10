@@ -91,6 +91,9 @@ class sortieController extends Controller
         if (auth()->user()->role != 'S') {
             return abort(403, 'you are not a super admin');
         }
+        $request->validateWithBag('userDeletion', [
+            'current_password' => ['required', 'current_password'],
+        ]);
         $sortie = sorties::find($request->id);
         if(empty($sortie)){
             return redirect()->back()->with('error', 'Sortier  introuvable.');

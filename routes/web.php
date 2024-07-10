@@ -89,7 +89,10 @@ Route::get('register', [UserController::class, 'register'])
 
 Route::post('register', [UserController::class, 'store']);
 
-Route::get('/admin/list', [UserController::class, 'modif']);
+Route::get('/admin/list', [UserController::class, 'list']);
+Route::get('/admin/update/{user}', [UserController::class, 'modif']);
+Route::put('/admin/update/{user}', [UserController::class, 'modif_info'])->name('user.update');
+Route::put('/admin/password/{user}', [UserController::class, 'modif_password'])->name('user.password');
 Route::delete('/admin/delete', [UserController::class, 'delete']);
 });
 

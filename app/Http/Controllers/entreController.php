@@ -85,6 +85,9 @@ class entreController extends Controller
         if (auth()->user()->role != 'S') {
             return abort(403, 'you are not a super admin');
         }
+        $request->validateWithBag('userDeletion', [
+            'current_password' => ['required', 'current_password'],
+        ]);
         $entre=entres::find($request->id);
             if(empty($entre)){
                 return redirect()->back()->with('error', 'Entrée  introuvable.');
