@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\categories;
 use App\Models\entres;
 use App\Models\marchandises;
+use App\Models\rapport;
+use App\Models\sorties;
+use DateTime;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -46,20 +49,23 @@ class marchandiseController extends Controller
         return view('marchandises.index_cat', compact('categories'));
     }
     public function index(categories $categories){
-        $marchandise = marchandises::where('id_cat','=',$categories->id)->get();
-        return view('marchandises.index', ['marchandises'=>$marchandise]);
+        $marchandise = marchandises::where('id_cat','=',$categories->id)->paginate(10)->withQueryString();
+        return view('marchandises.index', ['marchandises'=>$marchandise,'categories'=>$categories]);
     }
 
    
     public function create() {
         return view('marchandises.create',['categorie'=>categories::all()]);
     }
+    public function create_cat(categories $categories) {
+        return view('marchandises.create',['categorie'=>categories::all(),'category'=>$categories]);
+    }
    public function store(Request $request) {
     // Valider les données d'entrée
     
     $valid = $request->validate([
             'nom' => 'required|min:3|string',
-            'barre_code' => 'integer|nullable',
+            'barre_code' => 'nullable|string|regex:/^\d{10,13}$/',
             'description' => 'string|nullable',
             'quantite' => 'integer|nullable',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
@@ -103,6 +109,26 @@ class marchandiseController extends Controller
             $entre->quantite=$valid['quantite'];
             $entre->id_mar=$marchandise->id;
             $entre->save();
+            $rapports=rapport::all();
+            $found = false; 
+            foreach ($rapports as $rapport) {
+                $rapportDate = (new DateTime($rapport->date))->format('Y-m-d');
+                $entreDate = (new DateTime($entre->created_at))->format('Y-m-d');
+
+                if ($rapportDate == $entreDate) {
+                    $rapport->quantite += $entre->quantite;
+                    $rapport->save();
+                    $found = true;
+                    break;
+                }
+            }
+
+            if (!$found) {
+                $rapport = new Rapport();
+                $rapport->date = $entre->created_at;
+                $rapport->quantite = $entre->quantite;
+                $rapport->save();
+            }
         }
         return redirect()->route('marchandises.index',$categorie)->with('success', 'Marchandise ajoutée avec succès.');
     } catch (Exception $e) {
@@ -117,7 +143,7 @@ class marchandiseController extends Controller
     {
         $valid = $request->validate([
             'nom' => 'required|min:3|string',
-            'barre_code' => 'integer|nullable',
+            'barre_code' => 'nullable|string|regex:/^\d{10,13}$/',
             'description' => 'string|nullable',
             'quantite' => 'integer|nullable',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
@@ -153,6 +179,34 @@ class marchandiseController extends Controller
 
     public function delete(Request $request) {
                 $marchandise = marchandises::find($request->id);
+                $entres=entres::where('id_mar','=',$marchandise->id)->get();
+                $sorties=sorties::where('id_mar','=',$marchandise->id)->get();
+                foreach ($entres as $entre) {
+                    $rapports=rapport::all();
+                    foreach ($rapports as $rapport) {
+                        $rapportDate = (new DateTime($rapport->date))->format('Y-m-d');
+                            $entreDate = (new DateTime($entre->created_at))->format('Y-m-d');
+            
+                            if ($rapportDate == $entreDate) {
+                                $rapport->quantite -= $entre->quantite;
+                                $rapport->save();
+                                break;
+                        }
+                    }
+                }
+                foreach ($sorties as $sortie) {
+                    $rapports=rapport::all();
+                    foreach ($rapports as $rapport) {
+                        $rapportDate = (new DateTime($rapport->date))->format('Y-m-d');
+                            $sortieDate = (new DateTime($sortie->created_at))->format('Y-m-d');
+            
+                            if ($rapportDate == $sortieDate) {
+                                $rapport->quantite += $sortie->quantite;
+                                $rapport->save();
+                                break;
+                        }
+                    }
+                }
                $marchandise->delete();
         return redirect()->back()->with('success','marchandise supprimer  avec success');
    }

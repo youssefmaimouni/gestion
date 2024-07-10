@@ -28,7 +28,7 @@
             @csrf
             @method('DELETE')
             <input type="hidden" name="id" id="deleteGroupId" value="">
-            <button type="submit" class="bg-red-500 text-white p-2 rounded-sm hover:scale-110 hover:bg-red-400">annuler</button>
+            <button type="submit" class="bg-red-500 text-white p-2 rounded-sm hover:scale-110 hover:bg-red-400" id="sub"></button>
         </form>
     </div>
 </div>
@@ -119,6 +119,7 @@
             document.getElementById('deleteGroupModal').classList.remove('hidden');
             document.getElementById('deleteGroupId').value = id;
             document.getElementById('deleteForm').action = type === 'entre' ? '/entres/delete' : '/sorties/delete';
+            document.getElementById('sub').innerHTML = type === 'entre' ? 'retirer' : 'rajouter';
             
             document.getElementById('cont').classList.add('blur-sm');
             document.getElementById('cont').classList.add('pointer-events-none');
