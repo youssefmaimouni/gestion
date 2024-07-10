@@ -176,7 +176,7 @@
                     <tbody>
                         @foreach ($marchandises as $marchandise)
                             <tr class="bg-white border-b hover:bg-gray-200 hover:text-black ">
-                                <td class="py-4 px-1 text-center">
+                                <td class="py-3 px-1 text-center flex justify-center">
                                     @if (isset($marchandise->image) && $marchandise->image !== null)
                                         <img class="image w-10 h-10 rounded-full bg-cover"
                                             src="{{ asset('/storage/' . $marchandise->image) }}" alt="" />
@@ -188,7 +188,7 @@
                                 </td>
                                 <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                                 @if($marchandise->barre_code)
-                                   <td ><abbr title="{{$marchandise->barre_code}}"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C128', 1, 30) !!}</abbr></td>
+                                   <td class="flex justify-center py-5 px-1  "><abbr title="{{$marchandise->barre_code}}"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C128', 1, 30) !!}</abbr></td>
                         @else
                             <td>Pas de code barre</td>
                         @endif
@@ -201,7 +201,7 @@
                                 </td>
                                 <td class="py-4 px-1 text-center ">{{ $marchandise->quantite }}</td>
                                 <td class="py-4 px-1 text-center">
-                                    <p class="overflow-hidden max-h-10 line-clamp-2">{{ $marchandise->description }}</p>
+                                    <p class="overflow-hidden max-h-10 max-w-48 line-clamp-2">{{ $marchandise->description }}</p>
                                   </td>
                                   
                                 <td class="py-4 px-6 justify-between flex text-center space-x-2">
@@ -224,7 +224,7 @@
                                                 d="M20 12H4" />
                                         </svg>
                                     </button>
-
+                                    @if (auth()->user()->role=='S')
                                     <button onclick="warnning({{ $marchandise->id }})" title="Supprimer"
                                         aria-label="Supprimer"
                                         class="flex items-center text-red-500 bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
@@ -234,7 +234,7 @@
                                                 d="M6 18L18 6M6 6l12 12" />
                                         </svg>
                                     </button>
-
+                                    @endif
                                     <a href="/marchandises/{{ $marchandise->id }}/edit" title="Modifier"
                                         aria-label="Modifier"
                                         class="flex items-center text-blue-500 bg-blue-200 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">

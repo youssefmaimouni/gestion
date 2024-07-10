@@ -178,6 +178,9 @@ class marchandiseController extends Controller
     }
 
     public function delete(Request $request) {
+        if (auth()->user()->role != 'S') {
+            return abort(403, 'you are not a super admin');
+        }
                 $marchandise = marchandises::find($request->id);
                 $entres=entres::where('id_mar','=',$marchandise->id)->get();
                 $sorties=sorties::where('id_mar','=',$marchandise->id)->get();

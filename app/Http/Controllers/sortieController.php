@@ -88,7 +88,9 @@ class sortieController extends Controller
     }
 
     public function delete(Request $request) {
-       
+        if (auth()->user()->role != 'S') {
+            return abort(403, 'you are not a super admin');
+        }
         $sortie = sorties::find($request->id);
         if(empty($sortie)){
             return redirect()->back()->with('error', 'Sortier  introuvable.');
