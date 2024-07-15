@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('marchandises', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->string('barre_code')->nullable();
             $table->longText('description')->nullable();
             $table->integer('quantite')->nullable();
             $table->string('image')->nullable();
