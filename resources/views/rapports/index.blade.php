@@ -3,6 +3,12 @@
         abbr {
             text-decoration: none;
         }
+        @media(max-width: 640px){
+    .desc{
+       margin-top: 4px;
+    }
+}
+
     </style>
     <div id="cont" class="">
         <div class="container  w-full">
@@ -49,8 +55,8 @@
         </div>
         <div class="">
             <div class="w-full">
-                <div class=" flex justify-end mr-5 mb-10"> 
-                <p class="text-2xl w-full m-3 pl-6 underline underline-offset-4">Rapport</p>
+                <div class=" flex justify-center  sm:justify-end sm:mr-5 mb-10"> 
+                <p class="text-2xl w-full m-3 pl-4  sm:pl-6 underline underline-offset-4">Rapport</p>
                 <div class="mr-5 mb-10">
                 <a href="{{ route('rapports.courbe') }}" title="courbe"
                     aria-label="Modifier"
@@ -121,9 +127,9 @@
                         </div>
                     </form>
                 </div>
-                <form method="GET" action="/rapports/search" class="max-w-full my-1">
-                    <div class="flex  justify-between">
-                        <div class="relative w-1/3">
+                <form method="GET" action="/rapports/search" class="max-w-full  my-1">
+                    <div class="grid  sm:flex  justify-between">
+                        <div class="relative w-full sm:w-1/3">
                             @if (isset($search))
                                 <input type="search" name="search" id="default-search" value={{ $search }}
                                     class="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500  "
@@ -143,7 +149,8 @@
                                     </svg></button>
                             </abbr>
                         </div>
-                        <div id="date-range-picker" date-rangepicker class="flex items-center mb-1">
+                        <div id="date-range-picker" date-rangepicker class="grid  sm:flex items-center mb-1">
+                            <div class=" sm:relative flex  w-full ">
                             @if (isset($start) && isset($end))
                                 <div class="relative">
 
@@ -211,9 +218,10 @@
                                     </abbr>
                                 </div>
                             @endif
+                            </div>
                             <abbr title="filtre  par bar de recherch et date">
                                 <button type="submit" name="action" value="search"
-                                    class="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    class="desc inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 20 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -230,9 +238,9 @@
                     <table class="w-full text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
-                                <th scope="col" class="py-3 px-1 text-center ">image</th>
+                                <th scope="col" class="py-3 px-1 text-center">image</th>
                                 <th scope="col" class="py-3 px-1 text-center ">nom</th>
-                                <th scope="col" class="py-3 px-1 text-center"> code QR</th>
+                                <th scope="col" class="py-3 px-1 text-center hidden sm:block">code QR</th>
                                 <th scope="col" class="py-3 px-1 text-center ">categorie</th>
                                 <th scope="col" class="py-3 px-1 text-center ">quantite</th>
                                 <th scope="col" class="py-3 px-1 text-center">entre</th>
@@ -255,12 +263,12 @@
                                     </td>
                                     <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                                     @if ($marchandise->barre_code)
-                                    <td class="py-4 px-1 "><abbr title="{{ $marchandise->barre_code }}">
+                                    <td class="py-4 px-1 hidden sm:block"><abbr title="{{ $marchandise->barre_code }}">
                                         {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}
                                             </abbr>
                                         </td>
                                     @else
-                                    <td class="py-4 px-1 text-center ">Pas de code barre</td>
+                                    <td class="py-4 px-1 text-center hidden sm:block">Pas de code barre</td>
                                     @endif
                                     <td class="py-4 px-1 text-center ">
                                         @if ($marchandise->categories)
