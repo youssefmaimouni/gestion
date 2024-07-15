@@ -70,11 +70,9 @@
 
                     </td>
                         <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
-                        @if($marchandise->barre_code)
-                                   <td ><abbr title="{{$marchandise->barre_code}}"> {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}</abbr></td>
-                        @else
-                            <td>Pas de code barre</td>
-                        @endif
+                     
+                                   <td ><abbr title="{{$marchandise->barre_code}}"> {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantite: ".$marchandise->quantite) !!}</abbr></td>
+                        
                         <td class="py-4 px-6 ">{{ $marchandise->categories->nom }}</td>
                         <td class="py-4 px-6 ">{{ $marchandise->qte }}</td>
                         <td class="py-4 px-6 ">{{ $marchandise->description }}</td>

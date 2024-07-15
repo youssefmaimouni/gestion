@@ -262,14 +262,12 @@
 
                                     </td>
                                     <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
-                                    @if ($marchandise->barre_code)
-                                    <td class="py-4 px-1 hidden sm:block"><abbr title="{{ $marchandise->barre_code }}">
-                                        {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}
-                                            </abbr>
+                                  
+                                    <td class=" justify-center py-4 px-1 hidden sm:block ">
+                                        {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantite: ".$marchandise->quantite) !!}
+                                        
                                         </td>
-                                    @else
-                                    <td class="py-4 px-1 text-center hidden sm:block">Pas de code barre</td>
-                                    @endif
+                                    
                                     <td class="py-4 px-1 text-center ">
                                         @if ($marchandise->categories)
                                             {{ $marchandise->categories->nom }}
