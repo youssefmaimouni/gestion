@@ -193,7 +193,7 @@
                         <tr>
                             <th scope="col" class="py-3 px-1 text-center">image</th>
                             <th scope="col" class="py-3 px-1 text-center">nom</th>
-                            <th scope="col" class="py-3 px-1 text-center hidden sm:block">barre code</th>
+                            <th scope="col" class="py-3 px-1 text-center hidden sm:block">code QR</th>
                             <th scope="col" class="py-3 px-1 text-center">categorie</th>
                             <th scope="col" class="py-3 px-1 text-center">quantite</th>
                             <th scope="col" class="py-3 px-1 text-center hidden sm:block">description</th>
