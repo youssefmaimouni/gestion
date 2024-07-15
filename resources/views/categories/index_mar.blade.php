@@ -84,19 +84,13 @@
                         @endif
 
                     </td>
-                    <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
-                        @if($marchandise->barre_code)
-                        <td class=" justify-center py-5 px-1 hidden sm:flex "> <abbr title="{{$marchandise->barre_code}}" id="qrCodeContainer" class="block cursor-pointer qr-code">
-                            {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}
-                        </abbr></td>
-                        @else
-                            <td>Pas de code barre</td>
-                        @endif
-                        <td class="justify-center py-4 px-6 ">{{ $marchandise->categories->nom }}</td>
-                        <td class="text-center py-4 px-6 ">{{ $marchandise->qte }}</td>
-                        <td class="py-4 px-1 text-center desc">
-                            <p class="overflow-hidden max-h-10 max-w-48 line-clamp-2">{{ $marchandise->description }}</p>
-                          </td>
+                        <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
+                     
+                                   <td ><abbr title="{{$marchandise->barre_code}}"> {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantite: ".$marchandise->quantite) !!}</abbr></td>
+                        
+                        <td class="py-4 px-6 ">{{ $marchandise->categories->nom }}</td>
+                        <td class="py-4 px-6 ">{{ $marchandise->qte }}</td>
+                        <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
                         </tr>
                         @endforeach
                     </tbody>

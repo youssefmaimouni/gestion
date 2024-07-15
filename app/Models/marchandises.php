@@ -10,7 +10,7 @@ class marchandises extends Model
     use HasFactory;
     protected $fillable =[
         'nom',
-        'barre_code',
+        
         'description',
         'quantite',
         'unite',
