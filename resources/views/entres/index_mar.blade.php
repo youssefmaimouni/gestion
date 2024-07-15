@@ -36,7 +36,7 @@
                     <tr>
                         <th scope="col" class="py-3 px-6 ">image</th>
                         <th scope="col" class="py-3 px-6 ">nom</th>
-                        <th scope="col" class="py-3 px-6 ">barre code</th>
+                        <th scope="col" class="py-3 px-6 ">code QR</th>
                         <th scope="col" class="py-3 px-6 ">quantite</th>
                         <th scope="col" class="py-3 px-6 ">description</th>
                     </tr>

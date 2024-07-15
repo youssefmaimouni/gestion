@@ -232,7 +232,7 @@
                             <tr>
                                 <th scope="col" class="py-3 px-1 text-center ">image</th>
                                 <th scope="col" class="py-3 px-1 text-center ">nom</th>
-                                <th scope="col" class="py-3 px-1 text-center">barre code</th>
+                                <th scope="col" class="py-3 px-1 text-center"> code QR</th>
                                 <th scope="col" class="py-3 px-1 text-center ">categorie</th>
                                 <th scope="col" class="py-3 px-1 text-center ">quantite</th>
                                 <th scope="col" class="py-3 px-1 text-center">entre</th>
@@ -256,7 +256,7 @@
                                     <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                                     @if ($marchandise->barre_code)
                                     <td class="py-4 px-1 "><abbr title="{{ $marchandise->barre_code }}">
-                                        {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C128', 1, 30) !!}
+                                        {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}
                                             </abbr>
                                         </td>
                                     @else

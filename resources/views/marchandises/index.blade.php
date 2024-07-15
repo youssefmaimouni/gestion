@@ -177,7 +177,7 @@
                         <tr>
                             <th scope="col" class="py-3 px-1 text-center">image</th>
                             <th scope="col" class="py-3 px-1 text-center">nom</th>
-                            <th scope="col" class="py-3 px-1 text-center">barre code</th>
+                            <th scope="col" class="py-3 px-1 text-center"> code QR</th>
                             <th scope="col" class="py-3 px-1 text-center">categorie</th>
                             <th scope="col" class="py-3 px-1 text-center">quantite</th>
                             <th scope="col" class="py-3 px-1 text-center">description</th>
@@ -322,6 +322,7 @@
                 document.getElementById('cont').classList.remove('pointer-events-none');
             }
         </script>
+      
         <div class="col-span-full mt-6 p-4 pl-4">
             {{ $marchandises->links() }}
         </div>
