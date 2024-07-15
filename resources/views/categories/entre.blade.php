@@ -32,9 +32,24 @@
             </form>
         </div>
     </div> --}}
-
-    <div class="fixed font-mon bg-white grid hidden rounded-md shadow-md z-50" id="deleteGroupModal"
-        style="width: 800px; justify-items: center; align-content: space-evenly ;height: 250px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
+    <style>
+        .deleteGroupModal{
+            width: 800px;
+            height: 250px;
+            justify-items: center;
+            align-content: space-evenly ;
+            left: 50%; top:50%;
+        transform: translate(-50%, -50%);
+        tabindex="-1";
+        }
+        @media(max-width: 640px){
+    .deleteGroupModal{
+        width: 400px;
+        height: auto;
+    }
+}
+        </style>
+    <div class="fixed font-mon bg-white grid hidden rounded-md shadow-md  deleteGroupModal  z-50" id="deleteGroupModal"
         aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
         <div class="grid justify-items-center w-full">
             <form action="/entres/delete" method="POST" class="p-6 w-full">
@@ -143,7 +158,7 @@
                         <td class="py-4 px-6">{{ $entre->type }}</td>
                         <td class="py-4 px-6">{{ $entre->created_at }}</td>
                         <td class="py-4 px-6">{{ $entre->nom }}</td>
-                        <td class="py-4 px-6 justify-center space-x-4 flex">
+                        <td class="py-4 px-6 sm:justify-center sm:space-x-4 sm:flex">
                                 <button  onclick="warnning({{ $entre->id }})" class="text-red-600 hover:text-red-900">retirer</button>
                          
                             <a href="{{ route('categories.index_mar_a', $entre) }}">consulter</a>

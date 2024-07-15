@@ -10,6 +10,15 @@
 }
 
     </style>
+    <style>
+        .qr-code {
+            transition: transform 0.3s ease-in-out;
+        }
+        .enlarged {
+            transform: scale(2);
+            z-index: 1000;
+        }
+    </style>
     <div id="cont" class="">
         <div class="container  w-full">
             <!-- Error Message -->
@@ -263,10 +272,9 @@
                                     </td>
                                     <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                                     @if ($marchandise->barre_code)
-                                    <td class="py-4 px-1 hidden sm:block"><abbr title="{{ $marchandise->barre_code }}">
+                                    <td class=" justify-center py-5 px-1 hidden sm:flex "> <abbr title="{{$marchandise->barre_code}}" id="qrCodeContainer" class="block cursor-pointer qr-code">
                                         {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}
-                                            </abbr>
-                                        </td>
+                                    </abbr></td>
                                     @else
                                     <td class="py-4 px-1 text-center hidden sm:block">Pas de code barre</td>
                                     @endif
@@ -360,6 +368,15 @@
                 document.getElementById('end').addEventListener('input', function() {
                     var endDate = this.value;
                     document.getElementById('start').setAttribute('max', endDate);
+                });
+            </script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const qrCodeContainer = document.getElementById('qrCodeContainer');
+        
+                    qrCodeContainer.addEventListener('click', function() {
+                        this.classList.toggle('enlarged');
+                    });
                 });
             </script>
             {{ $marchandises->links() }}

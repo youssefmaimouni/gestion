@@ -1,4 +1,18 @@
 <x-nav-bar>
+    <style>
+        .qr-code {
+            transition: transform 0.3s ease-in-out;
+        }
+        .enlarged {
+            transform: scale(2);
+            z-index: 1000;
+        }
+        @media(max-width: 640px){
+    .desc{
+        display: none;
+    }
+}
+    </style>
     <div class="fixed font-mon bg-slate-200 grid hidden rounded-md shadow-md " id="deleteGroupModal"
         style="width: 400px; justify-items: center; align-content: space-evenly ;height: 200px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
         aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
@@ -50,16 +64,17 @@
                     <tr>
                         <th scope="col" class="py-3 px-6 ">image</th>
                         <th scope="col" class="py-3 px-6 ">nom</th>
-                        <th scope="col" class="py-3 px-6 ">code QR</th>
+                        <th scope="col" class="py-3 px-6 hidden sm:block">code QR</th>
                         <th scope="col" class="py-3 px-6 ">categorie</th>
                         <th scope="col" class="py-3 px-6 ">quantite</th>
-                        <th scope="col" class="py-3 px-6 ">description</th>
+                        <th scope="col" class="py-3 px-6 hidden sm:block">description</th>
                         
                     </tr>
                 </thead>
                 <tbody>
+                    <tr class="bg-white border-b hover:bg-gray-200 hover:text-black ">
                     @foreach ($marchandises as $marchandise)
-                    <td class="py-4 px-6">
+                    <td class="py-3 px-1 text-center flex justify-center">
                         @if (isset($marchandise->image) && $marchandise->image !== null)
                             <img class="image w-10 h-10 rounded-full bg-cover"
                                 src="{{ asset('/storage/' . $marchandise->image) }}" alt="" />
@@ -69,15 +84,19 @@
                         @endif
 
                     </td>
-                        <td class="py-4 px-6  ">{{ $marchandise->nom }}</td>
+                    <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                         @if($marchandise->barre_code)
-                                   <td ><abbr title="{{$marchandise->barre_code}}"> {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}</abbr></td>
+                        <td class=" justify-center py-5 px-1 hidden sm:flex "> <abbr title="{{$marchandise->barre_code}}" id="qrCodeContainer" class="block cursor-pointer qr-code">
+                            {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}
+                        </abbr></td>
                         @else
                             <td>Pas de code barre</td>
                         @endif
-                        <td class="py-4 px-6 ">{{ $marchandise->categories->nom }}</td>
-                        <td class="py-4 px-6 ">{{ $marchandise->qte }}</td>
-                        <td class="py-4 px-6 ">{{ $marchandise->description }}</td>
+                        <td class="justify-center py-4 px-6 ">{{ $marchandise->categories->nom }}</td>
+                        <td class="text-center py-4 px-6 ">{{ $marchandise->qte }}</td>
+                        <td class="py-4 px-1 text-center desc">
+                            <p class="overflow-hidden max-h-10 max-w-48 line-clamp-2">{{ $marchandise->description }}</p>
+                          </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -100,6 +119,15 @@
                 document.getElementById('cont').classList.remove('blur-sm');
                 document.getElementById('cont').classList.remove('pointer-events-none');
             }
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const qrCodeContainer = document.getElementById('qrCodeContainer');
+    
+                qrCodeContainer.addEventListener('click', function() {
+                    this.classList.toggle('enlarged');
+                });
+            });
         </script>
     </div>
 </x-nav-bar>
