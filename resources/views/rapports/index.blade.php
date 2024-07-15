@@ -3,6 +3,12 @@
         abbr {
             text-decoration: none;
         }
+        @media(max-width: 640px){
+    .desc{
+       margin-top: 4px;
+    }
+}
+
     </style>
     <div id="cont" class="">
         <div class="container  w-full">
@@ -215,7 +221,7 @@
                             </div>
                             <abbr title="filtre  par bar de recherch et date">
                                 <button type="submit" name="action" value="search"
-                                    class="mt-1 inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    class="desc inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 20 20">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -232,7 +238,7 @@
                     <table class="w-full text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
                             <tr>
-                                <th scope="col" class="py-3 px-1 text-center hidden sm:block">image</th>
+                                <th scope="col" class="py-3 px-1 text-center">image</th>
                                 <th scope="col" class="py-3 px-1 text-center ">nom</th>
                                 <th scope="col" class="py-3 px-1 text-center hidden sm:block">code QR</th>
                                 <th scope="col" class="py-3 px-1 text-center ">categorie</th>
@@ -244,7 +250,7 @@
                         <tbody>
                             @foreach ($marchandises as $marchandise)
                                 <tr class="bg-white border-b hover:bg-gray-200 hover:text-black ">
-                                    <td class="py-4 px-6 text-center hidden sm:block">
+                                    <td class="py-4 px-6 text-center">
                                         @if (isset($marchandise->image) && $marchandise->image !== null)
                                             <img class="image w-10 h-10 rounded-full bg-cover"
                                                 src="{{ asset('/storage/' . $marchandise->image) }}"
