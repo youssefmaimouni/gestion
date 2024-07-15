@@ -48,7 +48,7 @@
     <div class="flex h-full w-full ">
 
         <div id="sidebar"
-            class=' flex-col items-start justify-start w-72 left-0 h-calc overflow-auto flex pb-6 bg-gray-200 overflow-x-hidden'>
+            class='hidden flex-col items-start justify-start w-72 left-0 h-calc overflow-auto sm:flex pb-6 bg-gray-200 overflow-x-hidden'>
             <a href="/marchandises"
                 class="flex text-laravel font-medium text items-center hover:bg-slate-300 w-full  p-3 {{ request()->is('marchandises/*') ? 'bg-slate-400' : '' }} {{ request()->is('marchandises') ? 'bg-slate-400' : '' }}">
                 <svg width="30px" height="30px" viewBox="0 -0.5 25 25"fill="#1967D2"

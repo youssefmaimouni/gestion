@@ -8,6 +8,22 @@
   text-overflow: ellipsis;
 }
 
+@media(max-width: 640px){
+    .desc{
+        display: none;
+    }
+}
+
+
+    </style>
+      <style>
+        .qr-code {
+            transition: transform 0.3s ease-in-out;
+        }
+        .enlarged {
+            transform: scale(2);
+            z-index: 1000;
+        }
     </style>
      <div class="fixed font-mon bg-white grid hidden rounded-md shadow-md z-50" id="deleteGroupModal"
         style="width: 800px; justify-items: center; align-content: space-evenly ;height: 250px; left: 50%; top:50%; transform: translate(-50%, -50%); tabindex="-1"
@@ -177,10 +193,10 @@
                         <tr>
                             <th scope="col" class="py-3 px-1 text-center">image</th>
                             <th scope="col" class="py-3 px-1 text-center">nom</th>
-                            <th scope="col" class="py-3 px-1 text-center">barre code</th>
+                            <th scope="col" class="py-3 px-1 text-center hidden sm:block">barre code</th>
                             <th scope="col" class="py-3 px-1 text-center">categorie</th>
                             <th scope="col" class="py-3 px-1 text-center">quantite</th>
-                            <th scope="col" class="py-3 px-1 text-center">description</th>
+                            <th scope="col" class="py-3 px-1 text-center hidden sm:block">description</th>
                             <th scope="col" class="py-3 px-1 text-center">action</th>
                         </tr>
                     </thead>
@@ -199,10 +215,11 @@
                                 </td>
                                 <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                                 @if($marchandise->barre_code)
-                                   <td class="flex justify-center py-5 px-1  "><abbr title="{{$marchandise->barre_code}}"> {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}
+                                   <td class=" justify-center py-5 px-1 hidden sm:flex "> <abbr title="{{$marchandise->barre_code}}" id="qrCodeContainer" class="block cursor-pointer qr-code">
+                                    {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}
                                 </abbr></td>
                         @else
-                            <td>Pas de code barre</td>
+                            <td class="hidden sm:block">Pas de code barre</td>
                         @endif
                                 <td class="py-4 px-1 text-center ">
                                     @if ($marchandise->categories)
@@ -212,11 +229,11 @@
                                     @endif
                                 </td>
                                 <td class="py-4 px-1 text-center ">{{ $marchandise->quantite }}</td>
-                                <td class="py-4 px-1 text-center">
+                                <td class="py-4 px-1 text-center desc">
                                     <p class="overflow-hidden max-h-10 max-w-48 line-clamp-2">{{ $marchandise->description }}</p>
                                   </td>
                                   
-                                <td class="py-4 px-6 justify-between flex text-center space-x-2">
+                                <td class="py-4 px-3 sm:px-6 justify-between flex text-center space-x-2">
                                     <button onclick="warnning2({{ $marchandise->id }})" title="Ajout"
                                         aria-label="Ajout"
                                         class="flex items-center text-green-500 bg-green-200 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
@@ -239,7 +256,7 @@
                                     @if (auth()->user()->role=='S')
                                     <button onclick="warnning({{ $marchandise->id }})" title="Supprimer"
                                         aria-label="Supprimer"
-                                        class="flex items-center text-red-500 bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                                        class="flex items-center desc text-red-500 bg-red-200 hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -249,7 +266,7 @@
                                     @endif
                                     <a href="/marchandises/{{ $marchandise->id }}/edit" title="Modifier"
                                         aria-label="Modifier"
-                                        class="flex items-center text-blue-500 bg-blue-200 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
+                                        class="flex items-center desc text-blue-500 bg-blue-200 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50 px-3 py-2 rounded shadow-md transition duration-200">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -322,8 +339,17 @@
                 document.getElementById('cont').classList.remove('pointer-events-none');
             }
         </script>
+           <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const qrCodeContainer = document.getElementById('qrCodeContainer');
+    
+                qrCodeContainer.addEventListener('click', function() {
+                    this.classList.toggle('enlarged');
+                });
+            });
+        </script>
         <div class="col-span-full mt-6 p-4 pl-4">
             {{ $marchandises->links() }}
-        </div>
+        </div>
     </div>
 </x-nav-bar>
