@@ -65,7 +65,7 @@ class marchandiseController extends Controller
     
     $valid = $request->validate([
             'nom' => 'required|min:3|string',
-            'barre_code' => 'nullable|string|regex:/^\d{10,13}$/',
+            'barre_code' => 'nullable|string',
             'description' => 'string|nullable',
             'quantite' => 'integer|nullable',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:3000',
@@ -89,7 +89,7 @@ class marchandiseController extends Controller
         
         $marchandise = new marchandises();
         $marchandise->nom = $valid['nom'];
-        $marchandise->barre_code = $valid['barre_code'];
+        $marchandise->barre_code =  $valid['nom'];
         $marchandise->description = $valid['description'];
         
         if ($valid['quantite']<0) {

@@ -199,7 +199,8 @@
                                 </td>
                                 <td class="py-4 px-1 text-center  ">{{ $marchandise->nom }}</td>
                                 @if($marchandise->barre_code)
-                                   <td class="flex justify-center py-5 px-1  "><abbr title="{{$marchandise->barre_code}}"> {!! DNS1D::getBarcodeHTML($marchandise->barre_code, 'C128', 1, 30) !!}</abbr></td>
+                                   <td class="flex justify-center py-5 px-1  "><abbr title="{{$marchandise->barre_code}}"> {!! QrCode::size(40)->generate(" le nom: ".$marchandise->nom."\n categorie: ".$marchandise->categories->nom."\n quantité: ".$marchandise->quantite) !!}
+                                </abbr></td>
                         @else
                             <td>Pas de code barre</td>
                         @endif

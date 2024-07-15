@@ -15,24 +15,26 @@ class courbeController extends Controller
 { public function courbe(Request $request)
     {
         $periode = $request->get('periode', 'day');
+        $periode2 = $request->get('periode2', 'day');
         $type = $request->get('type', 'bar');
+        $type2 = $request->get('type2', 'bar');
         $categoryId = $request->get('id_cat',1);
 
-        // Déterminer le format de date en fonction de la période sélectionnée
+       
         $dateFormat = match($periode) {
             'month' => '%Y-%m',
             'year' => '%Y',
             default => '%Y-%m-%d'
         };
 
-        // Récupérer les données de la base de données
+        
         $data = DB::table('rapports')
             ->select(DB::raw("SUM(quantite) as total_quantite, DATE_FORMAT(date, '$dateFormat') as formatted_date"))
             ->groupBy('formatted_date')
             ->orderBy('formatted_date')
             ->get();
 
-        // Calculer le total cumulé
+        
         $cumulativeTotal = 0;
         $chartData = [];
         foreach ($data as $entry) {
@@ -75,14 +77,54 @@ class courbeController extends Controller
 
         $categories = categories::all();
 
+        
+        $data_entre = DB::table('entres')
+            ->select(DB::raw("SUM(quantite) as total_quantite, DATE_FORMAT(created_at, '$dateFormat') as formatted_date"))
+            ->groupBy('formatted_date')
+            ->orderBy('formatted_date')
+            ->get();
+
+      
+      
+
+       $chartDataentre = $data_entre->map(function($item) {
+        return [
+            
+           'date' => $item->formatted_date,
+            'quantite' =>$item->total_quantite
+        ];
+    });
+            
+          
+
+
+            $data_sortie = DB::table('sorties')
+            ->select(DB::raw("SUM(quantite) as total_quantite, DATE_FORMAT(created_at, '$dateFormat') as formatted_date"))
+            ->groupBy('formatted_date')
+            ->orderBy('formatted_date')
+            ->get();
+
+      
+            
+            $chartDatasortie = $data_sortie->map(function($item) {
+                return [
+                    
+                   'date' => $item->formatted_date,
+                    'quantite' =>$item->total_quantite
+                ];
+            });
+
         return view('rapports.chart', [
             'chartData' => $chartData,
             'periode' => $periode,
+            'periode2' => $periode2,
             'type'=>$type,
+            'type2'=>$type2,
             'chartDatac' => $chartDatac,
             'chartDatam' => $chartDatam,
-            'categories' => $categories
+            'categories' => $categories,
+            'chartDataentre' => $chartDataentre,
+            'chartDatasortie' => $chartDatasortie,
         ]);
     }
-
 }
