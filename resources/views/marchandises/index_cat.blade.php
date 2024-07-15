@@ -7,7 +7,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           
 
-            <div class=" overflow-hidden gap-3 grid grid-cols-3 justify-items-center">
+            <div class=" overflow-hidden gap-3 grid grid-cols-2 sm:grid-cols-3 justify-items-center">
             @foreach($categories as $categorie)
                <a href="{{ route('marchandises.index', $categorie) }}" class="h-52 w-full bg-slate-400 m-3 flex items-center flex-col rounded hover:border-2 hover:border-gray-100   text-center justify-center ">
                 <p class="text-center font-bold text-black text-2xl underline">{{ $categorie->nom }}</p> <br>

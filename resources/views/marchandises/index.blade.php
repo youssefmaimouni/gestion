@@ -287,7 +287,7 @@
                 
             </div>
         @else
-            <h2 class="text-gray-300 text-8xl select-none text-center mt-32">aucune marchendise</h2>
+            <h2 class="text-gray-300 text-xl sm:text-8xl select-none text-center mt-32">aucune marchendise</h2>
         @endif
         <script>
             function warnning(id) {

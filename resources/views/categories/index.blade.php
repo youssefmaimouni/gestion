@@ -7,9 +7,9 @@
         <div class="max-w-7xl mx-auto  ">
           
 
-            <div class=" gap-3 grid grid-cols-3 justify-items-center ml-1">
+            <div class=" gap-3 grid grid-cols-2 sm:grid-cols-3 justify-items-center ml-1">
             @foreach($categories as $categorie)
-               <a href="{{ route('categories.entre_sortie', $categorie) }}" class="h-52 w-full bg-white shadow-lg hover:bg-gray-50 rounded border   flex items-center flex-col   text-center justify-center">
+               <a href="{{ route('categories.entre_sortie', $categorie) }}" class="h-52 w-full bg-white shadow-lg hover:bg-gray-50 rounded border min-w-20  flex items-center flex-col   text-center justify-center">
                 <svg width="60px" height="60px" viewBox="0 0 24 24" fill="none" class="mt-2"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
